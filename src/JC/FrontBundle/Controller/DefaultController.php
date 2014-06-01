@@ -25,6 +25,7 @@ class DefaultController extends Controller
 /**
 	* Point d'entrée du site web
 	*
+	* @return VueTwig
 	*/
 	public function indexAction()
 	{
@@ -34,6 +35,7 @@ class DefaultController extends Controller
 /**
 	* Executer les tests du code javascript
 	*
+	* @return VueTwig
 	*/
 	public function testAction()
 	{

@@ -1,9 +1,3 @@
-function pourqunit()
-{
-	return 'aaa';
-}
-
-function bienvenue()
-{
-	alert("bienvenue");
-}
+/**
+ * Fonctions javascript communes à toute l'application (style graphique en particulier)
+ */

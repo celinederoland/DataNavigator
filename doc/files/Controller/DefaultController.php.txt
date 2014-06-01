@@ -25,10 +25,21 @@ class DefaultController extends Controller
 /**
 	* Point d'entrée du site web
 	*
+	* @return VueTwig
 	*/
 	public function indexAction()
 	{
 		return $this->render('JCFrontBundle:Default:index.html.twig');
+	}
+
+/**
+	* Executer les tests du code javascript
+	*
+	* @return VueTwig
+	*/
+	public function testAction()
+	{
+		return $this->render('JCFrontBundle:Default:test.html.twig');
 	}
 }
 
