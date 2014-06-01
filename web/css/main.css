@@ -1,31 +1,112 @@
 nav
 {
-	background-color: lightgrey;
-	border: solid 1px grey;
+	background-color: #f3f3f3;
+	border: solid 1px lightgrey;
 	border-radius: 3px;
 	padding: 5px;
 	position:fixed;
+	opacity:0.9;
+}
+
+nav img
+{
+	border:solid 1px lightgrey;
+	padding: 3px;
+	border-radius: 3px;
+	margin:3px;
+	background-image:url('/images/fondbouton.png');
+	background-size: 100% 100%;
+	vertical-align:top;
+}
+
+nav img:hover
+{
+	border: solid 1px grey;
+}
+
+nav span
+{
+	padding: 3px;
+	display:inline-block;
+	vertical-align:top;
+}
+nav input
+{
+	width:60px;
+	margin:3px;
+	padding:3px;
+	border-radius:3px;
+	display:inline-block;
+}
+.selectRelation
+{
+	width:150px;
+	max-height:4em;
+}
+#mot
+{
+	width:150px;
+	font-size:1.5em;
+	height:40px;
+}
+
+nav a
+{
+	text-decoration:none;
 }
 
 #menusite
 {
-	left:3%; top:3%;
+	left:0; top:0;
+	width:auto;
+	max-width:30%;
 }
 
 #menudonnees
 {
-	left:90%; top:3%;
-	width:7%;
+	right:0; bottom:0;
+	width:51px;
+	max-width:7%;
 }
 
 #menuvue
 {
-	left:50%; bottom:15%;
-	width:47%;
+	left:0; bottom:0;
+	max-width:50%;
+}
+
+#menutools
+{
+	left:20%; bottom:0;
+	max-width:40%;
+}
+
+#recherche
+{
+	left:30%; top:0;
+	max-width:70%;
+}
+
+#options
+{
+	left:70%; bottom:0;
 }
 
 #infos
 {
-	left:3%; bottom:15%;
-	width:30%;
+	right:0; top:0;
+	min-width:30%;
+	min-height:30%;
+}
+
+nav ul,nav li
+{
+	padding:0px;
+	margin:0px;
+	display:inline;
+}
+
+nav li
+{
+	liststyletype:none;
 }
