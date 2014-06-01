@@ -1,0 +1,7 @@
+#jc = juliana celine : contient les à côtés (comme livre d'or, user, front etc) et le relais
+
+#front : point d'entrée de l'application
+jc_front:
+    resource: "@JCFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
