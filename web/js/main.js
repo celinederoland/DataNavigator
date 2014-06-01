@@ -5,10 +5,8 @@
 $( init );
  
 function init() {
-	var larg = $(window).width() - 400;
-	var haut = $(window).height();
-	var hbox = $('#menusite').height() + 20;
-	var lbox = $('#menuvue').width();
+	var larg = $('#conteneurmenu').innerWidth();
+	var hbox = $('#menusite').outerHeight() + 5;
 
 	$('#menusite').draggable();
 	$('#menuvue').draggable();
@@ -19,19 +17,23 @@ function init() {
 	$('#options').draggable();
 
 	$('#menusite').css('top','0px');
-	$('#recherche').css('top',hbox + 'px');
-	$('#options').css('top',(2*hbox) + 'px');
+	$('#recherche').css('top','0px');
+	$('#options').css('top',hbox + 'px');
+	$('#infos').css('top',3*hbox + 'px');
 
-	$('#infos').css('top','0px');
-	$('#menudonnees').css('top',hbox + 'px');
-	$('#menuvue').css('top',(2*hbox) + 'px');
-	$('#menutools').css('top',(3*hbox) + 'px');
+	$('#recherche').css('left',(larg/2) + 'px');
 
+	$('#menudonnees').css('top','0px');
+	$('#menuvue').css('top',hbox + 'px');
+	$('#menutools').css('top',2*hbox + 'px');
 
-	$('#menuvue').css('left',larg + 'px');
-	$('#menudonnees').css('left',larg + 'px');
-	$('#menutools').css('left',larg + 'px');
-	$('#infos').css('left',larg + 'px');
+	var lvue = larg - $('#menuvue').outerWidth() - 5;
+	var ldonnees = larg - $('#menudonnees').outerWidth() - 5;
+	var ltools = larg - $('#menutools').outerWidth() - 5;
+
+	$('#menuvue').css('left',lvue + 'px');
+	$('#menudonnees').css('left',ldonnees + 'px');
+	$('#menutools').css('left',ltools + 'px');
 
 	$('#infos').resizable({ ghost:true  });
 }
