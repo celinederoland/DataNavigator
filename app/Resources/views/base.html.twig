@@ -14,6 +14,7 @@
 
 	<body>
 
+		<div id="conteneurmenu">
 		<nav id='menusite'>
 			<ul>
 				<li>
@@ -61,43 +62,43 @@
 					<a href="">
 						{% image '@JCFrontBundle/Resources/public/images/menusite/logocouleurs.png' %}
 							<img 
-								src="{{ asset_url }}" width="40px"
+								src="{{ asset_url }}" height="40px"
 								title="{{ 'Colorier des relations' | trans}}"/>
 						{% endimage %}
 					</a>
-				</li><br/>
+				</li>
 				<li>
 					<a href="">
 						{% image '@JCFrontBundle/Resources/public/images/menusite/logoradial.png' %}
 							<img 
-								src="{{ asset_url }}" width="40px"
+								src="{{ asset_url }}" height="40px"
 								title="{{ 'Radial Tree' | trans}}"/>
 						{% endimage %}
 					</a>
-				</li><br/>
+				</li>
 				<li>
 					<a href="">
 						{% image '@JCFrontBundle/Resources/public/images/menusite/logoindented.png' %}
 							<img 
-								src="{{ asset_url }}" width="40px"
+								src="{{ asset_url }}" height="40px"
 								title="{{ 'Indented Tree' | trans}}"/>
 						{% endimage %}
 					</a>
-				</li><br/>
+				</li>
 				<li>
 					<a href="">
 						{% image '@JCFrontBundle/Resources/public/images/menusite/logograph.png' %}
 							<img 
-								src="{{ asset_url }}" width="40px"
+								src="{{ asset_url }}" height="40px"
 								title="{{ 'Force Directed Graph' | trans}}"/>
 						{% endimage %}
 					</a>
-				</li><br/>
+				</li>
 				<li>
 					<a href="">
 						{% image '@JCFrontBundle/Resources/public/images/menusite/logobubble.png' %}
 							<img 
-								src="{{ asset_url }}" width="40px"
+								src="{{ asset_url }}" height="40px"
 								title="{{ 'Bubble Tree' | trans}}"/>
 						{% endimage %}
 					</a>
@@ -110,16 +111,16 @@
 					<a href="">
 						{% image '@JCFrontBundle/Resources/public/images/menusite/logowordnet.png' %}
 							<img 
-								src="{{ asset_url }}" width="40px"
+								src="{{ asset_url }}" height="40px"
 								title="{{ 'WordNet' | trans}}"/>
 						{% endimage %}
 					</a>
-				</li><br/>
+				</li>
 				<li>
 					<a href="">
 						{% image '@JCFrontBundle/Resources/public/images/menusite/logodbpedia.png' %}
 							<img 
-								src="{{ asset_url }}" width="40px"
+								src="{{ asset_url }}" height="40px"
 								title="{{ 'DbPedia' | trans}}"/>
 						{% endimage %}
 					</a>
@@ -128,7 +129,7 @@
 					<a href="">
 						{% image '@JCFrontBundle/Resources/public/images/menusite/logodebian.png' %}
 							<img 
-								src="{{ asset_url }}" width="40px"
+								src="{{ asset_url }}" height="40px"
 								title="{{ 'Debian' | trans}}"/>
 						{% endimage %}
 					</a>
@@ -211,7 +212,7 @@
 
 		<nav id='infos'>
 		</nav>
-
+		</div>
 		{% block body %}{% endblock %}
 
 	</body>

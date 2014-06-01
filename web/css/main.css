@@ -1,11 +1,21 @@
+#conteneurmenu
+{
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+}
+
 nav
 {
 	background-color: #f3f3f3;
 	border: solid 1px lightgrey;
 	border-radius: 3px;
 	padding: 5px;
-	position:fixed;
 	opacity:0.9;
+	display:block;
+	position:absolute;
 }
 
 nav img
@@ -58,45 +68,38 @@ nav a
 #menusite
 {
 	left:0; top:0;
-	width:auto;
-	max-width:30%;
 }
 
 #menudonnees
 {
-	right:0; bottom:0;
-	width:51px;
-	max-width:7%;
+	left:500; top:0;
 }
 
 #menuvue
 {
-	left:0; bottom:0;
-	max-width:50%;
+	left:500; top:100;
 }
 
 #menutools
 {
-	left:20%; bottom:0;
-	max-width:40%;
+	left:500; top:200;
 }
 
 #recherche
 {
-	left:30%; top:0;
-	max-width:70%;
+	left:0; top:100;
 }
 
 #options
 {
-	left:70%; bottom:0;
+	left:0; top:200;
 }
 
 #infos
 {
-	right:0; top:0;
-	min-width:30%;
-	min-height:30%;
+	left:0; top:200;
+	width:40px;
+	height:40px;
 }
 
 nav ul,nav li
