@@ -1,4 +1,31 @@
-h1
+nav
 {
-	color:red;
+	background-color: lightgrey;
+	border: solid 1px grey;
+	border-radius: 3px;
+	padding: 5px;
+	position:fixed;
+}
+
+#menusite
+{
+	left:3%; top:3%;
+}
+
+#menudonnees
+{
+	left:90%; top:3%;
+	width:7%;
+}
+
+#menuvue
+{
+	left:50%; bottom:15%;
+	width:47%;
+}
+
+#infos
+{
+	left:3%; bottom:15%;
+	width:30%;
 }
