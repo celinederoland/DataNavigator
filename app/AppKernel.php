@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Sources\HumourBundle\SourcesHumourBundle(),
             new Relais\RelaisBundle\RelaisRelaisBundle(),
             new Vues\RepresentationsBundle\VuesRepresentationsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
