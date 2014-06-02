@@ -36,4 +36,10 @@ function init() {
 	$('#menutools').css('left',ltools + 'px');
 
 	$('#infos').resizable({ ghost:true  });
+	/*$('#menusite').resizable({ ghost:true  });
+	$('#menuvue').resizable({ ghost:true  });
+	$('#menudonnees').resizable({ ghost:true  });
+	$('#menutools').resizable({ ghost:true  });
+	$('#recherche').resizable({ ghost:true  });
+	$('#options').resizable({ ghost:true  });*/
 }

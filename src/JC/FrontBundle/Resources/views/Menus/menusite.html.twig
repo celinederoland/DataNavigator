@@ -36,5 +36,39 @@
 				{% endimage %}
 			</a>
 		</li>
+		<li>
+			<a href="">
+				{% if app.session.get('locale') == 'fr' %}
+					{% image '@JCFrontBundle/Resources/public/images/menusite/en.png' %}
+						<img 
+							src="{{ asset_url }}" height="40px" width="40px"
+							title="{{ 'Traduire' | trans}}"/>
+					{% endimage %}
+				{% else %}
+					{% image '@JCFrontBundle/Resources/public/images/menusite/fr.png' %}
+						<img 
+							src="{{ asset_url }}" height="40px" width="40px"
+							title="{{ 'Traduire' | trans}}"/>
+					{% endimage %}
+				{% endif %}
+			</a>
+		</li>
+		<li>
+			<a href="">
+				{% if app.user %}
+					{% image '@JCFrontBundle/Resources/public/images/menusite/logout.png' %}
+						<img 
+							src="{{ asset_url }}" height="40px" width="40px"
+							title="{{ 'Déconnexion' | trans}}"/>
+					{% endimage %}
+				{% else %}
+					{% image '@JCFrontBundle/Resources/public/images/menusite/logocadenas.png' %}
+						<img 
+							src="{{ asset_url }}" height="40px" width="40px"
+							title="{{ 'Connexion' | trans}}"/>
+					{% endimage %}
+				{% endif %}
+			</a>
+		</li>
 	</ul>
 </nav>

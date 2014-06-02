@@ -14,6 +14,12 @@
 
 	<body>
 
+		<div id="conteneurpage">
+			{% block body %}{% endblock %}
+		</div>
+		<div id="conteneurD3">
+			{% block d3 %}{% endblock %}
+		</div>
 		<div id="conteneurmenu">
 			{{ include('JCFrontBundle:Menus:menusite.html.twig') }}
 			{{ include('JCFrontBundle:Menus:menuvues.html.twig') }}
@@ -23,12 +29,7 @@
 			{{ include('JCFrontBundle:Menus:options.html.twig') }}
 			{{ include('JCFrontBundle:Menus:infos.html.twig') }}
 		</div>
-		<div id="conteneurpages">
-			{% block body %}{% endblock %}
-		</div>
-		<div id="conteneurD3">
-			{% block d3 %}{% endblock %}
-		</div>
+
 
 	</body>
 
