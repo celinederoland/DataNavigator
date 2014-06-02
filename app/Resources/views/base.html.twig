@@ -28,13 +28,15 @@
 			{{ include('JCFrontBundle:Menus:recherche.html.twig') }}
 			{{ include('JCFrontBundle:Menus:options.html.twig') }}
 			{{ include('JCFrontBundle:Menus:infos.html.twig') }}
+
+			{{ include('JCFrontBundle:Menus:menuadmin.html.twig') }}
 		</div>
 
 
 	</body>
 
 	{% block js %}
-		{% javascripts 'js/*' %}
+		{% javascripts 'js/*' '@JCFrontBundle/Resources/public/js/tests/*' %}
 			<script type="text/javascript" src="{{ asset_url }}"></script>
 		{% endjavascripts %}
 	{% endblock %}

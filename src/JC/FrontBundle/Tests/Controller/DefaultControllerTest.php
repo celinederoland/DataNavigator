@@ -10,7 +10,7 @@ class DefaultControllerTest extends WebTestCase
 	{
 		$client = static::createClient();
 		$crawler = $client->request('GET', '/');
-		$this->assertTrue($crawler->filter('html:contains("application")')->count() > 0,'accueil du site en panne');
+		$this->assertTrue($crawler->filter('html:contains("Relations")')->count() > 0,'accueil du site en panne');
 	}
 
 	public function testJSTest()

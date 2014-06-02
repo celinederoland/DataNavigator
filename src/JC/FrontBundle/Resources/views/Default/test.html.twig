@@ -1,13 +1,6 @@
-{% extends "::base.html.twig" %}
-
-{% block body %}
 <h1>Exécution des tests de l'application !</h1>
 
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
-		{% block js %} {{ parent() }}
-			{% javascripts '@JCFrontBundle/Resources/public/js/tests/*' %}
-				<script type="text/javascript" src="{{ asset_url }}"></script>
-			{% endjavascripts %}
-		{% endblock %}
-{% endblock %}
+
+<div id="essai"></div>

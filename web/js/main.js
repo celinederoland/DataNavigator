@@ -43,3 +43,13 @@ function init() {
 	$('#recherche').resizable({ ghost:true  });
 	$('#options').resizable({ ghost:true  });*/
 }
+
+function chargerPageTests(url)
+{
+	//alert("coucou");
+	//alert(conteneur + ' ' + url);
+	$('#conteneurpage').css('visibility','visible');
+	$('#conteneurpage').load(url);
+	$.getScript('monscript.js');
+	lancerTests();
+}
