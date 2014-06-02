@@ -1,9 +1,12 @@
 /**
- * Fonctions javascript communes à toute l'application (style graphique en particulier)
+ * Fonctions javascript communes à toute l'application (style graphique et réaction sur les menus)
  */
 
 $( init );
  
+/**
+ * Initialisation des positionnements des menus dans la page
+ */
 function init() {
 	var larg = $('#conteneurmenu').innerWidth();
 	var hbox = $('#menusite').outerHeight() + 5;
@@ -44,12 +47,15 @@ function init() {
 	$('#options').resizable({ ghost:true  });*/
 }
 
-function chargerPageTests(url)
+/**
+ * Charge une url demandée dans une iframe sur le cadre #conteneurpage
+ */
+function chargerPage(url)
 {
-	//alert("coucou");
-	//alert(conteneur + ' ' + url);
 	$('#conteneurpage').css('visibility','visible');
-	$('#conteneurpage').load(url);
-	$.getScript('monscript.js');
-	lancerTests();
+	$('#conteneurpage').html(
+			"<iframe id='pageframe' src='"+url+"' "+
+			"width='98%' frameborder='0'></iframe>"
+			);
+	$('#pageframe').css('height' , '100%');
 }

@@ -17,9 +17,11 @@
 		<div id="conteneurpage">
 			{% block body %}{% endblock %}
 		</div>
+
 		<div id="conteneurD3">
 			{% block d3 %}{% endblock %}
 		</div>
+
 		<div id="conteneurmenu">
 			{{ include('JCFrontBundle:Menus:menusite.html.twig') }}
 			{{ include('JCFrontBundle:Menus:menuvues.html.twig') }}
@@ -36,7 +38,7 @@
 	</body>
 
 	{% block js %}
-		{% javascripts 'js/*' '@JCFrontBundle/Resources/public/js/tests/*' %}
+		{% javascripts 'js/*' %}
 			<script type="text/javascript" src="{{ asset_url }}"></script>
 		{% endjavascripts %}
 	{% endblock %}
