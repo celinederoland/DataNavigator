@@ -1,0 +1,7 @@
+parameters:
+#    sources_word_net.example.class: Sources\WordNetBundle\Example
+
+services:
+#    sources_word_net.example:
+#        class: %sources_word_net.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

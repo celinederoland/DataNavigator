@@ -1,3 +1,39 @@
+vues_representations:
+    resource: "@VuesRepresentationsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+relais_relais:
+    resource: "@RelaisRelaisBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sources_humour:
+    resource: "@SourcesHumourBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sources_debian:
+    resource: "@SourcesDebianBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sources_db_pedia:
+    resource: "@SourcesDbPediaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sources_word_net:
+    resource: "@SourcesWordNetBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_user:
+    resource: "@JCUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_doc:
+    resource: "@JCDocBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_livre_or:
+    resource: "@JCLivreOrBundle/Resources/config/routing.yml"
+    prefix:   /
+
 #jc = juliana celine : contient les à côtés (comme livre d'or, user, front etc) et le relais
 
 #front : point d'entrée de l'application

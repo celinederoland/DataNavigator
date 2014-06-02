@@ -17,6 +17,15 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JC\FrontBundle\JCFrontBundle(),
+            new JC\LivreOrBundle\JCLivreOrBundle(),
+            new JC\DocBundle\JCDocBundle(),
+            new JC\UserBundle\JCUserBundle(),
+            new Sources\WordNetBundle\SourcesWordNetBundle(),
+            new Sources\DbPediaBundle\SourcesDbPediaBundle(),
+            new Sources\DebianBundle\SourcesDebianBundle(),
+            new Sources\HumourBundle\SourcesHumourBundle(),
+            new Relais\RelaisBundle\RelaisRelaisBundle(),
+            new Vues\RepresentationsBundle\VuesRepresentationsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

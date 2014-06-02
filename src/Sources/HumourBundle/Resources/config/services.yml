@@ -1,0 +1,7 @@
+parameters:
+#    sources_humour.example.class: Sources\HumourBundle\Example
+
+services:
+#    sources_humour.example:
+#        class: %sources_humour.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

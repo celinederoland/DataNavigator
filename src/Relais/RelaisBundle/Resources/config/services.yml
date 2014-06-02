@@ -1,0 +1,7 @@
+parameters:
+#    relais_relais.example.class: Relais\RelaisBundle\Example
+
+services:
+#    relais_relais.example:
+#        class: %relais_relais.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

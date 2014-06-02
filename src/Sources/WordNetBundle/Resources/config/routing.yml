@@ -1,0 +1,3 @@
+sources_word_net_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: SourcesWordNetBundle:Default:index }

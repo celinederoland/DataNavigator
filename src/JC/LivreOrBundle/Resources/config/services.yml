@@ -1,0 +1,7 @@
+parameters:
+#    jc_livre_or.example.class: JC\LivreOrBundle\Example
+
+services:
+#    jc_livre_or.example:
+#        class: %jc_livre_or.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

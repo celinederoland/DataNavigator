@@ -1,0 +1,7 @@
+parameters:
+#    vues_representations.example.class: Vues\RepresentationsBundle\Example
+
+services:
+#    vues_representations.example:
+#        class: %vues_representations.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

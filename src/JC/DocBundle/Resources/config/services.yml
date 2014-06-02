@@ -1,0 +1,7 @@
+parameters:
+#    jc_doc.example.class: JC\DocBundle\Example
+
+services:
+#    jc_doc.example:
+#        class: %jc_doc.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

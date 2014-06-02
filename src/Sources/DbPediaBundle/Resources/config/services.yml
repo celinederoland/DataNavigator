@@ -1,0 +1,7 @@
+parameters:
+#    sources_db_pedia.example.class: Sources\DbPediaBundle\Example
+
+services:
+#    sources_db_pedia.example:
+#        class: %sources_db_pedia.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
