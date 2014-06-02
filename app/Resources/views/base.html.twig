@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>{% block title %}Welcome!{% endblock %}</title>
+		<title>{% block title %}DataNavigator{% endblock %}</title>
 		{% block stylesheets %}
 			{% stylesheets filter='cssrewrite' 'css/*' %}
 				<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
@@ -15,205 +15,20 @@
 	<body>
 
 		<div id="conteneurmenu">
-		<nav id='menusite'>
-			<ul>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logocarto.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Accueil' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logodoc.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Documentation' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logolivre.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Livre d\'or' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logoinfo.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'A propos' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-			</ul>
-		</nav>
-
-		<nav id='menuvue'>
-			<ul>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logocouleurs.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Colorier des relations' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logoradial.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Radial Tree' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logoindented.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Indented Tree' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logograph.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Force Directed Graph' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logobubble.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Bubble Tree' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-			</ul>
-		</nav>
-
-		<nav id='menudonnees'>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logowordnet.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'WordNet' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logodbpedia.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'DbPedia' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logodebian.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Debian' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-			</ul>
-		</nav>
-
-		<nav id='menutools'>
-			<ul>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logozoom.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Zoom Avant' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logodezoom.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Zoom Arrière' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logodeplace.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Drag & Drop' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-				<li>
-					<a href="">
-						{% image '@JCFrontBundle/Resources/public/images/menusite/logorotation.png' %}
-							<img 
-								src="{{ asset_url }}" height="40px" width="40px"
-								title="{{ 'Rotation' | trans}}"/>
-						{% endimage %}
-					</a>
-				</li>
-			</ul>
-		</nav>
-
-		<nav id='recherche'>
-			<ul>
-				<li>
-					<input type="text" name="mot" id="mot"/>
-					{% image '@JCFrontBundle/Resources/public/images/menusite/logorotation.png' %}
-						<img 
-							src="{{ asset_url }}" height="40px" width="40px"
-							title="{{ 'Rotation' | trans}}"/>
-					{% endimage %}
-				</li>
-			</ul>
-		</nav>
-
-		<nav id="options">
-			<ul>
-				<li>
-					<span>Limite <br/>
-						<input type="number" name="taille" id="taille"/>
-					</span>
-				</li>
-				<li>
-					<span>Relations <br/>
-						<label>
-							<select class="selectRelation" multiple size="2">
-								<option selected> None... </option>
-							</select>
-						</label>
-					</span>
-				</li>
-			</ul>
-		</nav>
-
-		<nav id='infos'>
-		</nav>
+			{{ include('JCFrontBundle:Menus:menusite.html.twig') }}
+			{{ include('JCFrontBundle:Menus:menuvues.html.twig') }}
+			{{ include('JCFrontBundle:Menus:menudonnees.html.twig') }}
+			{{ include('JCFrontBundle:Menus:menutools.html.twig') }}
+			{{ include('JCFrontBundle:Menus:recherche.html.twig') }}
+			{{ include('JCFrontBundle:Menus:options.html.twig') }}
+			{{ include('JCFrontBundle:Menus:infos.html.twig') }}
 		</div>
-		{% block body %}{% endblock %}
+		<div id="conteneurpages">
+			{% block body %}{% endblock %}
+		</div>
+		<div id="conteneurD3">
+			{% block d3 %}{% endblock %}
+		</div>
 
 	</body>
 
