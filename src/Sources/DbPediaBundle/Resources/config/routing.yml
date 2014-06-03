@@ -1,3 +1,0 @@
-sources_db_pedia_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: SourcesDbPediaBundle:Default:index }

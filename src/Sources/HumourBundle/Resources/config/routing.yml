@@ -1,3 +1,0 @@
-sources_humour_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: SourcesHumourBundle:Default:index }

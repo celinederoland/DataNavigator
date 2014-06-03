@@ -1,3 +1,0 @@
-jc_livre_or_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: JCLivreOrBundle:Default:index }
