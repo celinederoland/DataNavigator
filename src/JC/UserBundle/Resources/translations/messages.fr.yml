@@ -1,2 +1,19 @@
+#Login
 'username': "Nom d'utilisateur"
 'pass': "Mot de Passe"
+pasdecompte:
+    part1: 'Si vous ne possédez pas encore de compte, vous devez '
+    part2: 'utiliser la page de création de compte'
+'remember': "Se souvenir de moi"
+'connection': "Connexion"
+'connexion': "Connexon"
+
+#Register
+'create': "Créer un compte"
+dejauncompte:
+    part1: "Si vous possédez déjà un compte, vous devez "
+    part2: 'utiliser la page de connexion'
+'email': "Adresse mail"
+registration:
+    confirmed: Félicitations %username%, votre compte est maintenant activé.
+    back: Retour au site DataNavigator.

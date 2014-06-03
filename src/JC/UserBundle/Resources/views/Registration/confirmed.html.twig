@@ -1,8 +1,6 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
-{% trans_default_domain 'messages' %}
-
 {% block fos_user_content %}
-	<h1>Vous venez de créer un compte au nom {{ user.username }}.</h1>
-	<p><a href="{{ path('jc_front_homepage') }}">Revenir au site web DataNavigator</a></p>
+	<h1>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h1>
+	<p><a href="{{ path('jc_front_homepage') }}">{{ 'registration.back'|trans }}</a></p>
 {% endblock fos_user_content %}

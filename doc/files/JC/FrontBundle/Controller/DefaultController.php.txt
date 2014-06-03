@@ -41,5 +41,16 @@ class DefaultController extends Controller
 	{
 		return $this->render('JCFrontBundle:Default:test.html.twig');
 	}
+
+/**
+	* Changer la locale
+	*
+	* @return Redirection vers la page d'accueil
+	*/
+/*	public function langueAction($locale)
+	{
+		$this -> get('session') -> set('_locale', $locale);
+		return $this->redirect($this -> generateUrl('jc_front_homepage'));
+	}*/
 }
 

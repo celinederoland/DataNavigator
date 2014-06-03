@@ -1,11 +1,9 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
-{% trans_default_domain 'messages' %}
-
 {% block fos_user_content %}
 
-	<h1>Connexion</h1>
-	<p>Si vous ne possédez pas encore de compte, vous devez <a href="{{ path('fos_user_registration_register')}}">utiliser la page de création de compte</a></p>
+	<h1>{{ 'connection'|trans }}</h1>
+	<p>{{ 'pasdecompte.part1' | trans }} <a href="{{ path('fos_user_registration_register')}}">{{ 'pasdecompte.part2' | trans }}</a></p>
 
 	{% if error %}
 		<div>{{ error|trans }}</div>
@@ -24,11 +22,11 @@
 				<td><input type="password" id="password" name="_password" required="required" /></td>
 			</tr><tr>
 				<td colspan=2><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-				<label for="remember_me">Se souvenir de moi</label></td>
+				<label for="remember_me">{{ 'remember' | trans }}</label></td>
 			</tr>
 		</table>
 
-		<input type="submit" id="_submit" name="_submit" value="Connection" />
+		<input type="submit" id="_submit" name="_submit" value="{{ 'connection'|trans }}" />
 
 	</form>
 

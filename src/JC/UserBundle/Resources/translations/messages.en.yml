@@ -1,2 +1,19 @@
+#Login
 'username': "User Name"
 'pass': "Password"
+pasdecompte:
+    part1: "If you don't have an account, "
+    part2: 'please follow this link to create one'
+'remember': "Remember me"
+'connection': "Connection"
+'connexion': "Connection"
+
+#Register
+'create': "Create an account"
+dejauncompte:
+    part1: "If you are registered yet, "
+    part2: 'please follow this link to log in'
+registration:
+    confirmed: Congrats %username%, your account is now activated.
+    back: Back to DataNavigator website.
+

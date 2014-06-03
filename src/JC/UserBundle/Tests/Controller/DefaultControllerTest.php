@@ -13,7 +13,7 @@ class DefaultControllerTest extends BddTestCase
 
 		$crawler = $this -> lambdaConnection($client);
 
-		$this -> assertTrue($crawler -> filter('html:contains("Bienvenue lambda")') -> count() > 0, 'échec login');
+		$this -> assertTrue($crawler -> filter('html:contains("Welcome lambda")') -> count() > 0, 'échec login');
 	}
 
 	public function testLogout()
