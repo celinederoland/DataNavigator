@@ -1,6 +1,10 @@
 jc_user_homepage:
-    pattern:  /hello/{name}
+    pattern: /hello/{name}
     defaults: { _controller: JCUserBundle:Default:index }
+
+jc_user_supprimer:
+    pattern: /supprimer
+    defaults: { _controller: JCUserBundle:Default:supprimer }
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -20,3 +24,4 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+

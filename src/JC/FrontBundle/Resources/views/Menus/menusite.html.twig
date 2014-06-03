@@ -43,22 +43,5 @@
 				{% endimage %}
 			{% endif %}
 		</li>
-		<li>
-			{% if app.user %}
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logout.png' %}
-					<a href="{{ path('fos_user_security_logout') }}"><img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Déconnexion' | trans}}"/>
-					</a>
-				{% endimage %}
-			{% else %}
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logocadenas.png' %}
-					<a href="{{ path('fos_user_security_login') }}"><img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Connexion' | trans}}"/>
-					</a>
-				{% endimage %}
-			{% endif %}
-		</li>
 	</ul>
 </nav>

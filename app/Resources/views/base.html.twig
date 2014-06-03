@@ -32,9 +32,7 @@
 			{{ include('JCFrontBundle:Menus:infos.html.twig') }}
 
 			{{ include('JCFrontBundle:Menus:menuadmin.html.twig') }}
-			{% if is_granted('ROLE_USER') %}
-				{{ include('JCFrontBundle:Menus:menuuser.html.twig') }}
-			{% endif %}
+			{{ include('JCFrontBundle:Menus:menuuser.html.twig') }}
 		</div>
 
 
