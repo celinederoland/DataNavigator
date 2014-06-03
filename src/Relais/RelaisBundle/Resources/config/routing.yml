@@ -1,3 +1,0 @@
-relais_relais_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: RelaisRelaisBundle:Default:index }

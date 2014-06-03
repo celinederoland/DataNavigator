@@ -1,3 +1,0 @@
-jc_doc_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: JCDocBundle:Default:index }
