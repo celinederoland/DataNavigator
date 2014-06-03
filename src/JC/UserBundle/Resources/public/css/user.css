@@ -1,0 +1,14 @@
+.cadre
+{
+	border:solid 1px grey;
+	border-radius:5px;
+	width:50%;
+	padding:10px;
+	margin:auto;
+	text-align:center;
+}
+
+.cadre div
+{
+	display:inline-block;
+}

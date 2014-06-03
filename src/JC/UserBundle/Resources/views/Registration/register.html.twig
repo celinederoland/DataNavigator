@@ -1,0 +1,40 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'messages' %}
+
+{% block fos_user_content %}
+	<h1>Créer un compte</h1>
+	<p>Si vous possédez déjà un compte, vous devez <a href="{{ path('fos_user_security_login')}}">utiliser la page de connexion</a></p>
+	<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+
+		<table>
+			<tr>
+				<td>{{ form_label(form.email, "Adresse email") }}</td>
+				<td>{{ form_errors(form.email) }}</td>
+				<td>{{ form_widget(form.email) }}</td>
+			</tr>
+			<tr>
+				<td>{{ form_label(form.username, "Nom d'utilisateur") }}</td>
+				<td>{{ form_errors(form.username) }}</td>
+				<td>{{ form_widget(form.username) }}</td>
+			</tr>
+			<tr>
+				<td>{{ form_label(form.plainPassword.first, "Mot de passe") }}</td>
+				<td>{{ form_errors(form.plainPassword.first) }}</td>
+				<td>{{ form_widget(form.plainPassword.first) }}</td>
+			</tr>
+			<tr>
+				<td>{{ form_label(form.plainPassword.second, "Confirmez le mot de passe") }}</td>
+				<td>{{ form_errors(form.plainPassword.second) }}</td>
+				<td>{{ form_widget(form.plainPassword.second) }}</td>
+			</tr>
+		</table>
+
+		{{ form_rest(form) }}
+
+		<div>
+			<input type="submit" value="{{ 'Créer un compte'|trans }}" />
+		</div>
+
+	</form>
+{% endblock fos_user_content %}

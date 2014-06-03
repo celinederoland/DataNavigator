@@ -46,7 +46,7 @@ class DefaultControllerTest extends BddTestCase
 		//On enregistre un utilisateur
 		$crawler = $client -> request('GET', '/register/');
 
-		$form = $crawler -> selectButton('registration.submit') -> form();
+		$form = $crawler -> selectButton('Créer un compte') -> form();
 		$form['fos_user_registration_form[email]'] = 'machin@bidule.fr';
 		$form['fos_user_registration_form[username]'] = 'machin';
 		$form['fos_user_registration_form[plainPassword][first]'] = 'ccc';
