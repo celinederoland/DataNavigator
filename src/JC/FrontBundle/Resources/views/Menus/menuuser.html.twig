@@ -2,7 +2,7 @@
 	<ul>
 		{% if app.user %}
 			<li>
-				Bienvenue {{ app.user.username }}
+				{{ 'welcom' | trans }} {{ app.user.username }}
 			</li>
 		{% endif %}
 		<li>
@@ -10,26 +10,26 @@
 				{% image '@JCFrontBundle/Resources/public/images/menusite/logout.png' %}
 					<a href="{{ path('fos_user_security_logout') }}"><img 
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Déconnexion' | trans}}"/>
+						title="{{ 'delog' | trans}}"/>
 					</a>
 				{% endimage %}
 				{% image '@JCFrontBundle/Resources/public/images/menusite/supprimer.png' %}
 					<a href="{{ path('jc_user_supprimer') }}"><img 
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Supprimer définitivement mon compte' | trans}}"/>
+						title="{{ 'del' | trans}}"/>
 					</a>
 				{% endimage %}
 			{% else %}
 				{% image '@JCFrontBundle/Resources/public/images/menusite/logocadenas.png' %}
 					<a href="{{ path('fos_user_security_login') }}"><img 
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Connexion' | trans}}"/>
+						title="{{ 'login' | trans}}"/>
 					</a>
 				{% endimage %}
 				{% image '@JCFrontBundle/Resources/public/images/menusite/inscription.png' %}
 					<a href="{{ path('fos_user_registration_register') }}"><img 
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Inscription' | trans}}"/>
+						title="{{ 'register' | trans}}"/>
 					</a>
 				{% endimage %}
 			{% endif %}

@@ -1,1 +1,30 @@
-'ac': 'Accueil'
+#Menu site
+'home': 'Accueil'
+'doc': 'Documentation'
+'livre': "Livre d'or"
+'about': "A propos de nous"
+'trad': 'This website is in french, click here to have it in english'
+
+#Menu options
+'limite': 'Limite'
+'rels': 'Relations'
+
+#Menu recherche
+'rechercher': 'Entrer un mot à rechercher'
+
+#Menu vue
+'radial': 'Arbre radial'
+'indented': 'Arbre indenté'
+'force': 'Graph'
+'bubble': 'Arbre ensembliste'
+
+#Menu tools
+'zoom': 'Zoom Avant'
+'unzoom': 'Zoom Arrière'
+
+#Menu user
+'delog': 'Déconnexion'
+'del': 'Supprimer mon compte définitivement'
+'login': 'Connexion'
+'register': 'Créer un compte'
+'welcom': 'Bienvenue'

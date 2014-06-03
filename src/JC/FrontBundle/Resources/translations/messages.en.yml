@@ -1,1 +1,30 @@
-'ac': 'Home'
+#Menu site
+'home': 'Home'
+'doc': 'Documentation'
+'livre': "Visitors book"
+'about': 'About us'
+'trad': 'Le site est actuellement en anglais, cliquez ici pour le traduire en français'
+
+#Menu options
+'limite': 'Limit'
+'rels': 'Relations'
+
+#Menu recherche
+'rechercher': 'Enter a word to search'
+
+#Menu vue
+'radial': 'Radial Tree'
+'indented': 'Indented Tree'
+'force': 'Graph'
+'bubble': 'Bubble Tree'
+
+#Menu tools
+'zoom': 'Zoom'
+'unzoom': 'Zoom Back'
+
+#Menu user
+'delog': 'Disconnect'
+'del': 'Delete my account definitely'
+'login': 'Log In'
+'register': 'Create an account'
+'welcom': 'Welcome'
