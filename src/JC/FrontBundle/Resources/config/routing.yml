@@ -3,5 +3,5 @@ jc_front_homepage:
     defaults: { _controller: JCFrontBundle:Default:index }
 
 jc_front_tests:
-    pattern:  /tests
+    pattern:  /admin/tests
     defaults: { _controller: JCFrontBundle:Default:test }

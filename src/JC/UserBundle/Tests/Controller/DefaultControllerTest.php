@@ -11,14 +11,7 @@ class DefaultControllerTest extends BddTestCase
 	{
 		$client = static::createClient();
 
-		$crawler = $client->request('GET', '/login');
-
-		$form = $crawler -> selectButton('_submit') -> form();
-		$form['_username'] = 'lambda';
-		$form['_password'] = 'lambda';
-		$crawler = $client -> submit($form);
-
-		$crawler = $client -> followRedirect();
+		$crawler = $this -> lambdaConnection($client);
 
 		$this -> assertTrue($crawler -> filter('html:contains("Bienvenue lambda")') -> count() > 0, 'échec login');
 	}

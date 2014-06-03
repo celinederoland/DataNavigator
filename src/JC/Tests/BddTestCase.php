@@ -15,4 +15,30 @@ class BddTestCase extends WebTestCase
 		$this -> manager = $kernel -> getContainer() -> get('doctrine.orm.entity_manager');
 	}
 
+	public function adminConnection($client)
+	{
+		$crawler = $client -> request('GET', '/login');
+
+		$form = $crawler -> selectButton('_submit') -> form();
+		$form['_username'] = 'admin';
+		$form['_password'] = 'adminpass';
+		$crawler = $client -> submit($form);
+
+		$crawler = $client -> followRedirect();
+		return $crawler;
+	}
+
+	public function lambdaConnection($client)
+	{
+		$crawler = $client -> request('GET', '/login');
+
+		$form = $crawler -> selectButton('_submit') -> form();
+		$form['_username'] = 'lambda';
+		$form['_password'] = 'lambda';
+		$crawler = $client -> submit($form);
+
+		$crawler = $client -> followRedirect();
+		return $crawler;
+	}
+
 }

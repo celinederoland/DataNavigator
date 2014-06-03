@@ -2,9 +2,9 @@
 
 namespace JC\FrontBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use JC\Tests\BddTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends BddTestCase
 {
 	public function testIndex()
 	{
@@ -18,26 +18,12 @@ class DefaultControllerTest extends WebTestCase
 		$client = static::createClient();
 
 		//On se log en non admin, on vérifie que le menu n'y est pas
-		$crawler = $client->request('GET', '/login');
-
-		$form = $crawler -> selectButton('_submit') -> form();
-		$form['_username'] = 'lambda';
-		$form['_password'] = 'lambda';
-		$crawler = $client -> submit($form);
-
-		$crawler = $client -> followRedirect();
+		$crawler = $this -> lambdaConnection($client);
 
 		$this->assertTrue($crawler->filter('html:contains("nav#menuadmin")')->count() == 0,'menu admin accessible à un utilisateur lambda');
 
 		//On se log en admin, on vérifie que le menu y est
-		$crawler = $client->request('GET', '/login');
-
-		$form = $crawler -> selectButton('_submit') -> form();
-		$form['_username'] = 'admin';
-		$form['_password'] = 'adminpass';
-		$crawler = $client -> submit($form);
-
-		$crawler = $client -> followRedirect();
+		$crawler = $this -> adminConnection($client);
 
 		$this->assertTrue($crawler->filter('nav#menuadmin')->count() > 0,'menu admin inaccessible');
 
@@ -46,7 +32,12 @@ class DefaultControllerTest extends WebTestCase
 	public function testJSTest()
 	{
 		$client = static::createClient();
-		$crawler = $client->request('GET', '/tests');
+
+		//On se log en admin
+		$crawler = $this -> adminConnection($client);
+
+		//On va sur la page de tests
+		$crawler = $client->request('GET', '/admin/tests');
 		$this->assertTrue($crawler->filter('html:contains("Exécution des tests de l\'application")')->count() > 0,'testeur javascript en panne');
 	}
 }
