@@ -1,0 +1,3 @@
+sources_wordnet_bidon:
+    pattern:  /bidon
+    defaults: { _controller: SourcesWordNetBundle:Default:jsonbidon }

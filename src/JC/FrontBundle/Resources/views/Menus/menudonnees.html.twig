@@ -1,30 +1,24 @@
 <nav id='menudonnees'>
 		<li>
-			<a href="">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logowordnet.png' %}
-					<img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'WordNet' | trans}}"/>
-				{% endimage %}
-			</a>
+			{% image '@JCFrontBundle/Resources/public/images/menusite/logowordnet.png' %}
+				<img id="wordnet" onClick='activerSource("#wordnet")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'WordNet' | trans}}"/>
+			{% endimage %}
 		</li>
 		<li>
-			<a href="">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logodbpedia.png' %}
-					<img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'DbPedia' | trans}}"/>
-				{% endimage %}
-			</a>
+			{% image '@JCFrontBundle/Resources/public/images/menusite/logodbpedia.png' %}
+				<img id="dbpedia" onClick='activerSource("#dbpedia")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'DbPedia' | trans}}"/>
+			{% endimage %}
 		</li>
 		<li>
-			<a href="">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logodebian.png' %}
-					<img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Debian' | trans}}"/>
-				{% endimage %}
-			</a>
+			{% image '@JCFrontBundle/Resources/public/images/menusite/logodebian.png' %}
+				<img id="debian" onClick='activerSource("#debian")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'Debian' | trans}}"/>
+			{% endimage %}
 		</li>
 	</ul>
 </nav>

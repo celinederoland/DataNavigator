@@ -1,49 +1,49 @@
 <nav id='menuvue'>
 	<ul>
 		<li>
-			<a href="">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logoradial.png' %}
-					<img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'radial' | trans}}"/>
-				{% endimage %}
-			</a>
+
+			{% image '@JCFrontBundle/Resources/public/images/menusite/logoradial.png' %}
+				<img id="radial" onClick='activerVue("#radial")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'radial' | trans}}"/>
+			{% endimage %}
+
 		</li>
 		<li>
-			<a href="">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logoindented.png' %}
-					<img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'indented' | trans}}"/>
-				{% endimage %}
-			</a>
+
+			{% image '@JCFrontBundle/Resources/public/images/menusite/logoindented.png' %}
+				<img id="indented" onClick='activerVue("#indented")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'indented' | trans}}"/>
+			{% endimage %}
+
 		</li>
 		<li>
-			<a href="">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logograph.png' %}
-					<img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'force' | trans}}"/>
-				{% endimage %}
-			</a>
+
+			{% image '@JCFrontBundle/Resources/public/images/menusite/logograph.png' %}
+				<img id="force" onClick='activerVue("#force")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'force' | trans}}"/>
+			{% endimage %}
+
 		</li>
 		<li>
-			<a href="">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/logobubble.png' %}
-					<img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'bubble' | trans}}"/>
-				{% endimage %}
-			</a>
+
+			{% image '@JCFrontBundle/Resources/public/images/menusite/logobubble.png' %}
+				<img id="bubble" onClick='activerVue("#bubble")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'bubble' | trans}}"/>
+			{% endimage %}
+
 		</li>
 		<li>
-			<a href="">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/jsongenerique.png' %}
-					<img 
-						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'json' | trans}}"/>
-				{% endimage %}
-			</a>
+
+			{% image '@JCFrontBundle/Resources/public/images/menusite/jsongenerique.png' %}
+				<img id="json" onClick='activerVue("#json")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'json' | trans}}"/>
+			{% endimage %}
+
 		</li>
 	</ul>
 </nav>

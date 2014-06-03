@@ -74,9 +74,9 @@ sources_db_pedia:
     requirements:
         _locale: en|fr
 
-sources_word_net:
+sources_wordnet:
     resource: "@SourcesWordNetBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+    prefix:   /{_locale}/wordnet/
     defaults: {_locale: en}
     requirements:
         _locale: en|fr

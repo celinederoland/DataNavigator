@@ -59,3 +59,15 @@ function chargerPage(url)
 			);
 	$('#pageframe').css('height' , '100%');
 }
+
+function activerSource(id)
+{
+	$('.activesource').removeClass('activesource');
+	$(id).addClass('activesource');
+}
+
+function activerVue(id)
+{
+	$('.activevue').removeClass('activevue');
+	$(id).addClass('activevue');
+}

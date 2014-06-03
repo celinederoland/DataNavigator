@@ -152,3 +152,12 @@ nav li
 {
 	liststyletype:none;
 }
+
+.activesource, .activevue
+{
+	border: solid 2px red;
+}
+.activesource:hover, .activevue:hover
+{
+	border: solid 3px red;
+}
