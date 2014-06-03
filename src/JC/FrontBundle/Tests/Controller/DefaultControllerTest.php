@@ -37,7 +37,7 @@ class DefaultControllerTest extends BddTestCase
 		$crawler = $this -> adminConnection($client);
 
 		//On va sur la page de tests
-		$crawler = $client->request('GET', '/admin/tests');
+		$crawler = $client->request('GET', '/admin/fr/tests');
 		$this->assertTrue($crawler->filter('html:contains("Exécution des tests de l\'application")')->count() > 0,'testeur javascript en panne');
 	}
 }

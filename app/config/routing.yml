@@ -8,17 +8,26 @@ jc_front:
 #user : gestion des utilisateurs
 jc_user:
     resource: "@JCUserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 #doc : pages de documentation
 jc_doc:
     resource: "@JCDocBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 #livre d'or
 jc_livre_or:
     resource: "@JCLivreOrBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 
 
@@ -26,32 +35,50 @@ jc_livre_or:
 
 vues_representations:
     resource: "@VuesRepresentationsBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 
 
 #relais = lien entre les vues et les sources de données
 relais_relais:
     resource: "@RelaisRelaisBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 
 
 #sources : extraction des données et fabrication du json
 sources_humour:
     resource: "@SourcesHumourBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 sources_debian:
     resource: "@SourcesDebianBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 sources_db_pedia:
     resource: "@SourcesDbPediaBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 sources_word_net:
     resource: "@SourcesWordNetBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
 
 

@@ -4,7 +4,7 @@
 			{% image '@JCFrontBundle/Resources/public/images/menusite/logocarto.png' %}
 				<img 
 					src="{{ asset_url }}" height="40px" width="40px"
-					title="{{ 'Accueil' | trans}}"/>
+					title="{{ 'ac' | trans}}"/>
 			{% endimage %}
 		</li>
 		<li>
@@ -29,18 +29,22 @@
 			{% endimage %}
 		</li>
 		<li>
-			{% if app.session.get('locale') == 'fr' %}
+			{% if app.request.locale == 'fr' %}
+			<a href="{{ path('jc_front_homepage', {_locale:'en'} )}}">
 				{% image '@JCFrontBundle/Resources/public/images/menusite/en.png' %}
 					<img 
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Traduire' | trans}}"/>
+						title="{{ 'Le site est actuellement en français, cliquez ici pour le traduire en anglais' | trans}}"/>
 				{% endimage %}
+			</a>
 			{% else %}
+			<a href="{{ path('jc_front_homepage', {_locale:'fr'} )}}">
 				{% image '@JCFrontBundle/Resources/public/images/menusite/fr.png' %}
 					<img 
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Traduire' | trans}}"/>
+						title="{{ 'Le site est actuellement en anglais, cliquez ici pour le traduire en français' | trans}}"/>
 				{% endimage %}
+			</a>
 			{% endif %}
 		</li>
 	</ul>

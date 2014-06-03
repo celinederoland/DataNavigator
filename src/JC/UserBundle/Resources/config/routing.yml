@@ -1,6 +1,6 @@
 jc_user_supprimer:
     pattern: /supprimer
-    defaults: { _controller: JCUserBundle:Default:supprimer }
+    defaults: { _controller: JCUserBundle:Default:supprimer, _locale:en }
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

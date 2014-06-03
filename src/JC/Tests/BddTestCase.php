@@ -17,7 +17,7 @@ class BddTestCase extends WebTestCase
 
 	public function adminConnection($client)
 	{
-		$crawler = $client -> request('GET', '/login');
+		$crawler = $client -> request('GET', '/fr/login');
 
 		$form = $crawler -> selectButton('_submit') -> form();
 		$form['_username'] = 'admin';
@@ -30,7 +30,7 @@ class BddTestCase extends WebTestCase
 
 	public function lambdaConnection($client)
 	{
-		$crawler = $client -> request('GET', '/login');
+		$crawler = $client -> request('GET', '/fr/login');
 
 		$form = $crawler -> selectButton('_submit') -> form();
 		$form['_username'] = 'lambda';

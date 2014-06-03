@@ -20,7 +20,7 @@ class DefaultControllerTest extends BddTestCase
 	{
 		$client = static::createClient();
 
-		$crawler = $client->request('GET', '/logout');
+		$crawler = $client->request('GET', '/fr/logout');
 
 		$crawler = $client -> followRedirect();
 
@@ -37,7 +37,7 @@ class DefaultControllerTest extends BddTestCase
 		$cpt_init = count($usr_rep -> findAll());
 
 		//On enregistre un utilisateur
-		$crawler = $client -> request('GET', '/register/');
+		$crawler = $client -> request('GET', '/fr/register/');
 
 		$form = $crawler -> selectButton('Créer un compte') -> form();
 		$form['fos_user_registration_form[email]'] = 'machin@bidule.fr';
@@ -54,7 +54,7 @@ class DefaultControllerTest extends BddTestCase
 		$this -> assertEquals($cpt_init + 1, $cpt_after, 'échec register');
 
 		//On supprime l'utilisateur créé
-		$crawler = $client -> request('GET', '/supprimer');
+		$crawler = $client -> request('GET', '/fr/supprimer');
 
 		//On recompte et on vérifie qu'on est revenus au nombre initial
 		$cpt_final = count($usr_rep -> findAll());

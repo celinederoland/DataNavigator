@@ -1,7 +1,7 @@
 jc_front_homepage:
-    pattern:  /
-    defaults: { _controller: JCFrontBundle:Default:index }
+    pattern:  /{_locale}
+    defaults: { _controller: JCFrontBundle:Default:index, _locale:en }
 
 jc_front_tests:
-    pattern:  /admin/tests
-    defaults: { _controller: JCFrontBundle:Default:test }
+    pattern:  /admin/{_locale}/tests
+    defaults: {_controller: JCFrontBundle:Default:test, _locale:en }
