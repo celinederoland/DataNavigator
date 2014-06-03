@@ -1,11 +1,43 @@
+#jc = juliana celine : contient les fonctionnalités secondaires (comme livre d'or, user, front etc)
+
+#front : point d'entrée de l'application
+jc_front:
+    resource: "@JCFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#user : gestion des utilisateurs
+jc_user:
+    resource: "@JCUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#doc : pages de documentation
+jc_doc:
+    resource: "@JCDocBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#livre d'or
+jc_livre_or:
+    resource: "@JCLivreOrBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+
+#vues = tout ce qui concerne la visualisation des données
+
 vues_representations:
     resource: "@VuesRepresentationsBundle/Resources/config/routing.yml"
     prefix:   /
 
+
+
+#relais = lien entre les vues et les sources de données
 relais_relais:
     resource: "@RelaisRelaisBundle/Resources/config/routing.yml"
     prefix:   /
 
+
+
+#sources : extraction des données et fabrication du json
 sources_humour:
     resource: "@SourcesHumourBundle/Resources/config/routing.yml"
     prefix:   /
@@ -22,22 +54,4 @@ sources_word_net:
     resource: "@SourcesWordNetBundle/Resources/config/routing.yml"
     prefix:   /
 
-jc_user:
-    resource: "@JCUserBundle/Resources/config/routing.yml"
-    prefix:   /
-
-jc_doc:
-    resource: "@JCDocBundle/Resources/config/routing.yml"
-    prefix:   /
-
-jc_livre_or:
-    resource: "@JCLivreOrBundle/Resources/config/routing.yml"
-    prefix:   /
-
-#jc = juliana celine : contient les à côtés (comme livre d'or, user, front etc) et le relais
-
-#front : point d'entrée de l'application
-jc_front:
-    resource: "@JCFrontBundle/Resources/config/routing.yml"
-    prefix:   /
 
