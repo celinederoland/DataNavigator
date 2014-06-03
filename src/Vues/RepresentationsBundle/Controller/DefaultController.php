@@ -24,7 +24,7 @@ class DefaultController extends Controller
 
 	public function jsonAction($data)
 	{
-		return $this -> render('VuesRepresentationsBundle:Representations:JsonRep.js.twig', array('data' => 'coucou'));
+		return $this -> render('VuesRepresentationsBundle:Representations:JsonRep.js.twig', array('data' => $data));
 	}
 
 }

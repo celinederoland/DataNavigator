@@ -31,8 +31,9 @@ console.log('lancement de layout.js');
 			function(data)
 			{
 				console.log('layout a récupéré le json');
+				console.log(data);
 				//Il faut lancer le script adapté à la vue demandée
-				if (vue == 'json') { $.getScript(Routing.generate('vues_representations_json',{ data: data })); }
+				if (vue == 'json') { $.getScript(Routing.generate('vues_representations_json',{ data: JSON.stringify(data) })); }
 				else { console.log('vue ' + vue + ' non prise en charge'); }
 			}
 		); 
