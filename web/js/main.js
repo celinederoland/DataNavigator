@@ -71,3 +71,9 @@ function activerVue(id)
 	$('.activevue').removeClass('activevue');
 	$(id).addClass('activevue');
 }
+
+function rechercher(url)
+{
+	console.log('fonction rechercher dans main.js, appelle le script à l\'adresse ' + url);
+	$.getScript(url);
+}

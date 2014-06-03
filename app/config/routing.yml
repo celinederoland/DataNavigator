@@ -35,7 +35,7 @@ jc_livre_or:
 
 vues_representations:
     resource: "@VuesRepresentationsBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+    prefix:   /{_locale}/vues/
     defaults: {_locale: en}
     requirements:
         _locale: en|fr
@@ -45,7 +45,7 @@ vues_representations:
 #relais = lien entre les vues et les sources de données
 relais_relais:
     resource: "@RelaisRelaisBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+    prefix:   /{_locale}/relais/
     defaults: {_locale: en}
     requirements:
         _locale: en|fr
@@ -80,5 +80,10 @@ sources_wordnet:
     defaults: {_locale: en}
     requirements:
         _locale: en|fr
+
+
+#fos_routing
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 

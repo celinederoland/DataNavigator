@@ -1,0 +1,39 @@
+console.log('lancement de layout.js');
+//Récupération des valeurs (layout l150 à 209)
+
+	//Source
+	if ($('#wordnet').attr('class') == 'activesource') { var source = 'wordnet'; }
+	if ($('#dbpedia').attr('class') == 'activesource') { var source = 'dbpedia'; }
+	if ($('#debian').attr('class') == 'activesource') { var source = 'debian'; }
+
+	//Vue
+	if ($('#radial').attr('class') == 'activevue') { var vue = 'radial'; }
+	if ($('#indented').attr('class') == 'activevue') { var vue = 'indented'; }
+	if ($('#bubble').attr('class') == 'activevue') { var vue = 'bubble'; }
+	if ($('#json').attr('class') == 'activevue') { var vue = 'json'; }
+
+	//Options
+	//TODO
+
+//Utilisation d'ajax pour placer le résultat dans le conteneurD3
+
+	//On alerte le visiteur si il n'a pas rempli correctement tous les champs
+	if (!source) { alert('vous devez sélectionner une source de données'); }
+	else if (!vue) { alert('vous devez sélectionner une représentation'); }
+	//Si il a bien tout rempli on fait le travail
+	else 
+	{ 
+		console.log('layout va récupérer le json pour la source ' + source);
+		//On récupère le json (layout l210)
+		$.getJSON(
+			Routing.generate('relais_relais_index', { source: source }), //FOSJsRoutingBundle
+			//Quand on l'a récupéré : (layout l237)
+			function(data)
+			{
+				console.log('layout a récupéré le json');
+				//Il faut lancer le script adapté à la vue demandée
+				if (vue == 'json') { $.getScript(Routing.generate('vues_representations_json',{ data: data })); }
+				else { console.log('vue ' + vue + ' non prise en charge'); }
+			}
+		); 
+	}

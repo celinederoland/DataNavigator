@@ -22,4 +22,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
 
+	public function jsonAction($data)
+	{
+		return $this -> render('VuesRepresentationsBundle:Representations:JsonRep.js.twig', array('data' => 'coucou'));
+	}
+
 }

@@ -3,7 +3,7 @@
 		<li>
 			<input type="text" name="mot" id="mot"/>
 			{% image '@JCFrontBundle/Resources/public/images/menusite/logorotation.png' %}
-				<img 
+				<img onClick="rechercher('{{ path('relais_relais_layout') }}');"
 					src="{{ asset_url }}" height="40px" width="40px"
 					title="{{ 'rechercher' | trans}}"/>
 			{% endimage %}

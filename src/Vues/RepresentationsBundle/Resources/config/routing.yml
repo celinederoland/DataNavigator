@@ -1,0 +1,3 @@
+vues_representations_json:
+    pattern:  /json/{data}
+    defaults: { _controller: VuesRepresentationsBundle:Default:json }

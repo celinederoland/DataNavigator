@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Relais\RelaisBundle\RelaisRelaisBundle(),
             new Vues\RepresentationsBundle\VuesRepresentationsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
