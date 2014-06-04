@@ -23,6 +23,12 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
+/**
+	* Appelle le layout (partie cliente de l'application)
+	* Le layout a pour rôle d'effectuer le relais entre les données entrées par l'utilisateur, la source de données, et la vue
+	* 
+	* @return HttpResponse script javascript
+	*/
 	public function layoutAction()
 	{
 		//On lance le script qui récupère toutes les options et appelle ensuite la fonction index pour charger le json

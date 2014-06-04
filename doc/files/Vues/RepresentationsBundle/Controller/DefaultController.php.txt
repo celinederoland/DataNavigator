@@ -22,5 +22,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
 
+/**
+	* Appelle la vue json (partie cliente de l'application)
+	* 
+	* @param string $data json générique fourni par le relais
+	* @return HttpResponse script javascript
+	*/
+	public function jsonAction($data)
+	{
+		return $this -> render('VuesRepresentationsBundle:Representations:JsonRep.js.twig', array('data' => $data));
+	}
+
 }
 
