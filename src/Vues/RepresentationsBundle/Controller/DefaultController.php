@@ -35,4 +35,15 @@ class DefaultController extends Controller
 		return $this -> render('VuesRepresentationsBundle:Representations:JsonRep.js.twig', array('data' => $data));
 	}
 
+/**
+	* Appelle la vue json formaté en graphe (partie cliente de l'application)
+	* 
+	* @param string $data json générique fourni par le relais
+	* @return HttpResponse script javascript
+	*/
+	public function jsonGraphAction($data)
+	{
+		return $this -> render('VuesRepresentationsBundle:Representations:JsonGraphRep.js.twig', array('data' => $data));
+	}
+
 }

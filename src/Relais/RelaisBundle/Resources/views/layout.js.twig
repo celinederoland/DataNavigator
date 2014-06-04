@@ -14,10 +14,14 @@
 		if ($('#debian').attr('class') == 'activesource') { var source = 'debian'; }
 
 		//Vue
+		/*********************
+			REPERE AJOUTER VUE
+		**********************/
 		if ($('#radial').attr('class') == 'activevue') { var vue = 'radial'; }
 		if ($('#indented').attr('class') == 'activevue') { var vue = 'indented'; }
 		if ($('#bubble').attr('class') == 'activevue') { var vue = 'bubble'; }
 		if ($('#json').attr('class') == 'activevue') { var vue = 'json'; }
+		if ($('#jsongraph').attr('class') == 'activevue') { var vue = 'jsongraph'; }
 
 		//Options
 		//TODO
@@ -47,12 +51,13 @@
 				{
 					console.log('layout a récupéré le json suivant :');
 					console.log(data);
+					console.log('layout appelle maintenant la vue à la route vues_representations_nomdemavue en lui donnant le json');
 					//Il faut lancer le script adapté à la vue demandée
-					if (vue == 'json') 
-					{ 
-						console.log('layout appelle maintenant la vue à la route vues_representations_json en lui donnant le json');
-						$.getScript(Routing.generate('vues_representations_json',{ data: JSON.stringify(data) })); 
-					}
+					/*********************
+						REPERE AJOUTER VUE
+					**********************/
+					if (vue == 'json') { $.getScript(Routing.generate('vues_representations_json',{ data: JSON.stringify(data) })); }
+					else if (vue == 'jsongraph') { $.getScript(Routing.generate('vues_representations_jsongraph',{ data: JSON.stringify(data) })); }
 					else { alert('vue ' + vue + ' non prise en charge'); }
 				}
 			); 
