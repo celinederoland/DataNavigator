@@ -17,6 +17,7 @@
 'indented': 'Arbre indenté'
 'force': 'Graph'
 'bubble': 'Arbre ensembliste'
+'jsongraph': 'Json formaté pour les visualisations de type graph'
 
 #Menu tools
 'zoom': 'Zoom Avant'

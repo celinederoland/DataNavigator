@@ -17,6 +17,7 @@
 'indented': 'Indented Tree'
 'force': 'Graph'
 'bubble': 'Bubble Tree'
+'jsongraph': 'Json for graph visualisation'
 
 #Menu tools
 'zoom': 'Zoom'

@@ -15,30 +15,32 @@
 {
 	position:absolute;
 	width:55%;
-	height:200%;
+	max-height:80%;
 	top:20%;
 	left:20%;
 	padding:10px;
 	border-radius:5px;
 	z-index:1;
-	/*background-color:#f3f3f3;*/
+	background-color:#f3f3f3;
 	opacity:0.8;
 	visibility:hidden;
+	overflow:scroll;
 }
 
 #conteneurtests
 {
 	position:absolute;
 	width:55%;
-	height:200%;
+	max-height:80%;
 	top:20%;
 	left:20%;
 	padding:10px;
 	border-radius:5px;
 	z-index:2;
-	/*background-color:#f3f3f3;*/
+	background-color:#f3f3f3;
 	opacity:0.8;
 	visibility:hidden;
+	overflow:scroll;
 }
 
 #conteneurD3
