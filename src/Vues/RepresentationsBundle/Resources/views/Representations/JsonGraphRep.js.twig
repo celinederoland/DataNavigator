@@ -17,8 +17,7 @@
 	console.log(jsongraph);
 	console.log('Puis on insère ce qu\'on veut dans les conteneurs');
 	var jsonchaine = JSON.stringify(jsongraph,false,'   ');
-	$('#conteneurD3').css('visibility','visible');
-	$('#conteneurD3').html('<h1>Nouvelle vue</h1>');
+	$('#conteneurD3').html('');
 	$('#conteneurpage').css('visibility','visible');
 	$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');
 	console.log('Fin : on a terminé d\'afficher la vue');

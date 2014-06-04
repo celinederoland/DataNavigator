@@ -13,5 +13,6 @@ function mainTest()
 
 	//Puis tous les tests de l'application
 	relaisTest();
+	vuesTest();
 }
 
