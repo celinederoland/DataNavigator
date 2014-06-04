@@ -47,11 +47,18 @@ function init() {
 	$('#options').resizable({ ghost:true  });*/
 }
 
+function chargerTests(url)
+{
+	$('#conteneurtests').css('visibility','visible');
+	mainTest();
+}
+
 /**
  * Charge une url demandée dans une iframe sur le cadre #conteneurpage
  */
 function chargerPage(url)
 {
+	$('#conteneurtests').css('visibility','hidden');
 	$('#conteneurpage').css('visibility','visible');
 	$('#conteneurpage').html(
 			"<iframe id='pageframe' src='"+url+"' "+
@@ -75,5 +82,7 @@ function activerVue(id)
 function rechercher(url)
 {
 	console.log('fonction rechercher dans main.js, appelle le script à l\'adresse ' + url);
+	$('#conteneurpage').html('');
+	$('#conteneurpage').css('visibility','hidden');
 	$.getScript(url);
 }

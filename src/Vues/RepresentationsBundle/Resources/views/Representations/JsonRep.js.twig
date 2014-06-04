@@ -1,8 +1,8 @@
 console.log('vous êtes dans jsonrep');
-//console.log("{{ data }}");
-var machin = JSON.parse("{{ data }}");
-console.log(machin);
-var truc = JSON.stringify(machin,false,'   ');
+console.log("{{ data }}");
+var jsonobjet = JSON.parse("{{ data }}");
+console.log(jsonobjet);
+var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
 $('#conteneurD3').html('');
 $('#conteneurpage').css('visibility','visible');
-$('#conteneurpage').html('<h1>JE PEUX INSERER DES CHOSES DANS LE CONTENEUR D3, DANS PAS LONGTEMPS CA SERA DES BALISES SVG</h1><pre>' + truc + '</pre>');
+$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');

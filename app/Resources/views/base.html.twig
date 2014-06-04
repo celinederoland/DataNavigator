@@ -37,6 +37,11 @@
 			{{ include('JCFrontBundle:Menus:menuuser.html.twig') }}
 		</div>
 
+		{% if is_granted('ROLE_ADMIN') %}
+			<div id="conteneurtests">
+				{% block tests %}{{ include('JCFrontBundle:Default:test.html.twig') }}{% endblock %}
+			</div>
+		{% endif %}
 
 	</body>
 
