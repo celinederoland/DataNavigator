@@ -1,3 +1,9 @@
+//Tests du relais : @RelaisBundle/Resources/views/layout.js.twig
+	//Dépendant de main.js (fonction rechercher)
+	//Dépendant de ce que renvoie la source
+	//Dépendant de JsonRep.js.twig (ce que fait la vue)
+
+
 function relaisTest()
 {
 	asyncTest( 

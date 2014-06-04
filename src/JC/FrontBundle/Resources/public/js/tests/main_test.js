@@ -1,3 +1,6 @@
+//Tests de /web/js/main.js
+
+
 function mainTest()
 {
 	//J'exécute un test initial

@@ -47,6 +47,9 @@ function init() {
 	$('#options').resizable({ ghost:true  });*/
 }
 
+/**
+ * Charge une url demandée dans le cadre #conteneurtests puis exécute les tests
+ */
 function chargerTests(url)
 {
 	$('#conteneurtests').css('visibility','visible');
@@ -67,18 +70,33 @@ function chargerPage(url)
 	$('#pageframe').css('height' , '100%');
 }
 
+/**
+ * Ajoute la classe 'activesource' à la source de données demandée
+ */
 function activerSource(id)
 {
 	$('.activesource').removeClass('activesource');
 	$(id).addClass('activesource');
 }
 
+/**
+ * Ajoute la classe 'activevue' à la visualisation demandée
+ */
 function activerVue(id)
 {
 	$('.activevue').removeClass('activevue');
 	$(id).addClass('activevue');
 }
 
+/**
+ * Lance la recherche grâce au relais :
+ * on efface conteneur page
+ * on appelle layout (script js)
+ * layout regarde les options indiquées
+ * layout récupère le json fabriqué par la partie serveur du relais (contrôleur) en lui donnant les options indiquées
+ * layout appelle la vue (script js) en lui donnant le json fabriqué
+ * la vue insère des contenus dans conteneurD3 et/ou conteneurpage
+ */
 function rechercher(url)
 {
 	console.log('fonction rechercher dans main.js, appelle le script à l\'adresse ' + url);

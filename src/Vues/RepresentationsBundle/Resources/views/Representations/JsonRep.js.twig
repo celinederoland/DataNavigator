@@ -1,8 +1,18 @@
-console.log('vous êtes dans jsonrep');
-console.log("{{ data }}");
-var jsonobjet = JSON.parse("{{ data }}");
-console.log(jsonobjet);
-var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
-$('#conteneurD3').html('');
-$('#conteneurpage').css('visibility','visible');
-$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');
+/**
+ * On traite le json pour insérer ce qu'on veut dans les conteneurs
+ */
+(function ()
+{
+	console.log('vous êtes dans jsonrep');
+	console.log('On a récupéré data :');
+	console.log("{{ data }}");
+	var jsonobjet = JSON.parse("{{ data }}");
+	console.log('On le transforme en :');
+	console.log(jsonobjet);
+	console.log('Puis on insère ce qu\'on veut dans les conteneurs');
+	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
+	$('#conteneurD3').html('');
+	$('#conteneurpage').css('visibility','visible');
+	$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');
+	console.log('Fin : on a terminé d\'afficher la vue');
+})();

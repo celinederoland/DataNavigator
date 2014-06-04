@@ -23,23 +23,6 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
-	public function indexAction($source)
-	{
-
-		//Récupération de la source (main_action)
-		$curlSession = curl_init();
-
-		//var_dump($this -> generateUrl('sources_'.$source.'_bidon',array(),true));
-		curl_setopt($curlSession, CURLOPT_URL, $this -> generateUrl('sources_wordnet_bidon',array(),true));
-		curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
-		curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
-
-		$jsonresult = curl_exec($curlSession);
-		curl_close($curlSession);
-		
-		return new Response($jsonresult);
-	}
-
 	public function layoutAction()
 	{
 		//On lance le script qui récupère toutes les options et appelle ensuite la fonction index pour charger le json

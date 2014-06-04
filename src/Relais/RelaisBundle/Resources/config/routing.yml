@@ -1,7 +1,3 @@
-relais_relais_index:
-    pattern:  /main/{source}
-    defaults: { _controller: RelaisRelaisBundle:Default:index }
-
 relais_relais_layout:
     pattern:  /layout
     defaults: { _controller: RelaisRelaisBundle:Default:layout }
