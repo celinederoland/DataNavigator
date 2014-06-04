@@ -29,7 +29,7 @@ class DefaultController extends Controller
 	* @todo laisser cette fonction pour l'admin uniquement (à la fin du projet)
 	* @return HttpResponse json générique
 	*/
-	public function jsonbidonAction()
+	public function jsonbidonAction() //Non testée car à enlever
 	{
 		$text = '{"noeuds":[{"id":"M129380","nom":"synapse","type":"M"},{"id":"N30198","nom":" the junction between two neurons (axon-to-dendrite) or between a neuron and a muscle; \"nerve impulses cross a synapse through the action of neurotransmitters\" \n","type":"N"}],"relations":["hypernym","groupe_initial"],"graphe":[{"noeud":"M129380","groupe_initial":["N30198"]},{"noeud":"N30198"}]}';
 		return new Response($text);

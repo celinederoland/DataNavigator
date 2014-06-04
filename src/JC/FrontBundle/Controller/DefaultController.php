@@ -26,9 +26,8 @@ class DefaultController extends Controller
 	* Point d'entrée du site web
 	*
 	* @return VueTwig
-	* @todo Empêcher l'effet vitrine avec les conteneurs posés les uns sur les autres
 	*/
-	public function indexAction()
+	public function indexAction() //testée par phpunit
 	{
 		return $this->render('JCFrontBundle:Default:index.html.twig');
 	}
@@ -38,7 +37,7 @@ class DefaultController extends Controller
 	*
 	* @return VueTwig
 	*/
-	public function testAction()
+	public function testAction() //testée par phpunit
 	{
 		return $this->render('JCFrontBundle:Default:test.html.twig');
 	}
