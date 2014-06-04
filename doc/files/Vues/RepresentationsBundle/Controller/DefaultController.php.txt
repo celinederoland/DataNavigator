@@ -27,6 +27,8 @@ class DefaultController extends Controller
 	* 
 	* @param string $data json générique fourni par le relais
 	* @return HttpResponse script javascript
+	* @todo améliorer cette vue (elle est un peu bidon pour le moment, juste pour tester le relais)
+	* @todo faire en sorte que les vues puissent mettre à jour le graphe et non le recharger
 	*/
 	public function jsonAction($data)
 	{
