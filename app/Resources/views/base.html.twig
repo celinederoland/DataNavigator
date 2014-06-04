@@ -14,15 +14,22 @@
 
 	<body>
 
-		<div id="conteneurpage">
-			{% block body %}{% endblock %}
-		</div>
-
-		<div id="conteneurD3">
-			{% block d3 %}{% endblock %}
-		</div>
-
 		<div id="conteneurmenu">
+
+			<div id="conteneurpage">
+				{% block body %}{% endblock %}
+			</div>
+
+			<div id="conteneurD3">
+				{% block d3 %}{% endblock %}
+			</div>
+
+			{% if is_granted('ROLE_ADMIN') %}
+				<div id="conteneurtests">
+					{% block tests %}{{ include('JCFrontBundle:Default:test.html.twig') }}{% endblock %}
+				</div>
+			{% endif %}
+
 			{{ include('JCFrontBundle:Menus:menusite.html.twig') }}
 			{{ include('JCFrontBundle:Menus:menuvues.html.twig') }}
 			{{ include('JCFrontBundle:Menus:menudonnees.html.twig') }}
@@ -37,11 +44,6 @@
 			{{ include('JCFrontBundle:Menus:menuuser.html.twig') }}
 		</div>
 
-		{% if is_granted('ROLE_ADMIN') %}
-			<div id="conteneurtests">
-				{% block tests %}{{ include('JCFrontBundle:Default:test.html.twig') }}{% endblock %}
-			</div>
-		{% endif %}
 
 	</body>
 
