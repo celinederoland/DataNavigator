@@ -33,9 +33,21 @@ class DefaultController extends Controller
 	* @todo Adapter lorsqu'on ajoute de nouvelles vues et de nouvelles sources
 	* @todo Gérer également l'enregistrement des options de l'utilisateur en bdd. Plus généralement : mettre en place un système de favoris et d'historique.
 	*/
-	public function layoutAction()
+	public function layoutAction() //testée par qunit
 	{
 		//On lance le script qui récupère toutes les options et appelle ensuite la fonction index pour charger le json
 		return $this -> render('RelaisRelaisBundle::layout.js.twig');
+	}
+
+/**
+	* Appelle le layoutrelations (partie cliente de l'application)
+	* Le layoutrelations a pour rôle de proposer à l'utilisateur les relations possibles pour la source qu'il a sélectionnée
+	* 
+	* @return HttpResponse script javascript
+	*/
+	public function layoutrelationsAction() //testée par qunit
+	{
+		//On lance le script qui récupère toutes les options et appelle ensuite la fonction index pour charger le json
+		return $this -> render('RelaisRelaisBundle::layoutrelations.js.twig');
 	}
 }

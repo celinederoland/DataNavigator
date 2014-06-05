@@ -40,7 +40,7 @@ class DefaultController extends Controller
 	 *
 	 * @return HttpResponse json contenant la liste des relations
 	*/
-	public function jsonrelationsAction()
+	public function jsonrelationsAction() //testée par phpunit
 	{
 		$tab = array(
 			'derivation',

@@ -39,12 +39,14 @@ function init() {
 	$('#menutools').css('left',ltools + 'px');
 
 	$('#infos').resizable({ ghost:true  });
+	$('#selectRelation').resizable({ ghost:true  });
+	//$('#options').resizable({ ghost:true  });
 	/*$('#menusite').resizable({ ghost:true  });
 	$('#menuvue').resizable({ ghost:true  });
 	$('#menudonnees').resizable({ ghost:true  });
 	$('#menutools').resizable({ ghost:true  });
 	$('#recherche').resizable({ ghost:true  });
-	$('#options').resizable({ ghost:true  });*/
+	*/
 }
 
 /**
@@ -73,10 +75,11 @@ function chargerPage(url)
 /**
  * Ajoute la classe 'activesource' à la source de données demandée
  */
-function activerSource(id)
+function activerSource(id,url)
 {
 	$('.activesource').removeClass('activesource');
 	$(id).addClass('activesource');
+	$.getScript(url);
 }
 
 /**

@@ -9,7 +9,7 @@ function relaisTest()
 	asyncTest( 
 		"test de la fonction recherche (relais)", 
 		function() {
-			expect( 1 );
+			expect( 2 );
 			//On active la source et la vue, puis on clique sur recherche
 			$('.activesource').removeClass('activesource');
 			$('.activevue').removeClass('activevue');
@@ -25,6 +25,11 @@ function relaisTest()
 				//On vérifie que le résultat est bien une chaîne de caractères ayant la taille attendue
 				equal(expected,actual,'le contenu du json s\'insère dans conteneurpage');
 				start();
+
+				//On vérifie que les relations se sont affichées
+				var actualRels = $('#selectRelation').html().length;
+				var expectedRels = 544;
+				equal(expectedRels,actualRels,'les relations ne sont pas insérées correctement');
 			}, 10000);
 
 		}

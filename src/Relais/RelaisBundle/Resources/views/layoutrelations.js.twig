@@ -1,0 +1,47 @@
+/**
+ * On regarde les options indiquées
+ * On récupère le json fabriqué par la partie serveur du relais (contrôleur) en lui donnant les options indiquées
+ * On appelle la vue (script js) en lui donnant le json fabriqué
+ */
+(function()
+{
+	console.log('lancement de layoutrelations.js');
+	//Récupération des valeurs (layout l150 à 209)
+
+		//Source
+		if ($('#wordnet').attr('class') == 'activesource') { var source = 'wordnet'; }
+		if ($('#dbpedia').attr('class') == 'activesource') { var source = 'dbpedia'; }
+		if ($('#debian').attr('class') == 'activesource') { var source = 'debian'; }
+
+	//Utilisation d'ajax pour placer le résultat dans le conteneurD3
+
+		//On alerte le visiteur si il n'a pas rempli correctement tous les champs
+		if (!source) { alert('vous devez sélectionner une source de données'); }
+		else 
+		{ 
+			console.log('layoutrelations va récupérer les relations pour la source ' + source);
+			//On récupère le json (layout l210)
+			if (source == 'wordnet') { urlsrc = "{{ path('sources_wordnet_relations')}}"; } 
+			//Astuce pour plus tard : Comment insérer des paramètres à la route ?
+			//Réponse : Routing.generate('relais_relais_index', { source: source }), //FOSJsRoutingBundle
+			else { alert("Source " + source + " non prise en charge"); }
+			$.getJSON(
+				urlsrc,
+				//Quand on l'a récupéré : (layout l237)
+				function(data)
+				{
+					console.log('layout a récupéré le json suivant :');
+					console.log(data);
+					var listerel = $('#selectRelation').html();
+					data.forEach( function(rel) 
+						{ 
+							console.log(rel); 
+							listerel += '<option> ' + rel + ' </option>';
+						}
+					);
+					$('#selectRelation').html(listerel);
+				}
+			); 
+		}
+})();
+

@@ -1,3 +1,7 @@
 relais_relais_layout:
     pattern:  /layout
     defaults: { _controller: RelaisRelaisBundle:Default:layout }
+
+relais_relais_layoutRelations:
+    pattern:  /layoutrelations
+    defaults: { _controller: RelaisRelaisBundle:Default:layoutrelations }
