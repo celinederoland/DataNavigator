@@ -1,3 +1,7 @@
 sources_wordnet_bidon:
     pattern:  /bidon
     defaults: { _controller: SourcesWordNetBundle:Default:jsonbidon }
+
+sources_wordnet_relations:
+    pattern:  /relations
+    defaults: { _controller: SourcesWordNetBundle:Default:jsonrelations }

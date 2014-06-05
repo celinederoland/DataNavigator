@@ -35,5 +35,34 @@ class DefaultController extends Controller
 		return new Response($text);
 	}
 
+	/**
+	 * Renvoie un fichier json indiquant l'ensemble des relations disponibles dans wordnet.
+	 *
+	 * @return HttpResponse json contenant la liste des relations
+	*/
+	public function jsonrelationsAction()
+	{
+		$tab = array(
+			'derivation',
+			'pertainymie',
+			'construction',
+			'participe_passe',
+			'hypernymie',
+			'hyponymie',
+			'meronymie',
+			'holonymie',
+			'troponymie',
+			'verbe_hyponymie',
+			'entailments',
+			'antonymie',
+			'attribut',
+			'cause',
+			'consequence',
+			'similar',
+			'synonymie'
+		);
+		$text = json_encode($tab);
+		return new Response($text);
+	}
 }
 
