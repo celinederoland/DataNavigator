@@ -24,11 +24,19 @@
 		if ($('#jsongraph').attr('class') == 'activevue') { var vue = 'jsongraph'; }
 
 		//Options
-		//TODO
+		var limite = $('#limite').val();
+		if (limite == "") { limite = 2; }
+
+		var valeurs = [];
+		$('option:selected').each(function() {
+			valeurs.push($(this).val());
+		});
 
 		console.log("layout a récupéré les options suivantes : ");
 		console.log("source : " + source);
 		console.log("vue : " + vue);
+		console.log("limite : " + limite);
+		console.log("relations :" + valeurs);
 
 	//Utilisation d'ajax pour placer le résultat dans le conteneurD3
 
