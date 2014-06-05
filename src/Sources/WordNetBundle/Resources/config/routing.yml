@@ -1,5 +1,5 @@
 sources_wordnet_bidon:
-    pattern:  /bidon
+    pattern:  /bidon/{relations}/{limite}
     defaults: { _controller: SourcesWordNetBundle:Default:jsonbidon }
 
 sources_wordnet_relations:

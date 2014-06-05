@@ -27,16 +27,18 @@
 		var limite = $('#limite').val();
 		if (limite == "") { limite = 2; }
 
-		var valeurs = [];
+		var relations = [];
 		$('option:selected').each(function() {
-			valeurs.push($(this).val());
+			relations.push($(this).val());
 		});
+		if (relations.length == 0) { relations = 'all'; }
+		else { relations = '"' + relations.join('","') + '"'; }
 
 		console.log("layout a récupéré les options suivantes : ");
 		console.log("source : " + source);
 		console.log("vue : " + vue);
 		console.log("limite : " + limite);
-		console.log("relations :" + valeurs);
+		console.log("relations :" + relations);
 
 	//Utilisation d'ajax pour placer le résultat dans le conteneurD3
 
@@ -48,7 +50,7 @@
 		{ 
 			console.log('layout va récupérer le json pour la source ' + source);
 			//On récupère le json (layout l210)
-			if (source == 'wordnet') { urlsrc = "{{ path('sources_wordnet_bidon')}}"; } 
+			if (source == 'wordnet') { urlsrc = Routing.generate('sources_wordnet_bidon', { relations: relations, limite: limite }); } 
 			//Astuce pour plus tard : Comment insérer des paramètres à la route ?
 			//Réponse : Routing.generate('relais_relais_index', { source: source }), //FOSJsRoutingBundle
 			else { alert("Source " + source + " non prise en charge"); }
