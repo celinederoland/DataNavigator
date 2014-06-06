@@ -52,7 +52,7 @@ function init() {
 /**
  * Charge une url demandée dans le cadre #conteneurtests puis exécute les tests
  */
-function chargerTests(url)
+function chargerTests()
 {
 	$('#conteneurtests').css('visibility','visible');
 	mainTest();

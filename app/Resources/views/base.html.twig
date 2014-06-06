@@ -14,36 +14,15 @@
 
 	<body>
 
-		<div id="conteneurmenu">
+		<nav id="menusuperieur">
 
-			<div id="conteneurpage">
-				{% block body %}{% endblock %}
-			</div>
+		</nav>
 
-			<div id="conteneurD3">
-				{% block d3 %}{% endblock %}
-			</div>
+		<div id="conteneurglobal">
+			{% block contenuglobal %}
 
-			{% if is_granted('ROLE_ADMIN') %}
-				<div id="conteneurtests">
-					{% block tests %}{{ include('JCFrontBundle:Default:test.html.twig') }}{% endblock %}
-				</div>
-			{% endif %}
-
-			{{ include('JCFrontBundle:Menus:menusite.html.twig') }}
-			{{ include('JCFrontBundle:Menus:menuvues.html.twig') }}
-			{{ include('JCFrontBundle:Menus:menudonnees.html.twig') }}
-			{{ include('JCFrontBundle:Menus:menutools.html.twig') }}
-			{{ include('JCFrontBundle:Menus:recherche.html.twig') }}
-			{{ include('JCFrontBundle:Menus:options.html.twig') }}
-			{{ include('JCFrontBundle:Menus:infos.html.twig') }}
-
-			{% if is_granted('ROLE_ADMIN') %}
-				{{ include('JCFrontBundle:Menus:menuadmin.html.twig') }}
-			{% endif %}
-			{{ include('JCFrontBundle:Menus:menuuser.html.twig') }}
+			{% endblock %}
 		</div>
-
 
 	</body>
 
@@ -51,7 +30,5 @@
 		{% javascripts 'js/*' %}
 			<script type="text/javascript" src="{{ asset_url }}"></script>
 		{% endjavascripts %}
-		<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 	{% endblock %}
 </html>

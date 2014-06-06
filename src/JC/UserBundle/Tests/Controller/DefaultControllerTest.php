@@ -12,7 +12,8 @@ class DefaultControllerTest extends BddTestCase
 		$client = static::createClient();
 
 		$crawler = $this -> lambdaConnection($client);
-
+		$crawler = $client->request('GET', '/en/relais/');
+		var_dump($client -> getResponse() -> getContent());
 		$this -> assertTrue($crawler -> filter('html:contains("Welcome lambda")') -> count() > 0, 'échec login');
 	}
 
@@ -21,6 +22,7 @@ class DefaultControllerTest extends BddTestCase
 		$client = static::createClient();
 
 		$crawler = $client->request('GET', '/fr/logout');
+		$crawler = $client->request('GET', '/en/relais');
 
 		$crawler = $client -> followRedirect();
 

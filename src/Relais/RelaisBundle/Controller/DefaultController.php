@@ -23,6 +23,17 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
+
+/**
+	* Point d'entrée de la page
+	*
+	* @return VueTwig
+	*/
+	public function indexAction() //testée par phpunit
+	{
+		return $this->render('RelaisRelaisBundle:Default:index.html.twig');
+	}
+
 /**
 	* Appelle le layout (partie cliente de l'application)
 	* Le layout a pour rôle d'effectuer le relais entre les données entrées par l'utilisateur, la source de données, et la vue

@@ -1,28 +1,28 @@
 <nav id='menusite'>
 	<ul>
 		<li>
-			{% image '@JCFrontBundle/Resources/public/images/menusite/logocarto.png' %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logocarto.png' %}
 				<img 
 					src="{{ asset_url }}" height="40px" width="40px"
 					title="{{ 'home' | trans}}"/>
 			{% endimage %}
 		</li>
 		<li>
-			{% image '@JCFrontBundle/Resources/public/images/menusite/logodoc.png' %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodoc.png' %}
 				<img 
 					src="{{ asset_url }}" height="40px" width="40px"
 					title="{{ 'doc' | trans}}"/>
 			{% endimage %}
 		</li>
 		<li>
-			{% image '@JCFrontBundle/Resources/public/images/menusite/logolivre.png' %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logolivre.png' %}
 				<img 
 					src="{{ asset_url }}" height="40px" width="40px"
 					title="{{ 'livre' | trans}}"/>
 			{% endimage %}
 		</li>
 		<li>
-			{% image '@JCFrontBundle/Resources/public/images/menusite/logoinfo.png' %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logoinfo.png' %}
 				<img 
 					src="{{ asset_url }}" height="40px" width="40px"
 					title="{{ 'about' | trans}}"/>
@@ -31,7 +31,7 @@
 		<li>
 			{% if app.request.locale == 'fr' %}
 			<a href="{{ path('jc_front_homepage', {_locale:'en'} )}}">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/en.png' %}
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/en.png' %}
 					<img 
 						src="{{ asset_url }}" height="40px" width="40px"
 						title="{{ 'trad' | trans}}"/>
@@ -39,7 +39,7 @@
 			</a>
 			{% else %}
 			<a href="{{ path('jc_front_homepage', {_locale:'fr'} )}}">
-				{% image '@JCFrontBundle/Resources/public/images/menusite/fr.png' %}
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/fr.png' %}
 					<img 
 						src="{{ asset_url }}" height="40px" width="40px"
 						title="{{ 'trad' | trans}}"/>

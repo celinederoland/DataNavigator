@@ -1,20 +1,20 @@
 <nav id='menudonnees'>
 		<li>
-			{% image '@JCFrontBundle/Resources/public/images/menusite/logowordnet.png' %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logowordnet.png' %}
 				<img id="wordnet" onClick="activerSource('#wordnet','{{ path('relais_relais_layoutRelations') }}')"
 					src="{{ asset_url }}" height="40px" width="40px"
 					title="{{ 'WordNet' | trans}}"/>
 			{% endimage %}
 		</li>
 		<li>
-			{% image '@JCFrontBundle/Resources/public/images/menusite/logodbpedia.png' %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodbpedia.png' %}
 				<img id="dbpedia" onClick="activerSource('#dbpedia','{{ path('relais_relais_layoutRelations') }}')"
 					src="{{ asset_url }}" height="40px" width="40px"
 					title="{{ 'DbPedia' | trans}}"/>
 			{% endimage %}
 		</li>
 		<li>
-			{% image '@JCFrontBundle/Resources/public/images/menusite/logodebian.png' %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodebian.png' %}
 				<img id="debian" onClick="activerSource('#debian','{{ path('relais_relais_layoutRelations') }}')"
 					src="{{ asset_url }}" height="40px" width="40px"
 					title="{{ 'Debian' | trans}}"/>

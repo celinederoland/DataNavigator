@@ -32,14 +32,4 @@ class DefaultController extends Controller
 		return $this->render('JCFrontBundle:Default:index.html.twig');
 	}
 
-/**
-	* Executer les tests du code javascript
-	*
-	* @return VueTwig
-	*/
-	public function testAction() //testée par phpunit
-	{
-		return $this->render('JCFrontBundle:Default:test.html.twig');
-	}
-
 }
