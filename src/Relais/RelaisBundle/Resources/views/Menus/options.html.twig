@@ -2,14 +2,13 @@
 	<ul>
 		<li>
 			<span>{{ 'limite' | trans }} <br/>
-				<input id="limite" type="number" name="taille" id="taille"/>
+				{{ form_widget(formrecherche.limite) }}
 			</span>
 		</li>
 		<li>
 			<span>{{ 'rels' | trans }} <br/>
 				<label>
-					<select id="selectRelation" class="selectRelation" multiple size="2">
-					</select>
+					{{ form_widget(formrecherche.relations) }}
 				</label>
 			</span>
 		</li>

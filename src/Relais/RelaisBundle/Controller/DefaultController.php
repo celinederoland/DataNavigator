@@ -11,6 +11,7 @@ namespace Relais\RelaisBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Relais\RelaisBundle\Entity\Recherche;
 
 /**
 	* Controleur pour les pages du relais entre les sources de données et les vues
@@ -31,7 +32,15 @@ class DefaultController extends Controller
 	*/
 	public function indexAction() //testée par phpunit
 	{
-		return $this->render('RelaisRelaisBundle:Default:index.html.twig');
+		$recherche = new Recherche();
+		$formBuilder = $this -> createFormBuilder($recherche);
+		$formBuilder -> add('source','text');
+		$formBuilder -> add('vue','text');
+		$formBuilder -> add('mot','text');
+		$formBuilder -> add('limite','integer',array('required' => false));
+		$formBuilder -> add('relations','choice',array('multiple' => true, 'expanded' => false, 'required' => false));
+		$form = $formBuilder -> getForm() -> createView();
+		return $this->render('RelaisRelaisBundle:Default:index.html.twig',array('formrecherche' => $form));
 	}
 
 /**

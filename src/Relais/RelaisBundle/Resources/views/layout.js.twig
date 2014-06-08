@@ -24,11 +24,12 @@
 		if ($('#radial').attr('class') == 'activevue') { var vue = 'radial'; }
 		if ($('#indented').attr('class') == 'activevue') { var vue = 'indented'; }
 		if ($('#bubble').attr('class') == 'activevue') { var vue = 'bubble'; }
+		if ($('#force').attr('class') == 'activevue') { var vue = 'force'; }
 		if ($('#json').attr('class') == 'activevue') { var vue = 'json'; }
 		if ($('#jsongraph').attr('class') == 'activevue') { var vue = 'jsongraph'; }
 
 		//Options
-		var limite = $('#limite').val();
+		var limite = $('#form_limite').val();
 		if (limite == "") { limite = 2; }
 
 		var relations = [];
@@ -39,7 +40,7 @@
 		else { relations = '"' + relations.join('","') + '"'; }
 
 		//Mot recherché
-		var mot = '"' + $('#mot').val() + '"';
+		var mot = '"' + $('#form_mot').val() + '"';
 
 		console.log("layout a récupéré les options suivantes : ");
 		console.log("mot recherché : " + mot);
