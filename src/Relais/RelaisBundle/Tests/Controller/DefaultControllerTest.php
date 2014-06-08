@@ -27,9 +27,9 @@ class DefaultControllerTest extends BddTestCase
 
 		//On se log en admin, on vérifie que le menu y est
 		$crawler = $this -> adminConnection($client);
-		$crawler = $client->request('GET', '/en/relais/');
+		$crawler = $client -> request('GET', '/en/relais/');
 
-		$this->assertTrue($crawler->filter('nav#menuadmin')->count() > 0,'menu admin inaccessible');
+		$this -> assertTrue($crawler -> filter('nav#menuadmin') -> count() > 0,'menu admin inaccessible');
 
 	}
 
@@ -59,5 +59,15 @@ class DefaultControllerTest extends BddTestCase
 		$cpt_after = count($recherche_rep -> findAll());
 
 		$this -> assertEquals($cpt_init + 1, $cpt_after, 'échec enregistrement historique');
+	}
+
+	public function testShowHistorique()
+	{
+		$client = static::createClient();
+		$crawler = $this -> utilisateurConnection($client);
+
+		$crawler = $client -> request('GET', '/en/relais/historique/show');
+
+		$this -> assertTrue($crawler -> filter('html:contains(\'08/06/2014\')') -> count() > 0,'problème affichage historique');
 	}
 }

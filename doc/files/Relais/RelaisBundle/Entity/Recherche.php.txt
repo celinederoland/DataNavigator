@@ -111,7 +111,9 @@ class Recherche
 	 */
 	public function __construct()
 	{
-		$this -> setDate(new \DateTime());
+		$date = new \DateTime();
+		$date -> setTime(0,0,0);
+		$this -> setDate($date);
 		$this -> setFavorite(false);
 	}
 

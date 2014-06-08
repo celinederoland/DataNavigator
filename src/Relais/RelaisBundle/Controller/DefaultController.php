@@ -128,6 +128,13 @@ class DefaultController extends Controller
 		}
 	}
 
+/**
+	* Récupère toutes les recherches effectuées par l'utilisateur en les filtrant (affichage complet de la page d'historique)
+	* 
+	* @return VueTwig
+	* @param string $prio : ordre de classement (ex : date-desc,source-asc pour trier par date descendante et source ascendante). On peut trier par date, source, vue, mot.
+	* @param string $impose : récupérer seulement certaines valeur (ex: source-dbpedia, mot-horse pour WHERE source=dbpedia and mot=horse)
+	*/
 	public function showhistoriqueAction($prio,$impose)
 	{
 		$recherche_rep = $this -> getDoctrine() -> getRepository('RelaisRelaisBundle:Recherche');
@@ -135,6 +142,13 @@ class DefaultController extends Controller
 		return $this -> render('RelaisRelaisBundle:Default:historique.html.twig', array('historique' => $historique));
 	}
 
+/**
+	* Récupère toutes les recherches effectuées par l'utilisateur en les filtrant (affichage de la seule partie contenant les résultats)
+	* 
+	* @return VueTwig
+	* @param string $prio : ordre de classement (ex : date-desc,source-asc pour trier par date descendante et source ascendante). On peut trier par date, source, vue, mot.
+	* @param string $impose : récupérer seulement certaines valeur (ex: source-dbpedia, mot-horse pour WHERE source=dbpedia and mot=horse)
+	*/
 	public function showhistoriqueminAction($prio,$impose)
 	{
 		$recherche_rep = $this -> getDoctrine() -> getRepository('RelaisRelaisBundle:Recherche');

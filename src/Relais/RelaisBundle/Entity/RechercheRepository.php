@@ -29,8 +29,12 @@ class RechercheRepository extends EntityRepository
 {
 
 /**
-	* @param $user
-	* @param $prio : liste de choses
+	* Donne une collection des recherches effectuées par l'utilisateur, en appliquant certains filtres.
+	*
+	* @param JC\UserBundle\Entity\User $user : l'utilisateur actuellement connecté
+	* @param string $prio : ordre de classement (ex : date-desc,source-asc pour trier par date descendante et source ascendante). On peut trier par date, source, vue, mot.
+	* @param string $impose : récupérer seulement certaines valeur (ex: source-dbpedia, mot-horse pour WHERE source=dbpedia and mot=horse)
+	* @return array : liste des recherches correspondantes aux filtres passés en paramètre
 	*/
 	public function trier($user, $prio, $impose)
 	{
