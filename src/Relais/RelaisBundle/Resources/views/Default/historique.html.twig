@@ -1,14 +1,71 @@
 <h1>Historique</h1>
 
-<table>
-{% for rec in historique %}
-	<tr> 
-		<td> {{ rec.date | date("d/m/Y") }} </td>
-		<td> {{ rec.mot }} </td>
-		<td> {{ rec.source }} </td>
-		<td> {{ rec.vue }} </td>
-		<td> {{ rec.limite }} </td>
-		<td> {% for rel in rec.relations %} {{ rel }} {% endfor %}</td>
-	</tr>
-{% endfor %}
-</table>
+<p> Trier par 
+	<select id="prio1" onChange="choisir();">
+		<option value="date-desc" selected>date desc</option>
+		<option value="date-asc"> date asc</option>
+		<option value="source-desc">source desc</option>
+		<option value="source-asc"> source asc</option>
+		<option value="vue-desc">vue desc</option>
+		<option value="vue-asc"> vue asc</option>
+		<option value="mot-desc">mot desc</option>
+		<option value="mot-asc"> mot asc</option>
+	</select>
+	<select id="prio2" onChange="choisir();">
+		<option value="date-desc" selected>date desc</option>
+		<option value="date-asc"> date asc</option>
+		<option value="source-desc">source desc</option>
+		<option value="source-asc"> source asc</option>
+		<option value="vue-desc">vue desc</option>
+		<option value="vue-asc"> vue asc</option>
+		<option value="mot-desc">mot desc</option>
+		<option value="mot-asc"> mot asc</option>
+	</select>
+	<select id="prio3" onChange="choisir();">
+		<option value="date-desc" selected>date desc</option>
+		<option value="date-asc"> date asc</option>
+		<option value="source-desc">source desc</option>
+		<option value="source-asc"> source asc</option>
+		<option value="vue-desc">vue desc</option>
+		<option value="vue-asc"> vue asc</option>
+		<option value="mot-desc">mot desc</option>
+		<option value="mot-asc"> mot asc</option>
+	</select>
+</p>
+<p> Imposer le mot <input type="text" id="imposemot" onChange="choisir();"/> </p>
+<p> Imposer la source <input type="text" id="imposesource" onChange="choisir();"/> </p>
+<p> Imposer la vue <input type="text" id="imposevue" onChange="choisir();"/> </p>
+
+<div id="contenuHistorique">
+{{ include('RelaisRelaisBundle:Default:showhistorique.html.twig', {historique:historique}) }}
+
+</div>
+
+<script type="text/javascript">
+
+function choisir()
+{
+
+	var prio1 = $('#prio1 option:selected').val();
+	var prio2 = $('#prio2 option:selected').val();
+	var prio3 = $('#prio3 option:selected').val();
+	var prio = prio1;
+	if (prio2 != prio1) { prio += ',' + prio2; }
+	if (prio3 != prio1 && prio3 != prio2) { prio += ',' + prio3; }
+
+	var impose = '';
+	var mot = $('#imposemot').val();
+	var source = $('#imposesource').val();
+	var vue = $('#imposevue').val();
+	if (mot != '') { impose = 'mot-"' + mot + '"'; }
+	if (source != '') { if (impose != '') { impose += ','; } impose += 'source-' + source; }
+	if (vue != '') { if (impose != '') { impose += ','; } impose += 'vue-' + vue; }
+
+	var url = '';
+	if (impose == '') { url = Routing.generate('relais_relais_show_historique_min', { prio:prio }); }
+	else { url = Routing.generate('relais_relais_show_historique_min', { prio:prio, impose:impose }); }
+
+	$('#contenuHistorique').load(url);
+}
+
+</script>

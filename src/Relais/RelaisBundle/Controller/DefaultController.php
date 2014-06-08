@@ -128,11 +128,17 @@ class DefaultController extends Controller
 		}
 	}
 
-	public function showhistoriqueAction($prio)
+	public function showhistoriqueAction($prio,$impose)
 	{
-		var_dump($prio);
 		$recherche_rep = $this -> getDoctrine() -> getRepository('RelaisRelaisBundle:Recherche');
-		$historique = $recherche_rep -> trier($this -> get('security.context') -> getToken() -> getUser(),$prio);
+		$historique = $recherche_rep -> trier($this -> get('security.context') -> getToken() -> getUser(),$prio,$impose);
 		return $this -> render('RelaisRelaisBundle:Default:historique.html.twig', array('historique' => $historique));
+	}
+
+	public function showhistoriqueminAction($prio,$impose)
+	{
+		$recherche_rep = $this -> getDoctrine() -> getRepository('RelaisRelaisBundle:Recherche');
+		$historique = $recherche_rep -> trier($this -> get('security.context') -> getToken() -> getUser(),$prio,$impose);
+		return $this -> render('RelaisRelaisBundle:Default:showhistorique.html.twig', array('historique' => $historique));
 	}
 }

@@ -27,13 +27,29 @@ use Doctrine\ORM\EntityRepository;
 	*/
 class RechercheRepository extends EntityRepository
 {
-	public function trier($user, $prio)
+
+/**
+	* @param $user
+	* @param $prio : liste de choses
+	*/
+	public function trier($user, $prio, $impose)
 	{
 		$prio = explode(',',$prio);
 		foreach($prio as $valeur)
 		{
-			$tabprio[$valeur] = 'desc';
+			$binome = explode('-',$valeur);
+			$tabprio[$binome[0]] = $binome[1];
 		}
-		return $this -> findBy(array('user' => $user), $tabprio);
+		$tabimpose = array('user' => $user);
+		if ($impose != 'none')
+		{
+			$impose = explode(',',$impose);
+			foreach($impose as $valeur)
+			{
+				$binome = explode('-',$valeur);
+				$tabimpose[$binome[0]] = $binome[1];
+			}
+		}
+		return $this -> findBy($tabimpose, $tabprio);
 	}
 }

@@ -1,0 +1,12 @@
+<table>
+{% for rec in historique %}
+	<tr> 
+		<td> {{ rec.date | date("d/m/Y") }} </td>
+		<td> {{ rec.mot }} </td>
+		<td> {{ rec.source }} </td>
+		<td> {{ rec.vue }} </td>
+		<td> {{ rec.limite }} </td>
+		<td> {% for rel in rec.relations %} {{ rel }} {% endfor %}</td>
+	</tr>
+{% endfor %}
+</table>
