@@ -10,10 +10,6 @@
 namespace Relais\RelaisBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sources\DebianBundle\Controller\DefaultController as debianController;
-use Sources\WordNetBundle\Controller\DefaultController as wordnetController;
-use Sources\DbPediaBundle\Controller\DefaultController as dbpediaController;
-use Sources\HumourBundle\Controller\DefaultController as humourController;
 use Symfony\Component\HttpFoundation\Response;
 use Relais\RelaisBundle\Entity\Recherche;
 
@@ -76,9 +72,16 @@ class DefaultController extends Controller
 	public function historiqueAction($source)
 	{
 		$request = $this -> getRequest();
+		//$source = $request -> get('form[source]');
+		//var_dump($source);
+		//return new Response(var_dump($request));
 		if ($this -> get('security.context') -> isGranted('ROLE_USER') and $request -> getMethod() == 'POST')
 		{
 			//Récupération des relations possibles pour les insérer dans le formulaire
+			if ($source == 'debian') { $source = 'Debian'; }
+			else if ($source == 'wordnet') { $source = 'WordNet'; }
+			else if ($source == 'humour') { $source = 'Humour'; }
+			else if ($source == 'dbpedia') { $source = 'DbPedia'; }
 			$listerel = json_decode($this->forward('Sources'.ucFirst($source).'Bundle:Default:jsonrelations') -> getContent());
 			$choix = array();
 			foreach($listerel as $rel)

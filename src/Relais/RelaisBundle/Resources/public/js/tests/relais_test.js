@@ -16,7 +16,7 @@ function relaisTest()
 			$('#wordnet').trigger('click');
 			$('#json').trigger('click');
 			$('#btrecherche').trigger('click');
-			$('#mot').val('machin');
+			$('#form_mot').val('machin');
  
 			//Après avoir cliqué sur recherche, on attend 10s pour vérifier le résultat
 			setTimeout(function() {
@@ -28,8 +28,8 @@ function relaisTest()
 				start();
 
 				//On vérifie que les relations se sont affichées
-				var actualRels = $('#selectRelation').html().length;
-				var expectedRels = 499;
+				var actualRels = $('#form_relations').html().length;
+				var expectedRels = 816;
 				equal(expectedRels,actualRels,'les relations ne sont pas insérées correctement');
 			}, 10000);
 
@@ -47,15 +47,15 @@ function relaisTest()
 			$('#wordnet').trigger('click');
 			$('#json').trigger('click');
 			$('#btrecherche').trigger('click');
-			$('#limite').val(4);
-			$('#mot').val('machin');
+			$('#form_limite').val(4);
+			$('#form_mot').val('machin');
 			$('option').attr('selected','selected');
  
 			//Après avoir cliqué sur recherche, on attend 10s pour vérifier le résultat
 			setTimeout(function() {
 				console.log("récupération");
 				var actual = $('#conteneurpage').html().length;
-				var expected = 765;
+				var expected = 425;
 				//On vérifie que le résultat est bien une chaîne de caractères ayant la taille attendue
 				equal(expected,actual,'problème dans la prise en compte des options et du mot recherché');
 				start();

@@ -33,4 +33,30 @@ class DefaultControllerTest extends BddTestCase
 
 	}
 
+	public function testHistorique()
+	{
+
+		$recherche_rep = $this -> manager -> getRepository('RelaisRelaisBundle:Recherche'); 
+		$cpt_init = count($recherche_rep -> findAll());
+
+		$client = static::createClient();
+		$crawler = $this -> lambdaConnection($client);
+		$crawler = $client -> request(
+			'POST', 
+			'/en/relais/historique/debian',
+			array(
+				"form" => array(
+					"mot" => '"machin"',
+					"source" => 'debian',
+					"vue" => 'radial',
+					"limite" => 3,
+					"relations" => array()
+				)
+			)
+		);
+		var_dump($client -> getResponse() -> getContent());
+		$cpt_after = count($recherche_rep -> findAll());
+
+		$this -> assertEquals($cpt_init + 1, $cpt_after, 'échec enregistrement historique');
+	}
 }
