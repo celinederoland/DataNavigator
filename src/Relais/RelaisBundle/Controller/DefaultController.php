@@ -127,4 +127,12 @@ class DefaultController extends Controller
 			return new Response('Formulaire Invalide');
 		}
 	}
+
+	public function showhistoriqueAction($prio)
+	{
+		var_dump($prio);
+		$recherche_rep = $this -> getDoctrine() -> getRepository('RelaisRelaisBundle:Recherche');
+		$historique = $recherche_rep -> trier($this -> get('security.context') -> getToken() -> getUser(),$prio);
+		return $this -> render('RelaisRelaisBundle:Default:historique.html.twig', array('historique' => $historique));
+	}
 }

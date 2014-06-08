@@ -27,4 +27,13 @@ use Doctrine\ORM\EntityRepository;
 	*/
 class RechercheRepository extends EntityRepository
 {
+	public function trier($user, $prio)
+	{
+		$prio = explode(',',$prio);
+		foreach($prio as $valeur)
+		{
+			$tabprio[$valeur] = 'desc';
+		}
+		return $this -> findBy(array('user' => $user), $tabprio);
+	}
 }

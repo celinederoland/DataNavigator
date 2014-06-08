@@ -109,3 +109,10 @@ function rechercher(url)
 	$('#conteneurpage').css('visibility','hidden');
 	$.getScript(url);
 }
+
+function historique(url)
+{
+	$('#conteneurpage').html('');
+	$('#conteneurpage').css('visibility','visible');
+	$('#conteneurpage').load(url);
+}

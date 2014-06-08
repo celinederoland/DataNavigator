@@ -14,3 +14,7 @@ relais_relais_historique:
     pattern:  /historique
     defaults: { _controller: RelaisRelaisBundle:Default:historique }
 
+relais_relais_show_historique:
+    pattern:  /historique/show/{prio}
+    defaults: { _controller: RelaisRelaisBundle:Default:showhistorique, prio:date }
+
