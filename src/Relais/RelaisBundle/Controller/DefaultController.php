@@ -69,13 +69,16 @@ class DefaultController extends Controller
 		return $this -> render('RelaisRelaisBundle::layoutrelations.js.twig');
 	}
 
-	public function historiqueAction($source)
+/**
+	* Enregistre la recherche en cours dans la base de données si l'utilisateur est connecté.
+	* 
+	* @return HttpResponse
+	*/
+	public function historiqueAction()
 	{
 		$request = $this -> getRequest();
-		//$source = $request -> get('form[source]');
-		//var_dump($source);
-		//return new Response(var_dump($request));
-		if ($this -> get('security.context') -> isGranted('ROLE_USER') and $request -> getMethod() == 'POST')
+		$source = $request -> get('form')['source'];
+		if ($request -> getMethod() == 'POST')
 		{
 			//Récupération des relations possibles pour les insérer dans le formulaire
 			if ($source == 'debian') { $source = 'Debian'; }
@@ -101,7 +104,15 @@ class DefaultController extends Controller
 
 			//Hydratation de l'objet recherche grâce au formulaire + utilisateur connecté
 			$form -> bind($request);
-			$usr = $this -> get('security.context') -> getToken() -> getUser();
+			if ($this -> get('security.context') -> isGranted('ROLE_USER')) 
+			{ 
+				$usr = $this -> get('security.context') -> getToken() -> getUser();
+			}
+			else
+			{
+				$userManager = $this -> get('fos_user.user_manager');
+				$usr = $userManager -> findUserByUsername('inconnu');
+			}
 			$recherche -> setUser($usr);
 
 			//Persistance de l'objet recherche en base de données

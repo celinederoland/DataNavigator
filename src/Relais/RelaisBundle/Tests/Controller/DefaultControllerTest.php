@@ -41,9 +41,10 @@ class DefaultControllerTest extends BddTestCase
 
 		$client = static::createClient();
 		$crawler = $this -> lambdaConnection($client);
+
 		$crawler = $client -> request(
 			'POST', 
-			'/en/relais/historique/debian',
+			'/en/relais/historique',
 			array(
 				"form" => array(
 					"mot" => '"machin"',
@@ -54,7 +55,7 @@ class DefaultControllerTest extends BddTestCase
 				)
 			)
 		);
-		var_dump($client -> getResponse() -> getContent());
+		//var_dump($client -> getResponse() -> getContent());
 		$cpt_after = count($recherche_rep -> findAll());
 
 		$this -> assertEquals($cpt_init + 1, $cpt_after, 'échec enregistrement historique');

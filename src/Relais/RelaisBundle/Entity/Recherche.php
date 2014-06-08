@@ -1,18 +1,31 @@
 <?php
-
+/**
+	* Modèle : l'objet Recherche représente l'ensemble des paramètres de recherche utilisés à un moment donné par un utilisateur donné
+	*
+	* @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
+	* @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
+	*
+	* @version = 2.0
+	*/
 namespace Relais\RelaisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Recherche
- *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Relais\RelaisBundle\Entity\RechercheRepository")
- */
+	* Modèle : l'objet Recherche représente l'ensemble des paramètres de recherche utilisés à un moment donné par un utilisateur donné
+	*
+	* @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
+	* @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
+	*
+	* @version = 2.0
+	* @ORM\Table()
+	* @ORM\Entity(repositoryClass="Relais\RelaisBundle\Entity\RechercheRepository")
+	*/
 class Recherche
 {
 	/**
+	 * identificateur en base de données
+	 *
 	 * @var integer
 	 *
 	 * @ORM\Column(name="id", type="integer")
@@ -22,6 +35,8 @@ class Recherche
 	private $id;
 
 	/**
+	 * source de données utilisée
+	 *
 	 * @var string
 	 *
 	 * @ORM\Column(name="source", type="string", length=255)
@@ -29,6 +44,8 @@ class Recherche
 	private $source;
 
 	/**
+	 * vue utilisée
+	 *
 	 * @var string
 	 *
 	 * @ORM\Column(name="vue", type="string", length=255)
@@ -36,6 +53,8 @@ class Recherche
 	private $vue;
 
 	/**
+	 * mot recherché
+	 *
 	 * @var string
 	 *
 	 * @ORM\Column(name="mot", type="string", length=255)
@@ -43,6 +62,8 @@ class Recherche
 	private $mot;
 
 	/**
+	 * date à laquelle la recherche a été effectuée
+	 *
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="date", type="datetime")
@@ -50,6 +71,8 @@ class Recherche
 	private $date;
 
 	/**
+	 * limite définie pour cette recherche
+	 *
 	 * @var integer
 	 *
 	 * @ORM\Column(name="limite", type="integer")
@@ -57,6 +80,8 @@ class Recherche
 	private $limite;
 
 	/**
+	 * liste des relations demandées
+	 *
 	 * @var array
 	 *
 	 * @ORM\Column(name="relations", type="array")
@@ -64,6 +89,8 @@ class Recherche
 	private $relations;
 
 	/**
+	 * l'utilisateur a t'il placé cette recherche en favoris
+	 *
 	 * @var boolean
 	 *
 	 * @ORM\Column(name="favorite", type="boolean")
@@ -71,11 +98,17 @@ class Recherche
 	private $favorite;
 
 	/**
+	 * profil de l'utilisateur ayant lancé cette recherche
+	 *
 	 * @ORM\ManyToOne(targetEntity="JC\UserBundle\Entity\User", inversedBy="recherches")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
 	private $user;
 
+	/**
+	 * Constructeur : enregistre la date actuelle et ne met pas la recherche en favori
+	 *
+	 */
 	public function __construct()
 	{
 		$this -> setDate(new \DateTime());

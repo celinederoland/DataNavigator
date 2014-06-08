@@ -11,6 +11,7 @@ namespace Relais\RelaisBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Relais\RelaisBundle\Entity\Recherche;
 
 /**
 	* Controleur pour les pages du relais entre les sources de données et les vues
@@ -31,7 +32,15 @@ class DefaultController extends Controller
 	*/
 	public function indexAction() //testée par phpunit
 	{
-		return $this->render('RelaisRelaisBundle:Default:index.html.twig');
+		$recherche = new Recherche();
+		$formBuilder = $this -> createFormBuilder($recherche);
+		$formBuilder -> add('source','text');
+		$formBuilder -> add('vue','text');
+		$formBuilder -> add('mot','text');
+		$formBuilder -> add('limite','integer',array('required' => false));
+		$formBuilder -> add('relations','choice',array('multiple' => true, 'expanded' => false, 'required' => false));
+		$form = $formBuilder -> getForm() -> createView();
+		return $this->render('RelaisRelaisBundle:Default:index.html.twig',array('formrecherche' => $form));
 	}
 
 /**
@@ -58,6 +67,65 @@ class DefaultController extends Controller
 	{
 		//On lance le script qui récupère toutes les options et appelle ensuite la fonction index pour charger le json
 		return $this -> render('RelaisRelaisBundle::layoutrelations.js.twig');
+	}
+
+/**
+	* Enregistre la recherche en cours dans la base de données si l'utilisateur est connecté.
+	* 
+	* @return HttpResponse
+	*/
+	public function historiqueAction()
+	{
+		$request = $this -> getRequest();
+		$source = $request -> get('form')['source'];
+		if ($request -> getMethod() == 'POST')
+		{
+			//Récupération des relations possibles pour les insérer dans le formulaire
+			if ($source == 'debian') { $source = 'Debian'; }
+			else if ($source == 'wordnet') { $source = 'WordNet'; }
+			else if ($source == 'humour') { $source = 'Humour'; }
+			else if ($source == 'dbpedia') { $source = 'DbPedia'; }
+			$listerel = json_decode($this->forward('Sources'.ucFirst($source).'Bundle:Default:jsonrelations') -> getContent());
+			$choix = array();
+			foreach($listerel as $rel)
+			{
+				$choix[$rel] = $rel;
+			}
+
+			//Création du formulaire
+			$recherche = new Recherche();
+			$formBuilder = $this -> createFormBuilder($recherche);
+			$formBuilder -> add('source','text');
+			$formBuilder -> add('vue','text');
+			$formBuilder -> add('mot','text');
+			$formBuilder -> add('limite','integer',array('required' => false));
+			$formBuilder -> add('relations','choice',array('choices' => $choix, 'multiple' => true, 'expanded' => false, 'required' => false));
+			$form = $formBuilder -> getForm();
+
+			//Hydratation de l'objet recherche grâce au formulaire + utilisateur connecté
+			$form -> bind($request);
+			if ($this -> get('security.context') -> isGranted('ROLE_USER')) 
+			{ 
+				$usr = $this -> get('security.context') -> getToken() -> getUser();
+			}
+			else
+			{
+				$userManager = $this -> get('fos_user.user_manager');
+				$usr = $userManager -> findUserByUsername('inconnu');
+			}
+			$recherche -> setUser($usr);
+
+			//Persistance de l'objet recherche en base de données
+			$manager = $this -> getDoctrine() -> getManager();
+			$manager -> persist($recherche);
+			$manager -> flush();
+
+			return new Response('');
+		}
+		else
+		{
+			return new Response('Formulaire Invalide');
+		}
 	}
 }
 
