@@ -63,6 +63,25 @@ class Recherche
 	 */
 	private $relations;
 
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="favorite", type="boolean")
+	 */
+	private $favorite;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="JC\UserBundle\Entity\User", inversedBy="recherches")
+	 * @ORM\JoinColumn(nullable=false)
+	 */
+	private $user;
+
+	public function __construct()
+	{
+		$this -> setDate(new \DateTime());
+		$this -> setFavorite(false);
+	}
+
 
 	/**
 	 * Get id
@@ -210,5 +229,51 @@ class Recherche
 	public function getRelations()
 	{
 		return $this->relations;
+	}
+
+	/**
+	 * Set favorite
+	 *
+	 * @param boolean $favorite
+	 * @return Recherche
+	 */
+	public function setFavorite($favorite)
+	{
+		$this->favorite = $favorite;
+
+		return $this;
+	}
+
+	/**
+	 * Get favorite
+	 *
+	 * @return boolean 
+	 */
+	public function getFavorite()
+	{
+		return $this->favorite;
+	}
+
+	/**
+	 * Set user
+	 *
+	 * @param \JC\UserBundle\Entity\User $user
+	 * @return Recherche
+	 */
+	public function setUser(\JC\UserBundle\Entity\User $user)
+	{
+		$this->user = $user;
+
+		return $this;
+	}
+
+	/**
+	 * Get user
+	 *
+	 * @return \JC\UserBundle\Entity\User 
+	 */
+	public function getUser()
+	{
+		return $this->user;
 	}
 }

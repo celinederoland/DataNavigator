@@ -10,6 +10,10 @@
 namespace Relais\RelaisBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sources\DebianBundle\Controller\DefaultController as debianController;
+use Sources\WordNetBundle\Controller\DefaultController as wordnetController;
+use Sources\DbPediaBundle\Controller\DefaultController as dbpediaController;
+use Sources\HumourBundle\Controller\DefaultController as humourController;
 use Symfony\Component\HttpFoundation\Response;
 use Relais\RelaisBundle\Entity\Recherche;
 
@@ -69,18 +73,44 @@ class DefaultController extends Controller
 		return $this -> render('RelaisRelaisBundle::layoutrelations.js.twig');
 	}
 
-	public function historiqueAction()
+	public function historiqueAction($source)
 	{
-		$recherche = new Recherche();
-		$formBuilder = $this -> createFormBuilder($recherche);
-		$formBuilder -> add('source','text');
-		$formBuilder -> add('vue','text');
-		$formBuilder -> add('mot','text');
-		$formBuilder -> add('limite','integer',array('required' => false));
-		$formBuilder -> add('relations','choice',array('multiple' => true, 'expanded' => false, 'required' => false));
-		$form = $formBuilder -> getForm();
 		$request = $this -> getRequest();
-		$form -> bind($request);
-		return new Response('OK '.var_dump($recherche));
+		if ($this -> get('security.context') -> isGranted('ROLE_USER') and $request -> getMethod() == 'POST')
+		{
+			//Récupération des relations possibles pour les insérer dans le formulaire
+			$listerel = json_decode($this->forward('Sources'.ucFirst($source).'Bundle:Default:jsonrelations') -> getContent());
+			$choix = array();
+			foreach($listerel as $rel)
+			{
+				$choix[$rel] = $rel;
+			}
+
+			//Création du formulaire
+			$recherche = new Recherche();
+			$formBuilder = $this -> createFormBuilder($recherche);
+			$formBuilder -> add('source','text');
+			$formBuilder -> add('vue','text');
+			$formBuilder -> add('mot','text');
+			$formBuilder -> add('limite','integer',array('required' => false));
+			$formBuilder -> add('relations','choice',array('choices' => $choix, 'multiple' => true, 'expanded' => false, 'required' => false));
+			$form = $formBuilder -> getForm();
+
+			//Hydratation de l'objet recherche grâce au formulaire + utilisateur connecté
+			$form -> bind($request);
+			$usr = $this -> get('security.context') -> getToken() -> getUser();
+			$recherche -> setUser($usr);
+
+			//Persistance de l'objet recherche en base de données
+			$manager = $this -> getDoctrine() -> getManager();
+			$manager -> persist($recherche);
+			$manager -> flush();
+
+			return new Response('');
+		}
+		else
+		{
+			return new Response('Formulaire Invalide');
+		}
 	}
 }

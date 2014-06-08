@@ -81,7 +81,7 @@
 
 			//On enregistre la recherche dans l'historique
 			console.log('enregistrement historique');
-			urlhistorique = '{{ path("relais_relais_historique") }}';
+			urlhistorique = Routing.generate('relais_relais_historique',{ source: source });
 			console.log(urlhistorique);
 			$.post(
 				urlhistorique,
@@ -90,13 +90,7 @@
 					"form[source]":source,
 					"form[vue]":vue,
 					"form[limite]":limite,
-					"form[relations]":tabrelations,
-				},
-				function(data)
-				{
-					$('#conteneurD3').html(data);
-					$('#conteneurD3').css('visibility','visible');
-					alert('OK');
+					"form[relations][]":tabrelations,
 				}
 			);
 

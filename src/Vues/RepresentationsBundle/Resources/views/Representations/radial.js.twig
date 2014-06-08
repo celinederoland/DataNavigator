@@ -13,6 +13,6 @@
 	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
 	$('#conteneurD3').html('');
 	$('#conteneurpage').css('visibility','visible');
-	$('#conteneurpage').html('<h1>Radial</h1>' + '<pre>' + jsonchaine + '</pre>');
+	$('#conteneurpage').html($('#conteneurpage').html() + '<h1>Radial</h1>' + '<pre>' + jsonchaine + '</pre>');
 	console.log('Fin : on a terminé d\'afficher la vue');
 })();

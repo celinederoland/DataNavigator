@@ -37,7 +37,7 @@
 					console.log('layout a récupéré le json suivant :');
 					console.log(data);
 					var listerel = '';
-					data.forEach( function(rel) { listerel += '<option> ' + rel + ' </option>'; } );
+					data.forEach( function(rel) { listerel += '<option value="' + rel + '"> ' + rel + ' </option>'; } );
 					$('#form_relations').html(listerel);
 				}
 			); 

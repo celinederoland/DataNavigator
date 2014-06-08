@@ -53,46 +53,4 @@ class User extends BaseUser
 	* @ORM\OneToMany(targetEntity="Relais\RelaisBundle\Entity\Recherche",mappedBy="user")
 	*/
 	private $recherches;
-
-	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this -> recherches = new \Doctrine\Common\Collections\ArrayCollection();
-	}
-
-	/**
-	 * Add recherches
-	 *
-	 * @param \Relais\RelaisBundle\Entity\Recherche $recherches
-	 * @return User
-	 */
-	public function addRecherch(\Relais\RelaisBundle\Entity\Recherche $recherches)
-	{
-		$this->recherches[] = $recherches;
-
-		return $this;
-	}
-
-	/**
-	 * Remove recherches
-	 *
-	 * @param \Relais\RelaisBundle\Entity\Recherche $recherches
-	 */
-	public function removeRecherch(\Relais\RelaisBundle\Entity\Recherche $recherches)
-	{
-		$this->recherches->removeElement($recherches);
-	}
-
-	/**
-	 * Get recherches
-	 *
-	 * @return \Doctrine\Common\Collections\Collection 
-	 */
-	public function getRecherches()
-	{
-		return $this->recherches;
-	}
 }

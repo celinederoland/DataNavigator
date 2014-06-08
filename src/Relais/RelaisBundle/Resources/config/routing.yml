@@ -11,6 +11,6 @@ relais_relais_layoutRelations:
     defaults: { _controller: RelaisRelaisBundle:Default:layoutrelations }
 
 relais_relais_historique:
-    pattern:  /historique
+    pattern:  /historique/{source}
     defaults: { _controller: RelaisRelaisBundle:Default:historique }
 
