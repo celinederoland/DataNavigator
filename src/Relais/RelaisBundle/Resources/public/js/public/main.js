@@ -79,6 +79,7 @@ function activerSource(id,url)
 {
 	$('.activesource').removeClass('activesource');
 	$(id).addClass('activesource');
+	$('#source').val(id.substring(1));
 	$.getScript(url);
 }
 
@@ -89,6 +90,7 @@ function activerVue(id)
 {
 	$('.activevue').removeClass('activevue');
 	$(id).addClass('activevue');
+	$('#vue').val(id.substring(1));
 }
 
 /**

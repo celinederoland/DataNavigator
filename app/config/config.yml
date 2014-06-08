@@ -76,4 +76,4 @@ swiftmailer:
 
 # FOSJsRoutingBundle
 fos_js_routing:
-    routes_to_expose: [ vues_representations_json, sources_wordnet_bidon ]
+    routes_to_expose: [ vues_representations_json, sources_wordnet_bidon, sources_db_pedia_bidon, sources_debian_bidon, sources_humour_bidon ]

@@ -1,0 +1,7 @@
+sources_humour_bidon:
+    pattern:  /bidon/{mot}/{relations}/{limite}
+    defaults: { _controller: SourcesHumourBundle:Default:jsonbidon }
+
+sources_humour_relations:
+    pattern:  /relations
+    defaults: { _controller: SourcesHumourBundle:Default:jsonrelations }

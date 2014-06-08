@@ -55,21 +55,21 @@ relais_relais:
 #sources : extraction des données et fabrication du json
 sources_humour:
     resource: "@SourcesHumourBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+    prefix:   /{_locale}/humour/
     defaults: {_locale: en}
     requirements:
         _locale: en|fr
 
 sources_debian:
     resource: "@SourcesDebianBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+    prefix:   /{_locale}/debian/
     defaults: {_locale: en}
     requirements:
         _locale: en|fr
 
 sources_db_pedia:
     resource: "@SourcesDbPediaBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+    prefix:   /{_locale}/dbpedia/
     defaults: {_locale: en}
     requirements:
         _locale: en|fr

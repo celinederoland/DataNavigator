@@ -39,9 +39,6 @@ class DefaultController extends Controller
 	* Le layout a pour rôle d'effectuer le relais entre les données entrées par l'utilisateur, la source de données, et la vue
 	* 
 	* @return HttpResponse script javascript
-	* @todo Prendre en compte les options et le mot recherché
-	* @todo Mettre en place un appel automatique à un layoutRelations lorsqu'on sélectionne une source de données, ce qui permettrait d'afficher les relations en option
-	* @todo Adapter lorsqu'on ajoute de nouvelles vues et de nouvelles sources
 	* @todo Gérer également l'enregistrement des options de l'utilisateur en bdd. Plus généralement : mettre en place un système de favoris et d'historique.
 	*/
 	public function layoutAction() //testée par qunit
@@ -55,6 +52,7 @@ class DefaultController extends Controller
 	* Le layoutrelations a pour rôle de proposer à l'utilisateur les relations possibles pour la source qu'il a sélectionnée
 	* 
 	* @return HttpResponse script javascript
+	* @todo Idée : Lorsqu'on clique sur une relation ça afficherait dans le cadre d'informations la signification de cette relation
 	*/
 	public function layoutrelationsAction() //testée par qunit
 	{

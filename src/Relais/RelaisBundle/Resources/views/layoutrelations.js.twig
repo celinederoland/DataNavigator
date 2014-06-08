@@ -12,6 +12,7 @@
 		if ($('#wordnet').attr('class') == 'activesource') { var source = 'wordnet'; }
 		if ($('#dbpedia').attr('class') == 'activesource') { var source = 'dbpedia'; }
 		if ($('#debian').attr('class') == 'activesource') { var source = 'debian'; }
+		if ($('#humour').attr('class') == 'activesource') { var source = 'humour'; }
 
 	//Utilisation d'ajax pour placer le résultat dans le conteneurD3
 
@@ -22,6 +23,9 @@
 			console.log('layoutrelations va récupérer les relations pour la source ' + source);
 			//On récupère le json (layout l210)
 			if (source == 'wordnet') { urlsrc = "{{ path('sources_wordnet_relations')}}"; } 
+			else if (source == 'dbpedia') { urlsrc = "{{ path('sources_db_pedia_relations')}}"; } 
+			else if (source == 'debian') { urlsrc = "{{ path('sources_debian_relations')}}"; } 
+			else if (source == 'humour') { urlsrc = "{{ path('sources_humour_relations')}}"; } 
 			//Astuce pour plus tard : Comment insérer des paramètres à la route ?
 			//Réponse : Routing.generate('relais_relais_index', { source: source }), //FOSJsRoutingBundle
 			else { alert("Source " + source + " non prise en charge"); }
@@ -32,13 +36,8 @@
 				{
 					console.log('layout a récupéré le json suivant :');
 					console.log(data);
-					var listerel = $('#selectRelation').html();
-					data.forEach( function(rel) 
-						{ 
-							console.log(rel); 
-							listerel += '<option> ' + rel + ' </option>';
-						}
-					);
+					var listerel = '';
+					data.forEach( function(rel) { listerel += '<option> ' + rel + ' </option>'; } );
 					$('#selectRelation').html(listerel);
 				}
 			); 

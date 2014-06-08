@@ -1,0 +1,7 @@
+sources_debian_bidon:
+    pattern:  /bidon/{mot}/{relations}/{limite}
+    defaults: { _controller: SourcesDebianBundle:Default:jsonbidon }
+
+sources_debian_relations:
+    pattern:  /relations
+    defaults: { _controller: SourcesDebianBundle:Default:jsonrelations }

@@ -14,13 +14,16 @@
 
 	<body>
 
+		{# Le menu supérieur est présent sur toutes les pages #}
 		<nav id="menusuperieur">
 
 		</nav>
 
+		{# Le conteneur global contient tout ce qui est dessous #}
 		<div id="conteneurglobal">
 			{% block contenuglobal %}
-
+				{# La page pour explorer les données contient son interface propre #}
+				{# Les autres pages ont chacune leur propre interface graphique #}
 			{% endblock %}
 		</div>
 
