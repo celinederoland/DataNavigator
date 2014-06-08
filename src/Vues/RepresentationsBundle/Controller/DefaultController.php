@@ -40,7 +40,6 @@ class DefaultController extends Controller
 	* 
 	* @param string $data json générique fourni par le relais
 	* @return HttpResponse script javascript
-	* @todo Le json affiché dépasse de la page et on ne peut pas scroller pour voir plus bas. Il faut adapter le css pour permettre que le conteneur conteneurpage soit scrollable.
 	*/
 	public function jsonGraphAction($data) //testée par qunit
 	{

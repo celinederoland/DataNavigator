@@ -9,6 +9,9 @@
 	//Récupération des valeurs (layout l150 à 209)
 
 		//Source
+		/*********************
+			REPERE AJOUTER SOURCE
+		**********************/
 		if ($('#wordnet').attr('class') == 'activesource') { var source = 'wordnet'; }
 		if ($('#dbpedia').attr('class') == 'activesource') { var source = 'dbpedia'; }
 		if ($('#debian').attr('class') == 'activesource') { var source = 'debian'; }
@@ -56,6 +59,9 @@
 		{ 
 			console.log('layout va récupérer le json pour la source ' + source);
 			//On récupère le json (layout l210)
+			/*********************
+				REPERE AJOUTER SOURCE
+			**********************/
 			if (source == 'wordnet') { 
 				urlsrc = Routing.generate('sources_wordnet_bidon', { mot: mot, relations: relations, limite: limite });
 			} 
