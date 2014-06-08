@@ -68,4 +68,19 @@ class DefaultController extends Controller
 		//On lance le script qui récupère toutes les options et appelle ensuite la fonction index pour charger le json
 		return $this -> render('RelaisRelaisBundle::layoutrelations.js.twig');
 	}
+
+	public function historiqueAction()
+	{
+		$recherche = new Recherche();
+		$formBuilder = $this -> createFormBuilder($recherche);
+		$formBuilder -> add('source','text');
+		$formBuilder -> add('vue','text');
+		$formBuilder -> add('mot','text');
+		$formBuilder -> add('limite','integer',array('required' => false));
+		$formBuilder -> add('relations','choice',array('multiple' => true, 'expanded' => false, 'required' => false));
+		$form = $formBuilder -> getForm();
+		$request = $this -> getRequest();
+		$form -> bind($request);
+		return new Response('OK '.var_dump($recherche));
+	}
 }
