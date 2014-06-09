@@ -29,3 +29,20 @@
 'login': 'Connexion'
 'register': 'Créer un compte'
 'welcom': 'Bienvenue'
+
+#Historique
+'histo': 'Historique'
+'date': 'Date'
+'mot': 'Mot'
+'source': 'Source'
+'vue': 'Vue'
+'fav': 'Favori'
+'rmfav': 'Enlever des favoris'
+'addfav': 'Ajouter aux favoris'
+'orderby': 'Trier par'
+'filtres': 'Filtres'
+'monly': 'Seulement les mots'
+'vonly': 'Seulement les vues'
+'sonly': 'Seulement les sources'
+'favonly': 'Favoris uniquement'
+

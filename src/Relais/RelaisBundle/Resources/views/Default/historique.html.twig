@@ -3,44 +3,44 @@
 <h1>Historique</h1>
 
 <table class="histochoix">
-	<tr><th> Trier par </th>
+	<tr><th> {{ 'orderby' | trans }} </th>
 	<th><select id="prio1" onChange="choisir();">
-		<option value="date-desc" selected>date &darr;</option>
-		<option value="date-asc"> date &uarr;</option>
-		<option value="source-desc">source &darr;</option>
-		<option value="source-asc"> source &uarr;</option>
-		<option value="vue-desc">vue &darr;</option>
-		<option value="vue-asc"> vue &uarr;</option>
-		<option value="mot-desc">mot &darr;</option>
-		<option value="mot-asc"> mot &uarr;</option>
+		<option value="date-desc" selected>{{ 'date' | trans }} &darr;</option>
+		<option value="date-asc"> {{ 'date' | trans }} &uarr;</option>
+		<option value="source-desc">{{ 'source' | trans }} &darr;</option>
+		<option value="source-asc"> {{ 'source' | trans }} &uarr;</option>
+		<option value="vue-desc">{{ 'vue' | trans }} &darr;</option>
+		<option value="vue-asc"> {{ 'vue' | trans }} &uarr;</option>
+		<option value="mot-desc">{{ 'mot' | trans }} &darr;</option>
+		<option value="mot-asc"> {{ 'mot' | trans }} &uarr;</option>
 	</select></th>
 	<th><select id="prio2" onChange="choisir();">
-		<option value="date-desc" selected>date &darr;</option>
-		<option value="date-asc"> date &uarr;</option>
-		<option value="source-desc">source &darr;</option>
-		<option value="source-asc"> source &uarr;</option>
-		<option value="vue-desc">vue &darr;</option>
-		<option value="vue-asc"> vue &uarr;</option>
-		<option value="mot-desc">mot &darr;</option>
-		<option value="mot-asc"> mot &uarr;</option>
+		<option value="date-desc">{{ 'date' | trans }} &darr;</option>
+		<option value="date-asc"> {{ 'date' | trans }} &uarr;</option>
+		<option value="source-desc" selected>{{ 'source' | trans }} &darr;</option>
+		<option value="source-asc"> {{ 'source' | trans }} &uarr;</option>
+		<option value="vue-desc">{{ 'vue' | trans }} &darr;</option>
+		<option value="vue-asc"> {{ 'vue' | trans }} &uarr;</option>
+		<option value="mot-desc">{{ 'mot' | trans }} &darr;</option>
+		<option value="mot-asc"> {{ 'mot' | trans }} &uarr;</option>
 	</select></th>
 	<th><select id="prio3" onChange="choisir();">
-		<option value="date-desc" selected>date &darr;</option>
-		<option value="date-asc"> date &uarr;</option>
-		<option value="source-desc">source &darr;</option>
-		<option value="source-asc"> source &uarr;</option>
-		<option value="vue-desc">vue &darr;</option>
-		<option value="vue-asc"> vue &uarr;</option>
-		<option value="mot-desc">mot &darr;</option>
-		<option value="mot-asc"> mot &uarr;</option>
+		<option value="date-desc" selected>{{ 'date' | trans }} &darr;</option>
+		<option value="date-asc"> {{ 'date' | trans }} &uarr;</option>
+		<option value="source-desc">{{ 'source' | trans }} &darr;</option>
+		<option value="source-asc"> {{ 'source' | trans }} &uarr;</option>
+		<option value="vue-desc" selected>{{ 'vue' | trans }} &darr;</option>
+		<option value="vue-asc"> {{ 'vue' | trans }} &uarr;</option>
+		<option value="mot-desc">{{ 'mot' | trans }} &darr;</option>
+		<option value="mot-asc"> {{ 'mot' | trans }} &uarr;</option>
 	</select></th>
 	</tr>
 	<tr><td colspan="4"> </td></tr>
 	<tr>
-		<th rowspan="2">Filtres</th>
-		<td> Seulement les mots </td>
-		<td> Seulement les sources </td>
-		<td> Seulement les vues </td>
+		<th rowspan="2">{{ 'filtres' | trans }}</th>
+		<td> {{ 'monly' | trans }} </td>
+		<td> {{ 'sonly' | trans }} </td>
+		<td> {{ 'vonly' | trans }} </td>
 	</tr>
 	<tr>
 		<td><input type="text" id="imposemot" onChange="choisir();"/> </td>
@@ -77,12 +77,12 @@
 		</td>
 		<td>
 			<select id="histovue" multiple class="invisible">
-				<option id="optionradial" value="radial">radial</option>
-				<option id="optionindented" value="indented">indented</option>
-				<option id="optionforce" value="force">force</option>
-				<option id="optionbubble" value="bubble">bubble</option>
-				<option id="optionjson" value="json">json</option>
-				<option id="optionjsongraph" value="jsongraph">jsongraph</option>
+				<option id="optionradial" value="radial">{{ 'radial' | trans }}</option>
+				<option id="optionindented" value="indented">{{ 'indented' | trans }}</option>
+				<option id="optionforce" value="force">{{ 'force' | trans }}</option>
+				<option id="optionbubble" value="bubble">{{ 'bubble' | trans }}</option>
+				<option id="optionjson" value="json">{{ 'json' | trans }}</option>
+				<option id="optionjsongraph" value="jsongraph">{{ 'jsongraph' | trans }}</option>
 			</select>
 
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logoradial.png' %}
@@ -119,7 +119,7 @@
 	</tr>
 	<tr><td></td></tr>
 	<tr>
-		<th>Favoris uniquement</th>
+		<th>{{ 'favonly' | trans }}</th>
 		<td><input type="checkbox" id="imposefav" onChange="choisir();"/><label for="imposefav"></label></td>
 	</tr>
 
@@ -180,18 +180,17 @@ function choisir()
 		impose += 'favorite-' + 1; 
 	}
 
-	var url = '';
-	if (impose == '') { url = Routing.generate('relais_relais_show_historique_min', { prio:prio }); }
-	else { url = Routing.generate('relais_relais_show_historique_min', { prio:prio, impose:impose }); }
+	var loc = '{{ app.request.locale }}';
 
-	//alert(url);
+	var url = '';
+	if (impose == '') { url = Routing.generate('relais_relais_show_historique_min', { prio:prio, _locale:loc }); }
+	else { url = Routing.generate('relais_relais_show_historique_min', { prio:prio, impose:impose, _locale:loc }); }
 
 	$('#contenuHistorique').load(url);
 }
 
 function filtrerSource(source)
 {
-	//$('.vuechoisie').removeClass('vuechoisie');
 	if ($('#option' + source).attr('selected'))
 	{
 		$('#option' + source).attr('selected',false),
@@ -207,7 +206,6 @@ function filtrerSource(source)
 
 function filtrerVue(vue)
 {
-	//$('.vuechoisie').removeClass('vuechoisie');
 	if ($('#option' + vue).attr('selected'))
 	{
 		$('#option' + vue).attr('selected',false),

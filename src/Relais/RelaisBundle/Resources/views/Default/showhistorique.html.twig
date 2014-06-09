@@ -1,19 +1,19 @@
 <table class="histo">
 	<tr> 
-		<th> Date </th>
-		<th> Mot recherché </th>
-		<th> Source de données </th>
-		<th> Visualisation </th>
-		<th> Limite </th>
-		<th class="rel"> Relations </th>
-		<th> Favori </th>
+		<th> {{ 'date' | trans }} </th>
+		<th> {{ 'mot' | trans }} </th>
+		<th> {{ 'source' | trans }} </th>
+		<th> {{ 'vue' | trans }} </th>
+		<th> {{ 'limite' | trans }} </th>
+		<th class="rel"> {{ 'rel' | trans }} </th>
+		<th> {{ 'fav' | trans }} </th>
 	</tr>
 {% for rec in historique %}
 	<tr> 
 		<td> {{ rec.date | date("d/m/Y") }} </td>
 		<td> {{ rec.mot }} </td>
 		<td> {{ rec.source }} </td>
-		<td> {{ rec.vue }} </td>
+		<td> {{ rec.vue | trans }} </td>
 		<td> {{ rec.limite }} </td>
 		<td title="{% for rel in rec.relations %} {{ rel }} - {% endfor %}"> {{ rec.relations|length }}</td>
 		<td> 
@@ -21,13 +21,13 @@
 					{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logofavori.png' %}
 						<img onClick='changefavorite("{{ rec.id }}")'
 							src="{{ asset_url }}" height="20px" width="20px"
-							title="{{ 'enlever aux favoris' | trans}}"/>
+							title="{{ 'rmfav' | trans}}"/>
 					{% endimage %}
 				{% else %} 
 					{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logonofavori.png' %}
 						<img onClick='changefavorite("{{ rec.id }}")'
 							src="{{ asset_url }}" height="20px" width="20px"
-							title="{{ 'ajouter aux favoris' | trans}}"/>
+							title="{{ 'addfav' | trans}}"/>
 					{% endimage %}
 				{% endif %} 
 		</td>
