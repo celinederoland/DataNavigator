@@ -13,6 +13,7 @@
 		if ($('#dbpedia').attr('class') == 'activesource') { var source = 'dbpedia'; }
 		if ($('#debian').attr('class') == 'activesource') { var source = 'debian'; }
 		if ($('#humour').attr('class') == 'activesource') { var source = 'humour'; }
+		if ($('#getty').attr('class') == 'activesource') { var source = 'getty'; }
 
 	//Utilisation d'ajax pour placer le résultat dans le conteneurD3
 
@@ -26,6 +27,7 @@
 			else if (source == 'dbpedia') { urlsrc = "{{ path('sources_db_pedia_relations')}}"; } 
 			else if (source == 'debian') { urlsrc = "{{ path('sources_debian_relations')}}"; } 
 			else if (source == 'humour') { urlsrc = "{{ path('sources_humour_relations')}}"; } 
+			else if (source == 'getty') { urlsrc = "{{ path('sources_getty_relations')}}"; } 
 			//Astuce pour plus tard : Comment insérer des paramètres à la route ?
 			//Réponse : Routing.generate('relais_relais_index', { source: source }), //FOSJsRoutingBundle
 			else { alert("Source " + source + " non prise en charge"); }

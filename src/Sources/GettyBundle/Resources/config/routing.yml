@@ -1,0 +1,7 @@
+sources_getty_json:
+    pattern:  /json/{mot}/{relations}/{limite}
+    defaults: { _controller: SourcesGettyBundle:Default:json }
+
+sources_getty_relations:
+    pattern:  /relations
+    defaults: { _controller: SourcesGettyBundle:Default:jsonrelations }

@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Vues\RepresentationsBundle\VuesRepresentationsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Sources\GettyBundle\SourcesGettyBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -81,6 +81,13 @@ sources_wordnet:
     requirements:
         _locale: en|fr
 
+sources_getty:
+    resource: "@SourcesGettyBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/getty/
+    defaults: {_locale: en}
+    requirements:
+        _locale: en|fr
+
 
 #fos_routing
 fos_js_routing:

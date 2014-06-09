@@ -16,6 +16,7 @@
 		if ($('#dbpedia').attr('class') == 'activesource') { var source = 'dbpedia'; }
 		if ($('#debian').attr('class') == 'activesource') { var source = 'debian'; }
 		if ($('#humour').attr('class') == 'activesource') { var source = 'humour'; }
+		if ($('#getty').attr('class') == 'activesource') { var source = 'getty'; }
 
 		//Vue
 		/*********************
@@ -75,6 +76,9 @@
 			} 
 			else if (source == 'humour') { 
 				urlsrc = Routing.generate('sources_humour_json', { mot: mot, relations: relations, limite: limite });
+			} 
+			else if (source == 'getty') { 
+				urlsrc = Routing.generate('sources_getty_json', { mot: mot, relations: relations, limite: limite });
 			} 
 			else { alert("Source " + source + " non prise en charge"); }
 			console.log(urlsrc);
