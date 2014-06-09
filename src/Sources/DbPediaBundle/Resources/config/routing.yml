@@ -1,3 +1,7 @@
+sources_db_pedia_json:
+    pattern:  /json/{mot}/{relations}/{limite}
+    defaults: { _controller: SourcesDbPediaBundle:Default:json }
+
 sources_db_pedia_bidon:
     pattern:  /bidon/{mot}/{relations}/{limite}
     defaults: { _controller: SourcesDbPediaBundle:Default:jsonbidon }

@@ -53,8 +53,6 @@ class ObjetRepository extends EntityRepository
 	/**
 	 * Fabrique un json au format commun correspondant à la recherche demandée
 	 *
-	 * Pour les explications voir présentation écrite et orale
-	 *
 	 * @param string $recherche
 	 * @param string $options : liste des relations à prendre en compte
 	 * @param integer $profondeur : profondeur de la recherche à effectuer
