@@ -155,5 +155,29 @@ class DefaultController extends Controller
 		$historique = $recherche_rep -> trier($this -> get('security.context') -> getToken() -> getUser(),$prio,$impose);
 		return $this -> render('RelaisRelaisBundle:Default:showhistorique.html.twig', array('historique' => $historique));
 	}
+
+
+/**
+	* Modifie l'attribut favori de la recherche d'id donnée (si true passe à false et réciproquement)
+	* 
+	* @return HttpResponse
+	* @param integer $id : id de la recherche à modifier
+	*/
+	public function changefavoriteAction($id)
+	{
+		//Sélection de la recherche demandée
+		$recherche_rep = $this -> getDoctrine() -> getRepository('RelaisRelaisBundle:Recherche');
+		$recherche = $recherche_rep -> find($id);
+
+		//Modification de l'attribut favorite
+		$recherche -> setFavorite( !($recherche -> getFavorite()) );
+
+		//Enregistrement en bdd de la modification
+		$manager = $this -> getDoctrine() -> getManager();
+		$manager -> persist($recherche);
+		$manager -> flush();
+
+		return new Response('');
+	}
 }
 

@@ -16,7 +16,21 @@
 		<td> {{ rec.vue }} </td>
 		<td> {{ rec.limite }} </td>
 		<td title="{% for rel in rec.relations %} {{ rel }} - {% endfor %}"> {{ rec.relations|length }}</td>
-		<td> {% if rec.favorite %} OUI {% else %} NON {% endif %} </td>
+		<td> 
+				{% if rec.favorite %} 
+					{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logofavori.png' %}
+						<img onClick='changefavorite("{{ rec.id }}")'
+							src="{{ asset_url }}" height="40px" width="40px"
+							title="{{ 'enlever aux favoris' | trans}}"/>
+					{% endimage %}
+				{% else %} 
+					{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logonofavori.png' %}
+						<img onClick='changefavorite("{{ rec.id }}")'
+							src="{{ asset_url }}" height="40px" width="40px"
+							title="{{ 'ajouter aux favoris' | trans}}"/>
+					{% endimage %}
+				{% endif %} 
+		</td>
 	</tr>
 {% endfor %}
 </table>

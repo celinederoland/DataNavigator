@@ -120,6 +120,8 @@
 
 </table>
 
+<div id="divfav"></div>
+
 <div id="contenuHistorique">
 {{ include('RelaisRelaisBundle:Default:showhistorique.html.twig', {historique:historique}) }}
 
@@ -170,7 +172,7 @@ function choisir()
 	if (impose == '') { url = Routing.generate('relais_relais_show_historique_min', { prio:prio }); }
 	else { url = Routing.generate('relais_relais_show_historique_min', { prio:prio, impose:impose }); }
 
-	alert(url);
+	//alert(url);
 
 	$('#contenuHistorique').load(url);
 }
@@ -207,5 +209,10 @@ function filtrerVue(vue)
 	choisir();
 }
 
-
+function changefavorite(id)
+{
+	url = Routing.generate('relais_relais_favori_change', { id:id });
+	$('#divfav').load(url);
+	choisir();
+}
 </script>

@@ -70,4 +70,30 @@ class DefaultControllerTest extends BddTestCase
 
 		$this -> assertTrue($crawler -> filter('html:contains(\'08/06/2014\')') -> count() > 0,'problème affichage historique');
 	}
+
+	public function testFavori()
+	{
+		$recherche_rep = $this -> manager -> getRepository('RelaisRelaisBundle:Recherche');
+
+		$client = static::createClient();
+		$crawler = $this -> utilisateurConnection($client);
+
+		$crawler = $client -> request('GET', '/en/relais/historique/change/21');
+
+		$fav = $recherche_rep -> find(21) -> getFavorite();
+		$this -> assertTrue($fav,'problème mise en favori');
+	}
+
+	public function testNoFavori()
+	{
+		$recherche_rep = $this -> manager -> getRepository('RelaisRelaisBundle:Recherche');
+
+		$client = static::createClient();
+		$crawler = $this -> utilisateurConnection($client);
+
+		$crawler = $client -> request('GET', '/en/relais/historique/change/21');
+
+		$nofav = $recherche_rep -> find(21) -> getFavorite();
+		$this -> assertFalse($nofav,'problème enlever des favoris');
+	}
 }
