@@ -7,6 +7,7 @@
 		<th> {{ 'limite' | trans }} </th>
 		<th class="rel"> {{ 'rel' | trans }} </th>
 		<th> {{ 'fav' | trans }} </th>
+		<th> {{ 'lancer' | trans }} </th>
 	</tr>
 {% for rec in historique %}
 	<tr> 
@@ -15,7 +16,9 @@
 		<td> {{ rec.source }} </td>
 		<td> {{ rec.vue | trans }} </td>
 		<td> {{ rec.limite }} </td>
-		<td title="{% for rel in rec.relations %} {{ rel }} - {% endfor %}"> {{ rec.relations|length }}</td>
+		{% set listerel='' %}
+		{% for rel in rec.relations %} {% set listerel = listerel ~ '-' ~ rel %} {% endfor %}
+		<td title="{{ listerel }}"> {{ rec.relations|length }}</td>
 		<td> 
 				{% if rec.favorite %} 
 					{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logofavori.png' %}
@@ -30,6 +33,19 @@
 							title="{{ 'addfav' | trans}}"/>
 					{% endimage %}
 				{% endif %} 
+		</td>
+		<td>
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logorotation.png' %}
+				<img id="btrecherche" onClick="lancer('{{ path('relais_relais_layout') }}',
+						'{{ rec.mot }}',
+						'{{ rec.source }}',
+						'{{ rec.vue }}',
+						'{{ rec.limite }}',
+						'{{ listerel }}'
+					);"
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'rechercher' | trans}}"/>
+			{% endimage %}
 		</td>
 	</tr>
 {% endfor %}

@@ -225,4 +225,20 @@ function changefavorite(id)
 	$('#divfav').load(url);
 	choisir();
 }
+
+function lancer(url,mot,source,vue,limite,listerel)
+{
+	$('#form_mot').val(mot.substr(1,mot.length - 2));
+	$('#' + source).click();
+	$('#' + vue).click();
+	$('#form_limite').val(limite);
+	var tabrel = listerel.split('-');
+	setTimeout(function() {
+		tabrel.forEach( function(rel) {
+			if (rel != '') { $('#form_relations option[value="' + rel + '"]').attr('selected',true); }
+		});
+	},1500);
+
+	rechercher(url);
+}
 </script>
