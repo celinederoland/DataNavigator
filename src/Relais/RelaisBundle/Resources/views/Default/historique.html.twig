@@ -55,22 +55,22 @@
 
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logowordnet.png' %}
 				<img id="choixwordnet" onClick="filtrerSource('wordnet')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'WordNet' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodbpedia.png' %}
 				<img id="choixdbpedia" onClick="filtrerSource('dbpedia')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'DbPedia' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodebian.png' %}
 				<img id="choixdebian" onClick="filtrerSource('debian')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'Debian' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logohumour.png' %}
 				<img id="choixhumour" onClick="filtrerSource('humour')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'Humour' | trans}}"/>
 			{% endimage %}
 
@@ -87,35 +87,40 @@
 
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logoradial.png' %}
 				<img id="choixradial" onClick='filtrerVue("radial")'
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'radial' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logoindented.png' %}
 				<img id="choixindented" onClick='filtrerVue("indented")'
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'indented' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logograph.png' %}
 				<img id="choixforce" onClick='filtrerVue("force")'
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'force' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logobubble.png' %}
 				<img id="choixbubble" onClick='filtrerVue("bubble")'
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'bubble' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/jsongenerique.png' %}
 				<img id="choixjson" onClick='filtrerVue("json")'
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'json' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/jsongraph.png' %}
 				<img id="choixjsongraph" onClick='filtrerVue("jsongraph")'
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'jsongraph' | trans}}"/>
 			{% endimage %}
 		</td>
+	</tr>
+	<tr><td></td></tr>
+	<tr>
+		<th>Favoris uniquement</th>
+		<td><input type="checkbox" id="imposefav" onChange="choisir();"/><label for="imposefav"></label></td>
 	</tr>
 
 </table>
@@ -152,6 +157,8 @@ function choisir()
 		vue.push($(this).val());
 	});
 
+	var fav = $('#imposefav').attr('checked');
+
 	mot.forEach( function(nommot) {
 		if (nommot != '')
 		{
@@ -167,6 +174,11 @@ function choisir()
 		if (impose != '') { impose += ','; } 
 		impose += 'vue-' + nomvue; 
 	});
+	if (fav)
+	{
+		if (impose != '') { impose += ','; } 
+		impose += 'favorite-' + 1; 
+	}
 
 	var url = '';
 	if (impose == '') { url = Routing.generate('relais_relais_show_historique_min', { prio:prio }); }

@@ -51,7 +51,8 @@ class RechercheRepository extends EntityRepository
 			foreach($impose as $valeur)
 			{
 				$binome = explode('-',$valeur);
-				$tabimpose[$binome[0]][] = $binome[1];
+				if ($binome[0] == 'favorite') { $tabimpose['favorite'] = true; }
+				else { $tabimpose[$binome[0]][] = $binome[1]; }
 			}
 		}
 		if (count($tabimpose['mot']) == 0) { unset($tabimpose['mot']); }
