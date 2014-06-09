@@ -23,6 +23,35 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
+	/**
+	 * fonction json
+	 *
+	 * Renvoie un fichier json correspondant au format commun établi.
+	 * correspondant à une recherche.
+	 *
+	 * @param string $mot : mot demandé
+	 * @param string $relations : liste des relations à prendre en compte
+	 * @param integer $limite : niveau de profondeur demandé
+	 * @todo Améliorer le paramétrage (regarder du côté de la limite)
+	 * @return Réponse http
+	*/
+	public function jsonAction($mot,$relations,$limite)
+	{
+		$searchUrl = "http://demo4.itpassion.info/crawler.php?target=".substr($mot,1,-1);
+
+		$curlSession = curl_init();
+
+		curl_setopt($curlSession, CURLOPT_URL, $searchUrl);
+		curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+		$jsonresult = curl_exec($curlSession);
+		curl_close($curlSession);
+
+		//On envoie la réponse
+		return new Response($jsonresult);
+	}
+
 /**
 	* Génère un json bidon afin de tester le fonctionnement du relais
 	*

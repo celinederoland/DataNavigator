@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 	* @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
 	*
 	* @version = 2.0
+	* @todo Ajouter les fonctions d'administration et d'affichage de cadre
 	*/
 class DefaultController extends Controller
 {

@@ -27,7 +27,6 @@ class DefaultController extends Controller
 	* 
 	* @return HttpResponse script javascript
 	* @todo améliorer cette vue (elle est un peu bidon pour le moment, juste pour tester le relais)
-	* @todo faire en sorte que les vues puissent mettre à jour le graphe et non le recharger
 	*/
 	public function jsonAction() //testée par qunit
 	{
@@ -51,7 +50,7 @@ class DefaultController extends Controller
 	* Appelle la vue bubble
 	* 
 	* @return HttpResponse script javascript
-	* @todo A FAIRE
+	* @todo Bubble A FAIRE
 	*/
 	public function bubbleAction() //testée par qunit
 	{
@@ -63,7 +62,7 @@ class DefaultController extends Controller
 	* Appelle la vue indented
 	* 
 	* @return HttpResponse script javascript
-	* @todo A FAIRE
+	* @todo Indented A FAIRE
 	*/
 	public function indentedAction() //testée par qunit
 	{
@@ -75,7 +74,7 @@ class DefaultController extends Controller
 	* Appelle la vue force
 	* 
 	* @return HttpResponse script javascript
-	* @todo A FAIRE
+	* @todo Force A FAIRE
 	*/
 	public function forceAction() //testée par qunit
 	{
@@ -87,7 +86,7 @@ class DefaultController extends Controller
 	* Appelle la vue radial
 	* 
 	* @return HttpResponse script javascript
-	* @todo A FAIRE
+	* @todo Radial A FAIRE
 	*/
 	public function radialAction() //testée par qunit
 	{

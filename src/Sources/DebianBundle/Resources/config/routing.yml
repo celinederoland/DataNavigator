@@ -1,3 +1,7 @@
+sources_debian_json:
+    pattern:  /json/{mot}/{relations}/{limite}
+    defaults: { _controller: SourcesDebianBundle:Default:json }
+
 sources_debian_bidon:
     pattern:  /bidon/{mot}/{relations}/{limite}
     defaults: { _controller: SourcesDebianBundle:Default:jsonbidon }

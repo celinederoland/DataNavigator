@@ -22,11 +22,11 @@ function vuesTest()
 			setTimeout(function() {
 				console.log("récupération");
 				var actual = $('#conteneurpage').html().length;
-				var expected = 31802;
+				var expected = 14975;
 				//On vérifie que le résultat est bien une chaîne de caractères ayant la taille attendue
 				equal(expected,actual,'jsongraph (formateur et vue) s\'insère correctement');
 				start();
-			}, 10000);
+			}, 15000);
 
 		}
 	);
