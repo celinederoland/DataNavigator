@@ -108,12 +108,72 @@
 					/*********************
 						REPERE AJOUTER VUE
 					**********************/
-					if (vue == 'json') { $.getScript(Routing.generate('vues_representations_json',{ data: JSON.stringify(data) })); }
-					else if (vue == 'jsongraph') { $.getScript(Routing.generate('vues_representations_jsongraph',{ data: JSON.stringify(data) })); }
-					else if (vue == 'bubble') { $.getScript(Routing.generate('vues_representations_bubble',{ data: JSON.stringify(data) })); }
-					else if (vue == 'indented') { $.getScript(Routing.generate('vues_representations_indented',{ data: JSON.stringify(data) })); }
-					else if (vue == 'force') { $.getScript(Routing.generate('vues_representations_force',{ data: JSON.stringify(data) })); }
-					else if (vue == 'radial') { $.getScript(Routing.generate('vues_representations_radial',{ data: JSON.stringify(data) })); }
+					if (vue == 'json') 
+					{ 
+						$.ajax({
+							type:"POST",
+							url:"{{ path('vues_representations_json') }}",
+							dataType:"script",
+							data:{ 'data': JSON.stringify(data) },
+							cache:false,
+							success:function() { console.log('success'); }
+						});
+					}
+					else if (vue == 'jsongraph') 
+					{ 
+						$.ajax({
+							type:"POST",
+							url:"{{ path('vues_representations_jsongraph') }}",
+							dataType:"script",
+							data:{ 'data': JSON.stringify(data) },
+							cache:false,
+							success:function() { console.log('success'); }
+						});
+					}
+					else if (vue == 'bubble') 
+					{ 
+						$.ajax({
+							type:"POST",
+							url:"{{ path('vues_representations_bubble') }}",
+							dataType:"script",
+							data:{ 'data': JSON.stringify(data) },
+							cache:false,
+							success:function() { console.log('success'); }
+						});
+					}
+					else if (vue == 'indented')
+					{ 
+						$.ajax({
+							type:"POST",
+							url:"{{ path('vues_representations_indented') }}",
+							dataType:"script",
+							data:{ 'data': JSON.stringify(data) },
+							cache:false,
+							success:function() { console.log('success'); }
+						});
+					}
+					else if (vue == 'force') 
+					{ 
+						$.ajax({
+							type:"POST",
+							url:"{{ path('vues_representations_force') }}",
+							dataType:"script",
+							data:{ 'data': JSON.stringify(data) },
+							cache:false,
+							success:function() { console.log('success'); }
+						});
+					}
+					else if (vue == 'radial') 
+					{ 
+						$.ajax({
+							type:"POST",
+							url:"{{ path('vues_representations_radial') }}",
+							dataType:"script",
+							data:{ 'data': JSON.stringify(data) },
+							cache:false,
+							success:function() { console.log('success'); }
+						});
+					}
 					else { alert('vue ' + vue + ' non prise en charge'); }
 				}
 			); 

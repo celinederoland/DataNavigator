@@ -16,12 +16,13 @@ function vuesTest()
 			$('#wordnet').trigger('click');
 			$('#jsongraph').trigger('click');
 			$('#btrecherche').trigger('click');
+			$('#form_mot').val('entity');
  
 			//Après avoir cliqué sur recherche, on attend 10s pour vérifier le résultat
 			setTimeout(function() {
 				console.log("récupération");
 				var actual = $('#conteneurpage').html().length;
-				var expected = 625;
+				var expected = 31802;
 				//On vérifie que le résultat est bien une chaîne de caractères ayant la taille attendue
 				equal(expected,actual,'jsongraph (formateur et vue) s\'insère correctement');
 				start();

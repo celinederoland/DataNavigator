@@ -16,13 +16,13 @@ function relaisTest()
 			$('#wordnet').trigger('click');
 			$('#json').trigger('click');
 			$('#btrecherche').trigger('click');
-			$('#form_mot').val('machin');
+			$('#form_mot').val('entity');
  
 			//Après avoir cliqué sur recherche, on attend 10s pour vérifier le résultat
 			setTimeout(function() {
 				console.log("récupération");
 				var actual = $('#conteneurpage').html().length;
-				var expected = 607;
+				var expected = 11161;
 				//On vérifie que le résultat est bien une chaîne de caractères ayant la taille attendue
 				equal(expected,actual,'le contenu du json s\'insère dans conteneurpage');
 				start();
@@ -48,14 +48,14 @@ function relaisTest()
 			$('#json').trigger('click');
 			$('#btrecherche').trigger('click');
 			$('#form_limite').val(4);
-			$('#form_mot').val('machin');
+			$('#form_mot').val('entity');
 			$('option').attr('selected','selected');
  
 			//Après avoir cliqué sur recherche, on attend 10s pour vérifier le résultat
 			setTimeout(function() {
 				console.log("récupération");
 				var actual = $('#conteneurpage').html().length;
-				var expected = 425;
+				var expected = 920;
 				//On vérifie que le résultat est bien une chaîne de caractères ayant la taille attendue
 				equal(expected,actual,'problème dans la prise en compte des options et du mot recherché');
 				start();

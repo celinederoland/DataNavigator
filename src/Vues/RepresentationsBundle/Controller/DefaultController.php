@@ -25,13 +25,13 @@ class DefaultController extends Controller
 /**
 	* Appelle la vue json (partie cliente de l'application)
 	* 
-	* @param string $data json générique fourni par le relais
 	* @return HttpResponse script javascript
 	* @todo améliorer cette vue (elle est un peu bidon pour le moment, juste pour tester le relais)
 	* @todo faire en sorte que les vues puissent mettre à jour le graphe et non le recharger
 	*/
-	public function jsonAction($data) //testée par qunit
+	public function jsonAction() //testée par qunit
 	{
+		$data = $this -> getRequest() -> request -> get('data');
 		return $this -> render('VuesRepresentationsBundle:Representations:JsonRep.js.twig', array('data' => $data));
 	}
 
@@ -41,56 +41,57 @@ class DefaultController extends Controller
 	* @param string $data json générique fourni par le relais
 	* @return HttpResponse script javascript
 	*/
-	public function jsonGraphAction($data) //testée par qunit
+	public function jsonGraphAction() //testée par qunit
 	{
+		$data = $this -> getRequest() -> request -> get('data');
 		return $this -> render('VuesRepresentationsBundle:Representations:JsonGraphRep.js.twig', array('data' => $data));
 	}
 
 /**
 	* Appelle la vue bubble
 	* 
-	* @param string $data json générique fourni par le relais
 	* @return HttpResponse script javascript
 	* @todo A FAIRE
 	*/
-	public function bubbleAction($data) //testée par qunit
+	public function bubbleAction() //testée par qunit
 	{
+		$data = $this -> getRequest() -> request -> get('data');
 		return $this -> render('VuesRepresentationsBundle:Representations:bubble.js.twig', array('data' => $data));
 	}
 
 /**
 	* Appelle la vue indented
 	* 
-	* @param string $data json générique fourni par le relais
 	* @return HttpResponse script javascript
 	* @todo A FAIRE
 	*/
-	public function indentedAction($data) //testée par qunit
+	public function indentedAction() //testée par qunit
 	{
+		$data = $this -> getRequest() -> request -> get('data');
 		return $this -> render('VuesRepresentationsBundle:Representations:indented.js.twig', array('data' => $data));
 	}
 
 /**
 	* Appelle la vue force
 	* 
-	* @param string $data json générique fourni par le relais
 	* @return HttpResponse script javascript
 	* @todo A FAIRE
 	*/
-	public function forceAction($data) //testée par qunit
+	public function forceAction() //testée par qunit
 	{
+		$data = $this -> getRequest() -> request -> get('data');
 		return $this -> render('VuesRepresentationsBundle:Representations:force.js.twig', array('data' => $data));
 	}
 
 /**
 	* Appelle la vue radial
 	* 
-	* @param string $data json générique fourni par le relais
 	* @return HttpResponse script javascript
 	* @todo A FAIRE
 	*/
-	public function radialAction($data) //testée par qunit
+	public function radialAction() //testée par qunit
 	{
+		$data = $this -> getRequest() -> request -> get('data');
 		return $this -> render('VuesRepresentationsBundle:Representations:radial.js.twig', array('data' => $data));
 	}
 

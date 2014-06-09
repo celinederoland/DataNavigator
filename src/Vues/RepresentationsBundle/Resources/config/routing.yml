@@ -1,23 +1,23 @@
 vues_representations_json:
-    pattern:  /json/{data}
+    pattern:  /json
     defaults: { _controller: VuesRepresentationsBundle:Default:json }
 
 vues_representations_jsongraph:
-    pattern:  /jsonGraph/{data}
+    pattern:  /jsonGraph
     defaults: { _controller: VuesRepresentationsBundle:Default:jsonGraph }
 
 vues_representations_bubble:
-    pattern:  /bubble/{data}
+    pattern:  /bubble
     defaults: { _controller: VuesRepresentationsBundle:Default:bubble }
 
 vues_representations_indented:
-    pattern:  /indented/{data}
+    pattern:  /indented
     defaults: { _controller: VuesRepresentationsBundle:Default:indented }
 
 vues_representations_force:
-    pattern:  /force/{data}
+    pattern:  /force
     defaults: { _controller: VuesRepresentationsBundle:Default:force }
 
 vues_representations_radial:
-    pattern:  /radial/{data}
+    pattern:  /radial
     defaults: { _controller: VuesRepresentationsBundle:Default:radial }
