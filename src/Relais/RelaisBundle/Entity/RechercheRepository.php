@@ -44,16 +44,20 @@ class RechercheRepository extends EntityRepository
 			$binome = explode('-',$valeur);
 			$tabprio[$binome[0]] = $binome[1];
 		}
-		$tabimpose = array('user' => $user);
+		$tabimpose = array('user' => $user, 'source' => array(), 'vue' => array(), 'mot' => array());
 		if ($impose != 'none')
 		{
 			$impose = explode(',',$impose);
 			foreach($impose as $valeur)
 			{
 				$binome = explode('-',$valeur);
-				$tabimpose[$binome[0]] = $binome[1];
+				$tabimpose[$binome[0]][] = $binome[1];
 			}
 		}
+		if (count($tabimpose['mot']) == 0) { unset($tabimpose['mot']); }
+		if (count($tabimpose['source']) == 0) { unset($tabimpose['source']); }
+		if (count($tabimpose['vue']) == 0) { unset($tabimpose['vue']); }
+
 		return $this -> findBy($tabimpose, $tabprio);
 	}
 }

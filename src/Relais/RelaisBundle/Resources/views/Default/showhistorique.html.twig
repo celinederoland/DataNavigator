@@ -1,4 +1,13 @@
-<table>
+<table class="histo">
+	<tr> 
+		<th> Date </th>
+		<th> Mot recherché </th>
+		<th> Source de données </th>
+		<th> Visualisation </th>
+		<th> Limite </th>
+		<th class="rel"> Relations </th>
+		<th> Favori </th>
+	</tr>
 {% for rec in historique %}
 	<tr> 
 		<td> {{ rec.date | date("d/m/Y") }} </td>
@@ -6,7 +15,8 @@
 		<td> {{ rec.source }} </td>
 		<td> {{ rec.vue }} </td>
 		<td> {{ rec.limite }} </td>
-		<td> {% for rel in rec.relations %} {{ rel }} {% endfor %}</td>
+		<td title="{% for rel in rec.relations %} {{ rel }} - {% endfor %}"> {{ rec.relations|length }}</td>
+		<td> {% if rec.favorite %} OUI {% else %} NON {% endif %} </td>
 	</tr>
 {% endfor %}
 </table>

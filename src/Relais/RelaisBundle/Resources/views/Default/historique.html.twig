@@ -1,40 +1,124 @@
+
+
 <h1>Historique</h1>
 
-<p> Trier par 
-	<select id="prio1" onChange="choisir();">
-		<option value="date-desc" selected>date desc</option>
-		<option value="date-asc"> date asc</option>
-		<option value="source-desc">source desc</option>
-		<option value="source-asc"> source asc</option>
-		<option value="vue-desc">vue desc</option>
-		<option value="vue-asc"> vue asc</option>
-		<option value="mot-desc">mot desc</option>
-		<option value="mot-asc"> mot asc</option>
-	</select>
-	<select id="prio2" onChange="choisir();">
-		<option value="date-desc" selected>date desc</option>
-		<option value="date-asc"> date asc</option>
-		<option value="source-desc">source desc</option>
-		<option value="source-asc"> source asc</option>
-		<option value="vue-desc">vue desc</option>
-		<option value="vue-asc"> vue asc</option>
-		<option value="mot-desc">mot desc</option>
-		<option value="mot-asc"> mot asc</option>
-	</select>
-	<select id="prio3" onChange="choisir();">
-		<option value="date-desc" selected>date desc</option>
-		<option value="date-asc"> date asc</option>
-		<option value="source-desc">source desc</option>
-		<option value="source-asc"> source asc</option>
-		<option value="vue-desc">vue desc</option>
-		<option value="vue-asc"> vue asc</option>
-		<option value="mot-desc">mot desc</option>
-		<option value="mot-asc"> mot asc</option>
-	</select>
-</p>
-<p> Imposer le mot <input type="text" id="imposemot" onChange="choisir();"/> </p>
-<p> Imposer la source <input type="text" id="imposesource" onChange="choisir();"/> </p>
-<p> Imposer la vue <input type="text" id="imposevue" onChange="choisir();"/> </p>
+<table class="histochoix">
+	<tr><th> Trier par </th>
+	<th><select id="prio1" onChange="choisir();">
+		<option value="date-desc" selected>date &darr;</option>
+		<option value="date-asc"> date &uarr;</option>
+		<option value="source-desc">source &darr;</option>
+		<option value="source-asc"> source &uarr;</option>
+		<option value="vue-desc">vue &darr;</option>
+		<option value="vue-asc"> vue &uarr;</option>
+		<option value="mot-desc">mot &darr;</option>
+		<option value="mot-asc"> mot &uarr;</option>
+	</select></th>
+	<th><select id="prio2" onChange="choisir();">
+		<option value="date-desc" selected>date &darr;</option>
+		<option value="date-asc"> date &uarr;</option>
+		<option value="source-desc">source &darr;</option>
+		<option value="source-asc"> source &uarr;</option>
+		<option value="vue-desc">vue &darr;</option>
+		<option value="vue-asc"> vue &uarr;</option>
+		<option value="mot-desc">mot &darr;</option>
+		<option value="mot-asc"> mot &uarr;</option>
+	</select></th>
+	<th><select id="prio3" onChange="choisir();">
+		<option value="date-desc" selected>date &darr;</option>
+		<option value="date-asc"> date &uarr;</option>
+		<option value="source-desc">source &darr;</option>
+		<option value="source-asc"> source &uarr;</option>
+		<option value="vue-desc">vue &darr;</option>
+		<option value="vue-asc"> vue &uarr;</option>
+		<option value="mot-desc">mot &darr;</option>
+		<option value="mot-asc"> mot &uarr;</option>
+	</select></th>
+	</tr>
+	<tr><td colspan="4"> </td></tr>
+	<tr>
+		<th rowspan="2">Filtres</th>
+		<td> Seulement les mots </td>
+		<td> Seulement les sources </td>
+		<td> Seulement les vues </td>
+	</tr>
+	<tr>
+		<td><input type="text" id="imposemot" onChange="choisir();"/> </td>
+		<td>
+
+			<select id="histosource" multiple class="invisible">
+				<option id="optionwordnet" value="wordnet">wordnet</option>
+				<option id="optiondbpedia" value="dbpedia">dbpedia</option>
+				<option id="optiondebian" value="debian">debian</option>
+				<option id="optionhumour" value="humour">humour</option>
+			</select>
+
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logowordnet.png' %}
+				<img id="choixwordnet" onClick="filtrerSource('wordnet')"
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'WordNet' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodbpedia.png' %}
+				<img id="choixdbpedia" onClick="filtrerSource('dbpedia')"
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'DbPedia' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodebian.png' %}
+				<img id="choixdebian" onClick="filtrerSource('debian')"
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'Debian' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logohumour.png' %}
+				<img id="choixhumour" onClick="filtrerSource('humour')"
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'Humour' | trans}}"/>
+			{% endimage %}
+
+		</td>
+		<td>
+			<select id="histovue" multiple class="invisible">
+				<option id="optionradial" value="radial">radial</option>
+				<option id="optionindented" value="indented">indented</option>
+				<option id="optionforce" value="force">force</option>
+				<option id="optionbubble" value="bubble">bubble</option>
+				<option id="optionjson" value="json">json</option>
+				<option id="optionjsongraph" value="jsongraph">jsongraph</option>
+			</select>
+
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logoradial.png' %}
+				<img id="choixradial" onClick='filtrerVue("radial")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'radial' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logoindented.png' %}
+				<img id="choixindented" onClick='filtrerVue("indented")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'indented' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logograph.png' %}
+				<img id="choixforce" onClick='filtrerVue("force")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'force' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logobubble.png' %}
+				<img id="choixbubble" onClick='filtrerVue("bubble")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'bubble' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/jsongenerique.png' %}
+				<img id="choixjson" onClick='filtrerVue("json")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'json' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/jsongraph.png' %}
+				<img id="choixjsongraph" onClick='filtrerVue("jsongraph")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'jsongraph' | trans}}"/>
+			{% endimage %}
+		</td>
+	</tr>
+
+</table>
 
 <div id="contenuHistorique">
 {{ include('RelaisRelaisBundle:Default:showhistorique.html.twig', {historique:historique}) }}
@@ -54,18 +138,74 @@ function choisir()
 	if (prio3 != prio1 && prio3 != prio2) { prio += ',' + prio3; }
 
 	var impose = '';
-	var mot = $('#imposemot').val();
-	var source = $('#imposesource').val();
-	var vue = $('#imposevue').val();
-	if (mot != '') { impose = 'mot-"' + mot + '"'; }
-	if (source != '') { if (impose != '') { impose += ','; } impose += 'source-' + source; }
-	if (vue != '') { if (impose != '') { impose += ','; } impose += 'vue-' + vue; }
+	var mot = $('#imposemot').val().split(' ');
+
+	var source = [];
+	$('#histosource option:selected').each(function() {
+		source.push($(this).val());
+	});
+
+	var vue = [];
+	$('#histovue option:selected').each(function() {
+		vue.push($(this).val());
+	});
+
+	mot.forEach( function(nommot) {
+		if (nommot != '')
+		{
+			if (impose != '') { impose += ','; } 
+			impose += 'mot-"' + nommot + '"';
+		}
+	});
+	source.forEach( function(nomsource) {
+		if (impose != '') { impose += ','; } 
+		impose += 'source-' + nomsource;
+	});
+	vue.forEach( function(nomvue) {
+		if (impose != '') { impose += ','; } 
+		impose += 'vue-' + nomvue; 
+	});
 
 	var url = '';
 	if (impose == '') { url = Routing.generate('relais_relais_show_historique_min', { prio:prio }); }
 	else { url = Routing.generate('relais_relais_show_historique_min', { prio:prio, impose:impose }); }
 
+	alert(url);
+
 	$('#contenuHistorique').load(url);
 }
+
+function filtrerSource(source)
+{
+	//$('.vuechoisie').removeClass('vuechoisie');
+	if ($('#option' + source).attr('selected'))
+	{
+		$('#option' + source).attr('selected',false),
+		$('#choix' + source).removeClass('sourcechoisie');
+	}
+	else
+	{
+		$('#option' + source).attr('selected',true),
+		$('#choix' + source).addClass('sourcechoisie');
+	}
+	choisir();
+}
+
+function filtrerVue(vue)
+{
+	//$('.vuechoisie').removeClass('vuechoisie');
+	if ($('#option' + vue).attr('selected'))
+	{
+		$('#option' + vue).attr('selected',false),
+		$('#choix' + vue).removeClass('vuechoisie');
+	}
+	else
+	{
+		$('#option' + vue).attr('selected',true),
+		$('#choix' + vue).addClass('vuechoisie');
+	}
+	choisir();
+}
+
 
 </script>

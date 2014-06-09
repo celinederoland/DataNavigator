@@ -34,8 +34,8 @@ class DefaultController extends Controller
 	{
 		$recherche = new Recherche();
 		$formBuilder = $this -> createFormBuilder($recherche);
-		$formBuilder -> add('source','text');
-		$formBuilder -> add('vue','text');
+		$formBuilder -> add('source','hidden');
+		$formBuilder -> add('vue','hidden');
 		$formBuilder -> add('mot','text');
 		$formBuilder -> add('limite','integer',array('required' => false));
 		$formBuilder -> add('relations','choice',array('multiple' => true, 'expanded' => false, 'required' => false));
