@@ -53,10 +53,10 @@ class DefaultControllerTest extends WebTestCase
 	public function testJsonSelectionRelations()
 	{
 		$client = static::createClient();
-		$crawler = $client->request('GET', '/fr/wordnet/json/"synapse"/"hypernym"/3');
+		$crawler = $client->request('GET', '/fr/wordnet/json/"synapse"/"hypernymie"/2');
 
 		$reponse = $client -> getResponse() -> getContent();
-		$expected = '{"noeuds":[{"id":"M129380","nom":"synapse","type":"M"},{"id":"N30198","nom":" the junction between two neurons (axon-to-dendrite) or between a neuron and a muscle; \"nerve impulses cross a synapse through the action of neurotransmitters\" \n","type":"N"}],"relations":["hypernym","groupe_initial"],"graphe":[{"noeud":"M129380","groupe_initial":["N30198"]},{"noeud":"N30198"}]}';
+		$expected = '{"noeuds":[{"id":"M129380","nom":"synapse","type":"M"},{"id":"N30198","nom":" the junction between two neurons (axon-to-dendrite) or between a neuron and a muscle; \"nerve impulses cross a synapse through the action of neurotransmitters\" \n","type":"N"},{"id":"M27224","nom":"colligation","type":"M"},{"id":"M28955","nom":"conjugation","type":"M"},{"id":"M28957","nom":"conjunction","type":"M"},{"id":"M72930","nom":"junction","type":"M"},{"id":"N77314","nom":" the state of being joined together \n","type":"N"},{"id":"M138357","nom":"unification","type":"M"},{"id":"M138459","nom":"union","type":"M"},{"id":"N77302","nom":" the state of being joined or united or linked; \"there is strength in union\" \n","type":"N"},{"id":"M125401","nom":"state","type":"M"},{"id":"N34","nom":" the way something is with respect to its main attributes; \"the current state of knowledge\"; \"his state of health\"; \"in a weak financial state\" \n","type":"N"}],"relations":["hypernymie","groupe_initial"],"graphe":[{"noeud":"M129380","groupe_initial":["N30198"]},{"noeud":"N30198","hypernymie":["N77314"]},{"hypernymie":["M27224","M28955","M28957","M72930","N77302"],"noeud":"N77314"},{"noeud":"M27224"},{"noeud":"M28955"},{"noeud":"M28957"},{"noeud":"M72930"},{"hypernymie":["M138357","M138459","N34"],"noeud":"N77302"},{"noeud":"M138357"},{"noeud":"M138459"},{"hypernymie":["M125401"],"noeud":"N34"},{"noeud":"M125401"}]}';
 
 		$expected = str_replace('\n','',$expected);
 		$expected = str_replace('  ',' ',$expected);
