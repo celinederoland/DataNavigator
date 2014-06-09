@@ -24,7 +24,7 @@ use Doctrine\ORM\Query\Expr\Comparison;
  * @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
  * @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
  *
- * @version 2.0
+ * @version 2.0.
  */
 class MotRepository extends EntityRepository
 {
@@ -147,7 +147,7 @@ class MotRepository extends EntityRepository
 	 * @param string $recherche
 	 * @param string $options : liste des relations à prendre en compte
 	 * @param integer $profondeur : profondeur de la recherche à effectuer
-	 * @return string chaine de caractère au format json commun
+	 * @return string chaine de caractère au format json générique
 	*/
 	public function fabriqueGraphe($recherche,$options,$profondeur)
 	{

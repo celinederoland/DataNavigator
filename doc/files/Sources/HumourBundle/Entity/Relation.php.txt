@@ -1,0 +1,127 @@
+<?php
+/**
+	* Modèle pour les relations de la source humour (un objet est en relation avec un objet)
+	*
+	* @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
+	* @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
+	*
+	* @version 2.0
+	*/
+namespace Sources\HumourBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Modèle pour les relations de la source humour (un objet est en relation avec un objet)
+ *
+ * @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
+ * @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
+ *
+ * @version 2.0
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Sources\HumourBundle\Entity\RelationRepository")
+ */
+class Relation
+{
+	/**
+	 * Identificateur en base de données
+	 *
+	 * @var integer
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
+
+	/**
+	 * Nom de la relation en un mot
+	 *
+	 * @var string
+	 *
+	 * @ORM\Column(name="titre", type="string", length=255)
+	 */
+	private $titre;
+
+	/**
+	* liste des triplets dont cette relation est la relation
+	*
+	* @ORM\OneToMany(targetEntity="Sources\HumourBundle\Entity\Triplet",mappedBy="relation")
+	*/
+	private $triplets;
+
+	/**
+	 * Get id
+	 *
+	 * @return integer 
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * Set titre
+	 *
+	 * @param string $titre
+	 * @return Relation
+	 */
+	public function setTitre($titre)
+	{
+		$this->titre = $titre;
+
+		return $this;
+	}
+
+	/**
+	 * Get titre
+	 *
+	 * @return string 
+	 */
+	public function getTitre()
+	{
+		return $this->titre;
+	}
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->triplets = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
+	/**
+	 * Add triplets
+	 *
+	 * @param \Sources\HumourBundle\Entity\Triplet $triplets
+	 * @return Relation
+	 */
+	public function addTriplet(\Sources\HumourBundle\Entity\Triplet $triplets)
+	{
+		$this->triplets[] = $triplets;
+
+		return $this;
+	}
+
+	/**
+	 * Remove triplets
+	 *
+	 * @param \Sources\HumourBundle\Entity\Triplet $triplets
+	 */
+	public function removeTriplet(\Sources\HumourBundle\Entity\Triplet $triplets)
+	{
+		$this->triplets->removeElement($triplets);
+	}
+
+	/**
+	 * Get triplets
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getTriplets()
+	{
+		return $this->triplets;
+	}
+}
+

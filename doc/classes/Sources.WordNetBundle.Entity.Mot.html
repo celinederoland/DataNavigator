@@ -1,0 +1,3020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Relais.html">\Relais</a></li>
+                                                        <li><a href="../namespaces/Sources.html">\Sources</a></li>
+                                                        <li><a href="../namespaces/JC.html">\JC</a></li>
+                                                        <li><a href="../namespaces/Vues.html">\Vues</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">15</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-56892446"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-56892446" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1773657180"></a>
+                                <a href="../namespaces/Relais.html" style="margin-left: 30px; padding-left: 0">Relais</a>
+            </div>
+            <div id="namespace-1773657180" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-403944562"></a>
+                                <a href="../namespaces/Relais.RelaisBundle.html" style="margin-left: 30px; padding-left: 0">RelaisBundle</a>
+            </div>
+            <div id="namespace-403944562" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1352170498"></a>
+                                <a href="../namespaces/Relais.RelaisBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-1352170498" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Relais.RelaisBundle.Entity.Recherche.html">Recherche</a></li>
+                                                    <li class="class"><a href="../classes/Relais.RelaisBundle.Entity.RechercheRepository.html">RechercheRepository</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1155787812"></a>
+                                <a href="../namespaces/Relais.RelaisBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1155787812" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Relais.RelaisBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Relais.RelaisBundle.RelaisRelaisBundle.html">RelaisRelaisBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1493858297"></a>
+                                <a href="../namespaces/Sources.html" style="margin-left: 30px; padding-left: 0">Sources</a>
+            </div>
+            <div id="namespace-1493858297" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2042604161"></a>
+                                <a href="../namespaces/Sources.WordNetBundle.html" style="margin-left: 30px; padding-left: 0">WordNetBundle</a>
+            </div>
+            <div id="namespace-2042604161" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1373460226"></a>
+                                <a href="../namespaces/Sources.WordNetBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1373460226" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-563071284"></a>
+                                <a href="../namespaces/Sources.WordNetBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-563071284" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.ASynsetRepository.html">ASynsetRepository</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.NSynsetRepository.html">NSynsetRepository</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.ASynset.html">ASynset</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.RSynsetRepository.html">RSynsetRepository</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.VSynset.html">VSynset</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">Mot</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.MotRepository.html">MotRepository</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.NSynset.html">NSynset</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.VSynsetRepository.html">VSynsetRepository</a></li>
+                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.Entity.RSynset.html">RSynset</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.WordNetBundle.SourcesWordNetBundle.html">SourcesWordNetBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-927201509"></a>
+                                <a href="../namespaces/Sources.HumourBundle.html" style="margin-left: 30px; padding-left: 0">HumourBundle</a>
+            </div>
+            <div id="namespace-927201509" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1223823522"></a>
+                                <a href="../namespaces/Sources.HumourBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-1223823522" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.HumourBundle.Entity.TripletRepository.html">TripletRepository</a></li>
+                                                    <li class="class"><a href="../classes/Sources.HumourBundle.Entity.Relation.html">Relation</a></li>
+                                                    <li class="class"><a href="../classes/Sources.HumourBundle.Entity.ObjetRepository.html">ObjetRepository</a></li>
+                                                    <li class="class"><a href="../classes/Sources.HumourBundle.Entity.Objet.html">Objet</a></li>
+                                                    <li class="class"><a href="../classes/Sources.HumourBundle.Entity.Triplet.html">Triplet</a></li>
+                                                    <li class="class"><a href="../classes/Sources.HumourBundle.Entity.RelationRepository.html">RelationRepository</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1647235685"></a>
+                                <a href="../namespaces/Sources.HumourBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1647235685" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.HumourBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.HumourBundle.SourcesHumourBundle.html">SourcesHumourBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1991471896"></a>
+                                <a href="../namespaces/Sources.DbPediaBundle.html" style="margin-left: 30px; padding-left: 0">DbPediaBundle</a>
+            </div>
+            <div id="namespace-1991471896" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-229494542"></a>
+                                <a href="../namespaces/Sources.DbPediaBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-229494542" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.DbPediaBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.DbPediaBundle.SourcesDbPediaBundle.html">SourcesDbPediaBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-495266187"></a>
+                                <a href="../namespaces/Sources.DebianBundle.html" style="margin-left: 30px; padding-left: 0">DebianBundle</a>
+            </div>
+            <div id="namespace-495266187" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-834869301"></a>
+                                <a href="../namespaces/Sources.DebianBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-834869301" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.DebianBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sources.DebianBundle.SourcesDebianBundle.html">SourcesDebianBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-152895632"></a>
+                                <a href="../namespaces/JC.html" style="margin-left: 30px; padding-left: 0">JC</a>
+            </div>
+            <div id="namespace-152895632" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1925403064"></a>
+                                <a href="../namespaces/JC.UserBundle.html" style="margin-left: 30px; padding-left: 0">UserBundle</a>
+            </div>
+            <div id="namespace-1925403064" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1473725794"></a>
+                                <a href="../namespaces/JC.UserBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-1473725794" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.UserBundle.Entity.UserRepository.html">UserRepository</a></li>
+                                                    <li class="class"><a href="../classes/JC.UserBundle.Entity.User.html">User</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-15207137"></a>
+                                <a href="../namespaces/JC.UserBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-15207137" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.UserBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.UserBundle.JCUserBundle.html">JCUserBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-433728522"></a>
+                                <a href="../namespaces/JC.DocBundle.html" style="margin-left: 30px; padding-left: 0">DocBundle</a>
+            </div>
+            <div id="namespace-433728522" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-313600949"></a>
+                                <a href="../namespaces/JC.DocBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-313600949" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.DocBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.DocBundle.JCDocBundle.html">JCDocBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-772656666"></a>
+                                <a href="../namespaces/JC.FrontBundle.html" style="margin-left: 30px; padding-left: 0">FrontBundle</a>
+            </div>
+            <div id="namespace-772656666" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2115382756"></a>
+                                <a href="../namespaces/JC.FrontBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-2115382756" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.FrontBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.FrontBundle.JCFrontBundle.html">JCFrontBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-629614737"></a>
+                                <a href="../namespaces/JC.LivreOrBundle.html" style="margin-left: 30px; padding-left: 0">LivreOrBundle</a>
+            </div>
+            <div id="namespace-629614737" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-152854084"></a>
+                                <a href="../namespaces/JC.LivreOrBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-152854084" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.LivreOrBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JC.LivreOrBundle.JCLivreOrBundle.html">JCLivreOrBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-759553648"></a>
+                                <a href="../namespaces/Vues.html" style="margin-left: 30px; padding-left: 0">Vues</a>
+            </div>
+            <div id="namespace-759553648" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-420362395"></a>
+                                <a href="../namespaces/Vues.RepresentationsBundle.html" style="margin-left: 30px; padding-left: 0">RepresentationsBundle</a>
+            </div>
+            <div id="namespace-420362395" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-589917321"></a>
+                                <a href="../namespaces/Vues.RepresentationsBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-589917321" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Vues.RepresentationsBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Vues.RepresentationsBundle.VuesRepresentationsBundle.html">VuesRepresentationsBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Sources.WordNetBundle.Entity.html">\Sources\WordNetBundle\Entity</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Sources\WordNetBundle\Entity</small>Mot</h1>
+                    <p><em>Modèle des mots</em></p>
+                    <p>rappel : un mot n'est pas typé (adjectif, nom, verbe ou adverbe)
+car il peut avoir plusieurs types selon le contexte
+ex : update your computer (verb) / I've uploaded an update (nom)</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getId" class="">getId()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_setMot" class="">setMot()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getMot" class="">getMot()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_addNsynset" class="">addNsynset()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_removeNsynset" class="">removeNsynset()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getNsynsets" class="">getNsynsets()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_addAsynset" class="">addAsynset()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_removeAsynset" class="">removeAsynset()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getAsynsets" class="">getAsynsets()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_addRsynset" class="">addRsynset()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_removeRsynset" class="">removeRsynset()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getRsynsets" class="">getRsynsets()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_addVsynset" class="">addVsynset()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_removeVsynset" class="">removeVsynset()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getVsynsets" class="">getVsynsets()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_addDeriveFrom" class="">addDeriveFrom()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_removeDeriveFrom" class="">removeDeriveFrom()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getDeriveFrom" class="">getDeriveFrom()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_addDeriveTo" class="">addDeriveTo()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_removeDeriveTo" class="">removeDeriveTo()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getDeriveTo" class="">getDeriveTo()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_setParticipleOf" class="">setParticipleOf()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getParticipleOf" class="">getParticipleOf()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_setParticipleTo" class="">setParticipleTo()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getParticipleTo" class="">getParticipleTo()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_addPertainFrom" class="">addPertainFrom()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_removePertainFrom" class="">removePertainFrom()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getPertainFrom" class="">getPertainFrom()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_addPertainTo" class="">addPertainTo()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_removePertainTo" class="">removePertainTo()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getPertainTo" class="">getPertainTo()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_setBuiltFrom" class="">setBuiltFrom()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getBuiltFrom" class="">getBuiltFrom()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_setBuild" class="">setBuild()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getBuild" class="">getBuild()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getAllDerive" class="">getAllDerive()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getAllBuild" class="">getAllBuild()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getAllParticiple" class="">getAllParticiple()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getAllPertainym" class="">getAllPertainym()</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#method_getAllSynsets" class="">getAllSynsets()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_id" class="">$id</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_mot" class="">$mot</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_nsynsets" class="">$nsynsets</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_asynsets" class="">$asynsets</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_rsynsets" class="">$rsynsets</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_vsynsets" class="">$vsynsets</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_deriveFrom" class="">$deriveFrom</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_deriveTo" class="">$deriveTo</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_participleOf" class="">$participleOf</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_participleTo" class="">$participleTo</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_pertainFrom" class="">$pertainFrom</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_pertainTo" class="">$pertainTo</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_builtFrom" class="">$builtFrom</a><br />
+                                                                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html#property_build" class="">$build</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Sources.WordNetBundle.Entity.Mot.php.html"><div class="path-wrapper">Sources/WordNetBundle/Entity/Mot.php</div></a></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Sources\WordNetBundle\Entity\Mot</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Juliana Leclaire <a href="mailto:Juliana.Leclaire@etu.univ-savoie.fr">Juliana.Leclaire@etu.univ-savoie.fr</a></p>
+                                                                    <p>Céline de Roland <a href="mailto:Celine.de-Roland@etu.univ-savoie.fr">Celine.de-Roland@etu.univ-savoie.fr</a></p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                ORM\Table
+                            </th>
+                            <td>
+                                                                    <p>()</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                ORM\Entity
+                            </th>
+                            <td>
+                                                                    <p>(repositoryClass="Sources\WordNetBundle\Entity\MotRepository")</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$id</h3>
+                <pre class="signature">$id : integer</pre>
+                <p><em>identification dans la base de données</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(name="id", type="integer")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\Id
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\GeneratedValue
+                        </th>
+                        <td>
+                                                            <p>(strategy="AUTO")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_mot" name="property_mot" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$mot</h3>
+                <pre class="signature">$mot : string</pre>
+                <p><em>valeur du mot</em></p>
+                <p>la chaine de caractère qui le représente</p>
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(name="mot", type="string", length=255)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_nsynsets" name="property_nsynsets" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$nsynsets</h3>
+                <pre class="signature">$nsynsets</pre>
+                <p><em>les synsets de type nom auxquels il appartient</em></p>
+                <p>Relation ManyToMany entre un mot et un NSynset</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\NSynset",inversedBy="mots",cascade={"persist"})</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_asynsets" name="property_asynsets" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$asynsets</h3>
+                <pre class="signature">$asynsets</pre>
+                <p><em>les synsets de type adjectif auxquels il appartient</em></p>
+                <p>Relation ManyToMany entre un mot et un ASynset</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\ASynset",inversedBy="mots",cascade={"persist"})</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_rsynsets" name="property_rsynsets" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$rsynsets</h3>
+                <pre class="signature">$rsynsets</pre>
+                <p><em>les synsets de type adverbe auxquels il appartient</em></p>
+                <p>Relation ManyToMany entre un mot et un RSynset</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\RSynset",inversedBy="mots",cascade={"persist"})</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_vsynsets" name="property_vsynsets" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$vsynsets</h3>
+                <pre class="signature">$vsynsets</pre>
+                <p><em>les synsets de type verbe auxquels il appartient</em></p>
+                <p>Relation ManyToMany entre un mot et un VSynset</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\VSynset",inversedBy="mots",cascade={"persist"})</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_deriveFrom" name="property_deriveFrom" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$deriveFrom</h3>
+                <pre class="signature">$deriveFrom</pre>
+                <p><em>dérivation</em></p>
+                <p>Lien grammatical entre un nom et un verbe ou un adjectif
+(ex : kindness dérive de kind)
+Relation ManyToMany entre deux mots</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\Mot",inversedBy="deriveTo",cascade={"persist"})</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinTable
+                        </th>
+                        <td>
+                                                            <p>(name="derivation")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_deriveTo" name="property_deriveTo" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$deriveTo</h3>
+                <pre class="signature">$deriveTo</pre>
+                <p><em>dérivation</em></p>
+                <p>Lien grammatical entre un nom et un verbe ou un adjectif
+(ex : kind dérive en kindness)
+Relation inverse de DeriveFrom</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\Mot",mappedBy="deriveFrom")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_participleOf" name="property_participleOf" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$participleOf</h3>
+                <pre class="signature">$participleOf</pre>
+                <p><em>participle</em></p>
+                <p>Lien grammatical entre un adjectif dont la forme est le participe passé d'un verbe
+(ex : avenged est le participe passé de avenge)
+Relation OneToOne entre deux mots</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\OneToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\Mot",inversedBy="participleTo",cascade={"persist"})</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(name="participle")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_participleTo" name="property_participleTo" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$participleTo</h3>
+                <pre class="signature">$participleTo</pre>
+                <p><em>participle</em></p>
+                <p>Lien grammatical entre un adjectif dont la forme est le participe passé d'un verbe
+(ex : avenge a pour participe passé avenged)
+Relation inverse de participleOf</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\OneToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\Mot",mappedBy="participleOf")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pertainFrom" name="property_pertainFrom" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$pertainFrom</h3>
+                <pre class="signature">$pertainFrom</pre>
+                <p><em>pertainym</em></p>
+                <p>Lien "faire partie de" entre un adjectif et un nom
+(ex : dramatique signifie "qui fait partie des drames")
+Relation ManyToMany entre deux mots</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\Mot",inversedBy="pertainTo",cascade={"persist"})</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinTable
+                        </th>
+                        <td>
+                                                            <p>(name="pertainym")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pertainTo" name="property_pertainTo" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$pertainTo</h3>
+                <pre class="signature">$pertainTo</pre>
+                <p><em>pertainym</em></p>
+                <p>Lien "faire partie de" entre un adjectif et un nom
+(ex : dramatique signifie "qui fait partie des drames")
+Relation inverse de pertainFrom</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\Mot",mappedBy="pertainFrom")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_builtFrom" name="property_builtFrom" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$builtFrom</h3>
+                <pre class="signature">$builtFrom</pre>
+                <p><em>build</em></p>
+                <p>Relation grammatical entre un adjectif et un adverbe construit sur la base de cet adjectif
+(ex : l'adverbe sensibly est construit à partir de l'adjectif sensible)
+Relation OneToOne entre deux mots</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\OneToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\Mot",inversedBy="build",cascade={"persist"})</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(name="builtFrom")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_build" name="property_build" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$build</h3>
+                <pre class="signature">$build</pre>
+                <p><em>build</em></p>
+                <p>Relation grammatical entre un adjectif et un adverbe construit sur la base de cet adjectif
+(ex : l'adjectif sensible se transforme en l'adverbe sensibly )
+Relation inverse de builtFrom</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\OneToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="Sources\WordNetBundle\Entity\Mot",mappedBy="builtFrom")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(string <span class="argument">$mot</span>)</pre>
+                <p><em>Constructeur</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$mot</td>
+                                <td><p>le mot trouvé dans les fichiers wordnet</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getId" name="method_getId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getId() : integer</pre>
+                <p><em>Get id</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setMot" name="method_setMot" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setMot()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setMot(string <span class="argument">$mot</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Set mot</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$mot</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMot" name="method_getMot" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMot()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMot() : string</pre>
+                <p><em>Get mot</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addNsynset" name="method_addNsynset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addNsynset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addNsynset(\Sources\WordNetBundle\Entity\NSynset <span class="argument">$nsynsets</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Add nsynsets</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.NSynset.html">\Sources\WordNetBundle\Entity\NSynset</a></td>
+                                <td>$nsynsets</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeNsynset" name="method_removeNsynset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeNsynset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeNsynset(\Sources\WordNetBundle\Entity\NSynset <span class="argument">$nsynsets</span>)</pre>
+                <p><em>Remove nsynsets</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.NSynset.html">\Sources\WordNetBundle\Entity\NSynset</a></td>
+                                <td>$nsynsets</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getNsynsets" name="method_getNsynsets" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getNsynsets()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getNsynsets() : \Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get nsynsets</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addAsynset" name="method_addAsynset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addAsynset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addAsynset(\Sources\WordNetBundle\Entity\ASynset <span class="argument">$asynsets</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Add asynsets</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.ASynset.html">\Sources\WordNetBundle\Entity\ASynset</a></td>
+                                <td>$asynsets</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeAsynset" name="method_removeAsynset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeAsynset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeAsynset(\Sources\WordNetBundle\Entity\ASynset <span class="argument">$asynsets</span>)</pre>
+                <p><em>Remove asynsets</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.ASynset.html">\Sources\WordNetBundle\Entity\ASynset</a></td>
+                                <td>$asynsets</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAsynsets" name="method_getAsynsets" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAsynsets()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAsynsets() : \Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get asynsets</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addRsynset" name="method_addRsynset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addRsynset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addRsynset(\Sources\WordNetBundle\Entity\RSynset <span class="argument">$rsynsets</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Add rsynsets</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.RSynset.html">\Sources\WordNetBundle\Entity\RSynset</a></td>
+                                <td>$rsynsets</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeRsynset" name="method_removeRsynset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeRsynset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeRsynset(\Sources\WordNetBundle\Entity\RSynset <span class="argument">$rsynsets</span>)</pre>
+                <p><em>Remove rsynsets</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.RSynset.html">\Sources\WordNetBundle\Entity\RSynset</a></td>
+                                <td>$rsynsets</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRsynsets" name="method_getRsynsets" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getRsynsets()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRsynsets() : \Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get rsynsets</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addVsynset" name="method_addVsynset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addVsynset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addVsynset(\Sources\WordNetBundle\Entity\VSynset <span class="argument">$vsynsets</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Add vsynsets</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.VSynset.html">\Sources\WordNetBundle\Entity\VSynset</a></td>
+                                <td>$vsynsets</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeVsynset" name="method_removeVsynset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeVsynset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeVsynset(\Sources\WordNetBundle\Entity\VSynset <span class="argument">$vsynsets</span>)</pre>
+                <p><em>Remove vsynsets</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.VSynset.html">\Sources\WordNetBundle\Entity\VSynset</a></td>
+                                <td>$vsynsets</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getVsynsets" name="method_getVsynsets" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getVsynsets()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getVsynsets() : \Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get vsynsets</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addDeriveFrom" name="method_addDeriveFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addDeriveFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addDeriveFrom(\Sources\WordNetBundle\Entity\Mot <span class="argument">$deriveFrom</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Add deriveFrom</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$deriveFrom</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeDeriveFrom" name="method_removeDeriveFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeDeriveFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeDeriveFrom(\Sources\WordNetBundle\Entity\Mot <span class="argument">$deriveFrom</span>)</pre>
+                <p><em>Remove deriveFrom</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$deriveFrom</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDeriveFrom" name="method_getDeriveFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDeriveFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDeriveFrom() : \Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get deriveFrom</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addDeriveTo" name="method_addDeriveTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addDeriveTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addDeriveTo(\Sources\WordNetBundle\Entity\Mot <span class="argument">$deriveTo</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Add deriveTo</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$deriveTo</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeDeriveTo" name="method_removeDeriveTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeDeriveTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeDeriveTo(\Sources\WordNetBundle\Entity\Mot <span class="argument">$deriveTo</span>)</pre>
+                <p><em>Remove deriveTo</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$deriveTo</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDeriveTo" name="method_getDeriveTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDeriveTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDeriveTo() : \Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get deriveTo</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setParticipleOf" name="method_setParticipleOf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setParticipleOf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setParticipleOf(\Sources\WordNetBundle\Entity\Mot <span class="argument">$participleOf</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Set participleOf</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$participleOf</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getParticipleOf" name="method_getParticipleOf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getParticipleOf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getParticipleOf() : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Get participleOf</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setParticipleTo" name="method_setParticipleTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setParticipleTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setParticipleTo(\Sources\WordNetBundle\Entity\Mot <span class="argument">$participleTo</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Set participleTo</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$participleTo</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getParticipleTo" name="method_getParticipleTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getParticipleTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getParticipleTo() : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Get participleTo</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addPertainFrom" name="method_addPertainFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addPertainFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addPertainFrom(\Sources\WordNetBundle\Entity\Mot <span class="argument">$pertainFrom</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Add pertainFrom</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$pertainFrom</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removePertainFrom" name="method_removePertainFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removePertainFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removePertainFrom(\Sources\WordNetBundle\Entity\Mot <span class="argument">$pertainFrom</span>)</pre>
+                <p><em>Remove pertainFrom</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$pertainFrom</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPertainFrom" name="method_getPertainFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPertainFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPertainFrom() : \Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get pertainFrom</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addPertainTo" name="method_addPertainTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addPertainTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addPertainTo(\Sources\WordNetBundle\Entity\Mot <span class="argument">$pertainTo</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Add pertainTo</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$pertainTo</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removePertainTo" name="method_removePertainTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removePertainTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removePertainTo(\Sources\WordNetBundle\Entity\Mot <span class="argument">$pertainTo</span>)</pre>
+                <p><em>Remove pertainTo</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$pertainTo</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPertainTo" name="method_getPertainTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPertainTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPertainTo() : \Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get pertainTo</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setBuiltFrom" name="method_setBuiltFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setBuiltFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setBuiltFrom(\Sources\WordNetBundle\Entity\Mot <span class="argument">$builtFrom</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Set builtFrom</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$builtFrom</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getBuiltFrom" name="method_getBuiltFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getBuiltFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getBuiltFrom() : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Get builtFrom</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setBuild" name="method_setBuild" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setBuild()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setBuild(\Sources\WordNetBundle\Entity\Mot <span class="argument">$build</span>) : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Set build</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a></td>
+                                <td>$build</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getBuild" name="method_getBuild" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getBuild()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getBuild() : \Sources\WordNetBundle\Entity\Mot</pre>
+                <p><em>Get build</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sources.WordNetBundle.Entity.Mot.html">\Sources\WordNetBundle\Entity\Mot</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAllDerive" name="method_getAllDerive" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAllDerive()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAllDerive() : Array</pre>
+                <p><em>Get allDerive</em></p>
+                <p>Regroupe les relations deriveTo et deriveFrom dans un tableau</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    Array
+                                            &mdash; <p>: tableau de mots</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAllBuild" name="method_getAllBuild" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAllBuild()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAllBuild() : Array</pre>
+                <p><em>Get allBuild</em></p>
+                <p>Regroupe les relations build et builtFrom dans un tableau</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    Array
+                                            &mdash; <p>: tableau de mots</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAllParticiple" name="method_getAllParticiple" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAllParticiple()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAllParticiple() : Array</pre>
+                <p><em>Get allParticiple</em></p>
+                <p>Regroupe les relations participleOf et participleTo dans un tableau</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    Array
+                                            &mdash; <p>: tableau de mots</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAllPertainym" name="method_getAllPertainym" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAllPertainym()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAllPertainym() : Array</pre>
+                <p><em>Get allPertainym</em></p>
+                <p>Regroupe les relations pertainTo et pertainFrom dans un tableau</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    Array
+                                            &mdash; <p>: tableau de mots</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAllSynsets" name="method_getAllSynsets" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAllSynsets()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAllSynsets() : Array</pre>
+                <p><em>Get allSynsets</em></p>
+                <p>Regroupe les synsets d'un mot, quelque soit leur type</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    Array
+                                            &mdash; <p>: tableau de synsets</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Mot.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Sources/WordNetBundle/Entity/Mot.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Relais.html">\Relais</a></li>
+                                                                            <li><a href="../namespaces/Sources.html">\Sources</a></li>
+                                                                            <li><a href="../namespaces/JC.html">\JC</a></li>
+                                                                            <li><a href="../namespaces/Vues.html">\Vues</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on June 9th, 2014 at 15:53.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
