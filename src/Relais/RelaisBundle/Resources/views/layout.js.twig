@@ -65,7 +65,7 @@
 				REPERE AJOUTER SOURCE
 			**********************/
 			if (source == 'wordnet') { 
-				urlsrc = Routing.generate('sources_wordnet_bidon', { mot: mot, relations: relations, limite: limite });
+				urlsrc = Routing.generate('sources_wordnet_json', { mot: mot, relations: relations, limite: limite });
 			} 
 			else if (source == 'dbpedia') { 
 				urlsrc = Routing.generate('sources_db_pedia_bidon', { mot: mot, relations: relations, limite: limite });

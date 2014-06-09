@@ -1,4 +1,12 @@
 {% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite' '@RelaisRelaisBundle/Resources/public/css/*' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+	{% endstylesheets %}
+{% endblock %}
+
 {% block contenuglobal %}
 
 <div id="conteneurmenu">

@@ -23,6 +23,28 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
+	/**
+	 * fonction json
+	 *
+	 * Renvoie un fichier json correspondant au format commun établi.
+	 * correspondant à une recherche.
+	 *
+	 * @param string $recherche : mot demandé
+	 * @param string $relations : liste des relations à prendre en compte
+	 * @param integer $profondeur : niveau de profondeur demandé
+	 * @return Réponse http
+	*/
+	public function jsonAction($mot,$relations,$limite)
+	{
+		$manager = $this -> getDoctrine() -> getManager();
+		$mrep = $manager -> getRepository('SourcesWordNetBundle:Mot');
+
+		$text = json_encode($mrep -> fabriqueGraphe(substr($mot,1,-1),substr($relations,1,-1),$limite));
+
+		//On retourne le json obtenu
+		return new Response($text);
+	}
+
 /**
 	* Génère un json bidon afin de tester le fonctionnement du relais
 	*

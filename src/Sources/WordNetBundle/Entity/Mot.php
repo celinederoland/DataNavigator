@@ -1,0 +1,651 @@
+<?php
+/**
+	* Modèle des mots wordnet
+	*
+	* @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
+	* @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
+	*
+	* @version 2.0
+	*/
+namespace Sources\WordNetBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * Modèle des mots
+ *
+ * rappel : un mot n'est pas typé (adjectif, nom, verbe ou adverbe)
+ * car il peut avoir plusieurs types selon le contexte
+ * ex : update your computer (verb) / I've uploaded an update (nom)
+ * 
+ * @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
+ * @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
+ *
+ * @version 2.0
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Sources\WordNetBundle\Entity\MotRepository")
+ */
+class Mot
+{
+	/**
+	 * identification dans la base de données
+	 *
+	 * @var integer
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
+
+	/**
+	 * valeur du mot
+	 *
+	 * la chaine de caractère qui le représente
+	 *
+	 * @var string
+	 *
+	 * @ORM\Column(name="mot", type="string", length=255)
+	 */
+	private $mot;
+
+	/**
+	* les synsets de type nom auxquels il appartient
+	* 
+	* Relation ManyToMany entre un mot et un NSynset
+	* 
+	* @ORM\ManyToMany(targetEntity="Sources\WordNetBundle\Entity\NSynset",inversedBy="mots",cascade={"persist"})
+	*/
+	private $nsynsets;
+
+	/**
+	* les synsets de type adjectif auxquels il appartient
+	* 
+	* Relation ManyToMany entre un mot et un ASynset
+	* 
+	* @ORM\ManyToMany(targetEntity="Sources\WordNetBundle\Entity\ASynset",inversedBy="mots",cascade={"persist"})
+	*/
+	private $asynsets;
+
+	/**
+	* les synsets de type adverbe auxquels il appartient
+	* 
+	* Relation ManyToMany entre un mot et un RSynset
+	* 
+	* @ORM\ManyToMany(targetEntity="Sources\WordNetBundle\Entity\RSynset",inversedBy="mots",cascade={"persist"})
+	*/
+	private $rsynsets;
+
+	/**
+	* les synsets de type verbe auxquels il appartient
+	* 
+	* Relation ManyToMany entre un mot et un VSynset
+	* 
+	* @ORM\ManyToMany(targetEntity="Sources\WordNetBundle\Entity\VSynset",inversedBy="mots",cascade={"persist"})
+	*/
+	private $vsynsets;
+
+	/**
+	* dérivation
+	* 
+	* Lien grammatical entre un nom et un verbe ou un adjectif
+	* (ex : kindness dérive de kind)
+	* Relation ManyToMany entre deux mots
+	* 
+	* @ORM\ManyToMany(targetEntity="Sources\WordNetBundle\Entity\Mot",inversedBy="deriveTo",cascade={"persist"})
+	* @ORM\JoinTable(name="derivation")
+	*/
+	private $deriveFrom;
+
+	/**
+	* dérivation
+	* 
+	* Lien grammatical entre un nom et un verbe ou un adjectif
+	* (ex : kind dérive en kindness)
+	* Relation inverse de DeriveFrom
+	* 
+	* @ORM\ManyToMany(targetEntity="Sources\WordNetBundle\Entity\Mot",mappedBy="deriveFrom")
+	*/
+	private $deriveTo;
+
+	/**
+	* participle
+	* 
+	* Lien grammatical entre un adjectif dont la forme est le participe passé d'un verbe
+	* (ex : avenged est le participe passé de avenge)
+	* Relation OneToOne entre deux mots
+	* 
+	* @ORM\OneToOne(targetEntity="Sources\WordNetBundle\Entity\Mot",inversedBy="participleTo",cascade={"persist"})
+	* @ORM\JoinColumn(name="participle")
+	*/
+	private $participleOf;
+
+	/**
+	* participle
+	* 
+	* Lien grammatical entre un adjectif dont la forme est le participe passé d'un verbe
+	* (ex : avenge a pour participe passé avenged)
+	* Relation inverse de participleOf
+	* 
+	* @ORM\OneToOne(targetEntity="Sources\WordNetBundle\Entity\Mot",mappedBy="participleOf")
+	*/
+	private $participleTo;
+
+	/**
+	* pertainym
+	* 
+	* Lien "faire partie de" entre un adjectif et un nom
+	* (ex : dramatique signifie "qui fait partie des drames")
+	* Relation ManyToMany entre deux mots
+	* 
+	* @ORM\ManyToMany(targetEntity="Sources\WordNetBundle\Entity\Mot",inversedBy="pertainTo",cascade={"persist"})
+	* @ORM\JoinTable(name="pertainym")
+	*/
+	private $pertainFrom;
+
+	/**
+	* pertainym
+	* 
+	* Lien "faire partie de" entre un adjectif et un nom
+	* (ex : dramatique signifie "qui fait partie des drames")
+	* Relation inverse de pertainFrom
+	* 
+	* @ORM\ManyToMany(targetEntity="Sources\WordNetBundle\Entity\Mot",mappedBy="pertainFrom")
+	*/
+	private $pertainTo;
+
+	/**
+	* build
+	* 
+	* Relation grammatical entre un adjectif et un adverbe construit sur la base de cet adjectif 
+	* (ex : l'adverbe sensibly est construit à partir de l'adjectif sensible)
+	* Relation OneToOne entre deux mots
+	* 
+	* @ORM\OneToOne(targetEntity="Sources\WordNetBundle\Entity\Mot",inversedBy="build",cascade={"persist"})
+	* @ORM\JoinColumn(name="builtFrom")
+	*/
+	private $builtFrom;
+
+	/**
+	* build
+	* 
+	* Relation grammatical entre un adjectif et un adverbe construit sur la base de cet adjectif 
+	* (ex : l'adjectif sensible se transforme en l'adverbe sensibly )
+	* Relation inverse de builtFrom
+	* 
+	* @ORM\OneToOne(targetEntity="Sources\WordNetBundle\Entity\Mot",mappedBy="builtFrom")
+	*/
+	private $build;
+
+	/**
+	* Constructeur 
+	*
+	* @param string $mot le mot trouvé dans les fichiers wordnet
+	*/
+	public function __construct($mot)
+	{
+		$this -> setMot($mot);
+	}
+
+	/**
+	 * Get id
+	 *
+	 * @return integer 
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * Set mot
+	 *
+	 * @param string $mot
+	 * @return Mot
+	 */
+	public function setMot($mot)
+	{
+		$this->mot = $mot;
+
+		return $this;
+	}
+
+	/**
+	 * Get mot
+	 *
+	 * @return string 
+	 */
+	public function getMot()
+	{
+		return $this->mot;
+	}
+
+	/**
+	 * Add nsynsets
+	 *
+	 * @param \Sources\WordNetBundle\Entity\NSynset $nsynsets
+	 * @return Mot
+	 */
+	public function addNsynset(\Sources\WordNetBundle\Entity\NSynset $nsynsets)
+	{
+		$this->nsynsets[] = $nsynsets;
+
+		return $this;
+	}
+
+	/**
+	 * Remove nsynsets
+	 *
+	 * @param \Sources\WordNetBundle\Entity\NSynset $nsynsets
+	 */
+	public function removeNsynset(\Sources\WordNetBundle\Entity\NSynset $nsynsets)
+	{
+		$this->nsynsets->removeElement($nsynsets);
+	}
+
+	/**
+	 * Get nsynsets
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getNsynsets()
+	{
+		return $this->nsynsets;
+	}
+
+	/**
+	 * Add asynsets
+	 *
+	 * @param \Sources\WordNetBundle\Entity\ASynset $asynsets
+	 * @return Mot
+	 */
+	public function addAsynset(\Sources\WordNetBundle\Entity\ASynset $asynsets)
+	{
+		$this->asynsets[] = $asynsets;
+
+		return $this;
+	}
+
+	/**
+	 * Remove asynsets
+	 *
+	 * @param \Sources\WordNetBundle\Entity\ASynset $asynsets
+	 */
+	public function removeAsynset(\Sources\WordNetBundle\Entity\ASynset $asynsets)
+	{
+		$this->asynsets->removeElement($asynsets);
+	}
+
+	/**
+	 * Get asynsets
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getAsynsets()
+	{
+		return $this->asynsets;
+	}
+
+	/**
+	 * Add rsynsets
+	 *
+	 * @param \Sources\WordNetBundle\Entity\RSynset $rsynsets
+	 * @return Mot
+	 */
+	public function addRsynset(\Sources\WordNetBundle\Entity\RSynset $rsynsets)
+	{
+		$this->rsynsets[] = $rsynsets;
+
+		return $this;
+	}
+
+	/**
+	 * Remove rsynsets
+	 *
+	 * @param \Sources\WordNetBundle\Entity\RSynset $rsynsets
+	 */
+	public function removeRsynset(\Sources\WordNetBundle\Entity\RSynset $rsynsets)
+	{
+		$this->rsynsets->removeElement($rsynsets);
+	}
+
+	/**
+	 * Get rsynsets
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getRsynsets()
+	{
+		return $this->rsynsets;
+	}
+
+	/**
+	 * Add vsynsets
+	 *
+	 * @param \Sources\WordNetBundle\Entity\VSynset $vsynsets
+	 * @return Mot
+	 */
+	public function addVsynset(\Sources\WordNetBundle\Entity\VSynset $vsynsets)
+	{
+		$this->vsynsets[] = $vsynsets;
+
+		return $this;
+	}
+
+	/**
+	 * Remove vsynsets
+	 *
+	 * @param \Sources\WordNetBundle\Entity\VSynset $vsynsets
+	 */
+	public function removeVsynset(\Sources\WordNetBundle\Entity\VSynset $vsynsets)
+	{
+		$this->vsynsets->removeElement($vsynsets);
+	}
+
+	/**
+	 * Get vsynsets
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getVsynsets()
+	{
+		return $this->vsynsets;
+	}
+
+	/**
+	 * Add deriveFrom
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $deriveFrom
+	 * @return Mot
+	 */
+	public function addDeriveFrom(\Sources\WordNetBundle\Entity\Mot $deriveFrom)
+	{
+		$this->deriveFrom[] = $deriveFrom;
+
+		return $this;
+	}
+
+	/**
+	 * Remove deriveFrom
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $deriveFrom
+	 */
+	public function removeDeriveFrom(\Sources\WordNetBundle\Entity\Mot $deriveFrom)
+	{
+		$this->deriveFrom->removeElement($deriveFrom);
+	}
+
+	/**
+	 * Get deriveFrom
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getDeriveFrom()
+	{
+		return $this->deriveFrom;
+	}
+
+	/**
+	 * Add deriveTo
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $deriveTo
+	 * @return Mot
+	 */
+	public function addDeriveTo(\Sources\WordNetBundle\Entity\Mot $deriveTo)
+	{
+		$this->deriveTo[] = $deriveTo;
+
+		return $this;
+	}
+
+	/**
+	 * Remove deriveTo
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $deriveTo
+	 */
+	public function removeDeriveTo(\Sources\WordNetBundle\Entity\Mot $deriveTo)
+	{
+		$this->deriveTo->removeElement($deriveTo);
+	}
+
+	/**
+	 * Get deriveTo
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getDeriveTo()
+	{
+		return $this->deriveTo;
+	}
+
+	/**
+	 * Set participleOf
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $participleOf
+	 * @return Mot
+	 */
+	public function setParticipleOf(\Sources\WordNetBundle\Entity\Mot $participleOf = null)
+	{
+		$this->participleOf = $participleOf;
+
+		return $this;
+	}
+
+	/**
+	 * Get participleOf
+	 *
+	 * @return \Sources\WordNetBundle\Entity\Mot 
+	 */
+	public function getParticipleOf()
+	{
+		return $this->participleOf;
+	}
+
+	/**
+	 * Set participleTo
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $participleTo
+	 * @return Mot
+	 */
+	public function setParticipleTo(\Sources\WordNetBundle\Entity\Mot $participleTo = null)
+	{
+		$this->participleTo = $participleTo;
+
+		return $this;
+	}
+
+	/**
+	 * Get participleTo
+	 *
+	 * @return \Sources\WordNetBundle\Entity\Mot 
+	 */
+	public function getParticipleTo()
+	{
+		return $this->participleTo;
+	}
+
+	/**
+	 * Add pertainFrom
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $pertainFrom
+	 * @return Mot
+	 */
+	public function addPertainFrom(\Sources\WordNetBundle\Entity\Mot $pertainFrom)
+	{
+		$this->pertainFrom[] = $pertainFrom;
+
+		return $this;
+	}
+
+	/**
+	 * Remove pertainFrom
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $pertainFrom
+	 */
+	public function removePertainFrom(\Sources\WordNetBundle\Entity\Mot $pertainFrom)
+	{
+		$this->pertainFrom->removeElement($pertainFrom);
+	}
+
+	/**
+	 * Get pertainFrom
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getPertainFrom()
+	{
+		return $this->pertainFrom;
+	}
+
+	/**
+	 * Add pertainTo
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $pertainTo
+	 * @return Mot
+	 */
+	public function addPertainTo(\Sources\WordNetBundle\Entity\Mot $pertainTo)
+	{
+		$this->pertainTo[] = $pertainTo;
+
+		return $this;
+	}
+
+	/**
+	 * Remove pertainTo
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $pertainTo
+	 */
+	public function removePertainTo(\Sources\WordNetBundle\Entity\Mot $pertainTo)
+	{
+		$this->pertainTo->removeElement($pertainTo);
+	}
+
+	/**
+	 * Get pertainTo
+	 *
+	 * @return \Doctrine\Common\Collections\Collection 
+	 */
+	public function getPertainTo()
+	{
+		return $this->pertainTo;
+	}
+
+	/**
+	 * Set builtFrom
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $builtFrom
+	 * @return Mot
+	 */
+	public function setBuiltFrom(\Sources\WordNetBundle\Entity\Mot $builtFrom = null)
+	{
+		$this->builtFrom = $builtFrom;
+
+		return $this;
+	}
+
+	/**
+	 * Get builtFrom
+	 *
+	 * @return \Sources\WordNetBundle\Entity\Mot 
+	 */
+	public function getBuiltFrom()
+	{
+		return $this->builtFrom;
+	}
+
+	/**
+	 * Set build
+	 *
+	 * @param \Sources\WordNetBundle\Entity\Mot $build
+	 * @return Mot
+	 */
+	public function setBuild(\Sources\WordNetBundle\Entity\Mot $build = null)
+	{
+		$this->build = $build;
+
+		return $this;
+	}
+
+	/**
+	 * Get build
+	 *
+	 * @return \Sources\WordNetBundle\Entity\Mot 
+	 */
+	public function getBuild()
+	{
+		return $this->build;
+	}
+
+
+	/**
+	 * Get allDerive
+	 *
+	 * Regroupe les relations deriveTo et deriveFrom dans un tableau
+	 *
+	 * @return Array : tableau de mots
+	*/
+	public function getAllDerive()
+	{
+		return array_merge($this -> getDeriveFrom() -> toArray(),$this -> getDeriveTo() -> toArray());
+	}
+
+	/**
+	 * Get allBuild
+	 *
+	 * Regroupe les relations build et builtFrom dans un tableau
+	 *
+	 * @return Array : tableau de mots
+	*/
+	public function getAllBuild()
+	{
+		$construction = array();
+		$build = $this -> getBuild();
+		if ($build != NULL) { $construction[] = $build; }
+		$built = $this -> getBuiltFrom();
+		if ($built != NULL) { $construction[] = $built; }
+		return $construction;
+	}
+
+	/**
+	 * Get allParticiple
+	 *
+	 * Regroupe les relations participleOf et participleTo dans un tableau
+	 *
+	 * @return Array : tableau de mots
+	*/
+	public function getAllParticiple()
+	{
+		$participe_passe = array();
+		$participeOf = $this -> getParticipleOf();
+		if ($participeOf != NULL) { $participe_passe[] = $participeOf; }
+		$participeTo = $this -> getParticipleTo();
+		if ($participeTo != NULL) { $participe_passe[] = $participeTo; }
+		return $participe_passe;
+	}
+
+	/**
+	 * Get allPertainym
+	 *
+	 * Regroupe les relations pertainTo et pertainFrom dans un tableau
+	 *
+	 * @return Array : tableau de mots
+	*/
+	public function getAllPertainym()
+	{
+		return array_merge($this -> getPertainFrom() -> toArray(),$this -> getPertainTo() -> toArray());
+	}
+
+	/**
+	 * Get allSynsets
+	 *
+	 * Regroupe les synsets d'un mot, quelque soit leur type
+	 *
+	 * @return Array : tableau de synsets
+	*/
+	public function getAllSynsets()
+	{
+		return array_merge($this -> getASynsets() -> toArray(),$this -> getNSynsets() -> toArray(),$this -> getVSynsets() -> toArray(),$this -> getRSynsets() -> toArray());
+	}
+}

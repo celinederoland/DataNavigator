@@ -2,6 +2,10 @@ sources_wordnet_bidon:
     pattern:  /bidon/{mot}/{relations}/{limite}
     defaults: { _controller: SourcesWordNetBundle:Default:jsonbidon }
 
+sources_wordnet_json:
+    pattern:  /json/{mot}/{relations}/{limite}
+    defaults: { _controller: SourcesWordNetBundle:Default:json }
+
 sources_wordnet_relations:
     pattern:  /relations
     defaults: { _controller: SourcesWordNetBundle:Default:jsonrelations }
