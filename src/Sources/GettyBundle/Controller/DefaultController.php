@@ -1,5 +1,12 @@
 <?php
-
+/**
+	* Controleur pour les pages du fouineur Getty
+	*
+	* @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
+	* @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
+	*
+	* @version = 2.0
+	*/
 namespace Sources\GettyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -7,6 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sources\GettyBundle\Entity\GettyFormateur;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+	* Controleur pour les pages du fouineur Getty
+	*
+	* @author Juliana Leclaire <Juliana.Leclaire@etu.univ-savoie.fr>
+	* @author Céline de Roland <Celine.de-Roland@etu.univ-savoie.fr>
+	*
+	* @version = 2.0
+	*/
 class DefaultController extends Controller
 {
 

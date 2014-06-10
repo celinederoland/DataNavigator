@@ -85,6 +85,7 @@ class DefaultController extends Controller
 			else if ($source == 'wordnet') { $source = 'WordNet'; }
 			else if ($source == 'humour') { $source = 'Humour'; }
 			else if ($source == 'dbpedia') { $source = 'DbPedia'; }
+			else if ($source == 'getty') { $source = 'Getty'; }
 			$listerel = json_decode($this->forward('Sources'.ucFirst($source).'Bundle:Default:jsonrelations') -> getContent());
 			$choix = array();
 			foreach($listerel as $rel)
