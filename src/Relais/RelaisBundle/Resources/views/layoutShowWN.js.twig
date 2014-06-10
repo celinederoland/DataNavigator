@@ -1,0 +1,15 @@
+(function()
+{
+	var name = $('#mot').val();
+	var s = name.replace(/\./g,"").replace(" ","_").replace("-","_");
+	
+	// On construit l'url avec le name selectionne par l'utilisateur
+	var url = "http://wordnetweb.princeton.edu/perl/webwn?s="+s;
+
+	// On ajoute des balises a la div qui a l'identifiant wordnetSite
+	$('#wordnetSite').html(
+			"<p><b>Informations on "+name+"</b> "+
+			"<iframe id='wikiframeWN' src='"+url+"' "+
+			"width='100%' frameborder='0'></iframe>"
+			);
+})();

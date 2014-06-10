@@ -1,3 +1,4 @@
+iframe {height:300%;}
 
 #conteneurmenu
 {
@@ -154,11 +155,13 @@ nav a
 #infos
 {
 	left:0; top:200;
-	width:40px;
-	height:40px;
+	width:345px;
+	min-width:345px;
+	height:300px;
+	min-height:300px;
 }
 
-nav ul,nav li
+nav ul:not(.tabs),nav li
 {
 	padding:0px;
 	margin:0px;

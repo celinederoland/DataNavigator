@@ -10,4 +10,14 @@ relais_relais_layoutRelations:
     pattern:  /layoutrelations
     defaults: { _controller: RelaisRelaisBundle:Default:layoutrelations }
 
+relais_relais_layoutInfos:
+    pattern:  /layoutinfos
+    defaults: { _controller: RelaisRelaisBundle:Default:layoutinfos }
 
+relais_relais_layoutShowDB:
+    pattern:  /layoutShowDB
+    defaults: { _controller: RelaisRelaisBundle:Default:layoutShowDB }
+
+relais_relais_layoutShowWN:
+    pattern:  /layoutShowWN
+    defaults: { _controller: RelaisRelaisBundle:Default:layoutShowWN }

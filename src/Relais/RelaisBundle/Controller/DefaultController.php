@@ -61,4 +61,38 @@ class DefaultController extends Controller
 		//On lance le script qui récupère toutes les options et appelle ensuite la fonction index pour charger le json
 		return $this -> render('RelaisRelaisBundle::layoutrelations.js.twig');
 	}
+	
+	
+	/**
+	* Appelle le layoutinfos (partie cliente de l'application)
+	* Le layoutinfos a pour rôle de proposer à l'utilisateur des informations complementaires
+	* 
+	* @return HttpResponse script javascript
+	*/
+	public function layoutinfosAction()
+	{
+		return $this -> render('RelaisRelaisBundle::layoutinfos.js.twig');
+	}
+	
+	/**
+	* Appelle le layoutShowWN (partie cliente de l'application)
+	* Le layoutinfos a pour rôle de proposer à l'utilisateur des informations complementaires sur WN
+	* 
+	* @return HttpResponse script javascript
+	*/
+	public function layoutShowWNAction()
+	{
+		return $this -> render('RelaisRelaisBundle::layoutShowWN.js.twig');
+	}
+	
+	/**
+	* Appelle le layoutShowDB (partie cliente de l'application)
+	* Le layoutinfos a pour rôle de proposer à l'utilisateur des informations complementaires sur DB
+	* 
+	* @return HttpResponse script javascript
+	*/
+	public function layoutShowDBAction()
+	{
+		return $this -> render('RelaisRelaisBundle::layoutShowDB.js.twig');
+	}
 }
