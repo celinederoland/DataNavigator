@@ -116,3 +116,27 @@ function historique(url)
 	$('#conteneurpage').css('visibility','visible');
 	$('#conteneurpage').load(url);
 }
+
+/**
+ * Propose à l'utilisateur des informations complementaires provenant de differentes sources
+ */
+function showInfos(url)
+{
+	$.getScript(url);
+}
+
+/**
+ * Propose à l'utilisateur des informations complementaires provenant de wordnet
+ */
+function showWN(url)
+{
+	$.getScript(url);
+}
+
+/**
+ * Propose à l'utilisateur des informations complementaires provenant de wikipedia
+ */
+function showDB(url)
+{
+	$.getScript(url);
+}

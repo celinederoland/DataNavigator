@@ -93,4 +93,6 @@ class DefaultController extends Controller
 		$text = json_encode($tab);
 		return new Response($text);
 	}
+
+	//OPTIONNEL : public function fenetreAction($mot) { affiche une petite fenêtre à mettre dans le cadre info }
 }
