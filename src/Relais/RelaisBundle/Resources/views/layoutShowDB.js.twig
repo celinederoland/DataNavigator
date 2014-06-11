@@ -1,0 +1,14 @@
+(function()
+{
+	var name = $('#form_mot').val();
+	s = name.replace(/\./g,"").replace(" ","_").replace("-","_");
+	// On construit l'url avec le name selectionne par l'utilisateur
+	var url = "http://en.m.wikipedia.org/wiki/"+s;
+	
+	// On ajoute des balises a la div qui a l'identifiant wikipedia
+	$('#wikipedia').html(
+			"<p><b>Informations on "+name+"</b> "+
+			"<iframe id='wikiframeDB' src='"+url+"' "+
+			"width='100%' frameborder='0'></iframe>"
+			);	
+})();

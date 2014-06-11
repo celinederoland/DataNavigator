@@ -26,4 +26,14 @@ relais_relais_favori_change:
     pattern:  /historique/change/{id}
     defaults: { _controller: RelaisRelaisBundle:Default:changefavorite }
 
+relais_relais_layoutInfos:
+    pattern:  /layoutinfos
+    defaults: { _controller: RelaisRelaisBundle:Default:layoutinfos }
 
+relais_relais_layoutShowDB:
+    pattern:  /layoutShowDB
+    defaults: { _controller: RelaisRelaisBundle:Default:layoutShowDB }
+
+relais_relais_layoutShowWN:
+    pattern:  /layoutShowWN
+    defaults: { _controller: RelaisRelaisBundle:Default:layoutShowWN }

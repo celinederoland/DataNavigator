@@ -11,7 +11,11 @@
 		{% endblock %}
 		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 	</head>
-
+	{% block js %}
+		{% javascripts 'js/*' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endblock %}
 	<body>
 
 		{# Le menu supérieur est présent sur toutes les pages #}
@@ -28,10 +32,4 @@
 		</div>
 
 	</body>
-
-	{% block js %}
-		{% javascripts 'js/*' %}
-			<script type="text/javascript" src="{{ asset_url }}"></script>
-		{% endjavascripts %}
-	{% endblock %}
 </html>

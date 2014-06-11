@@ -49,4 +49,11 @@
 	{% endjavascripts %}
 	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 	<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		showInfos('{{ path('relais_relais_layoutInfos') }}');
+		showWN('{{ path('relais_relais_layoutShowWN') }}');
+		showDB('{{ path('relais_relais_layoutShowDB') }}');
+	});
+</script>
 {% endblock %}
