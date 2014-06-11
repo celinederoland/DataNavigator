@@ -52,7 +52,7 @@ function init() {
 /**
  * Charge une url demandée dans le cadre #conteneurtests puis exécute les tests
  */
-function chargerTests()
+function chargerTests(url)
 {
 	$('#conteneurtests').css('visibility','visible');
 	mainTest();
@@ -79,7 +79,6 @@ function activerSource(id,url)
 {
 	$('.activesource').removeClass('activesource');
 	$(id).addClass('activesource');
-	$('#form_source').val(id.substring(1));
 	$.getScript(url);
 }
 
@@ -90,7 +89,6 @@ function activerVue(id)
 {
 	$('.activevue').removeClass('activevue');
 	$(id).addClass('activevue');
-	$('#form_vue').val(id.substring(1));
 }
 
 /**
@@ -110,9 +108,27 @@ function rechercher(url)
 	$.getScript(url);
 }
 
-function historique(url)
+
+/**
+ * Propose à l'utilisateur des informations complementaires provenant de differentes sources
+ */
+function showInfos(url)
 {
-	$('#conteneurpage').html('');
-	$('#conteneurpage').css('visibility','visible');
-	$('#conteneurpage').load(url);
+	$.getScript(url);
+}
+
+/**
+ * Propose à l'utilisateur des informations complementaires provenant de wordnet
+ */
+function showWN(url)
+{
+	$.getScript(url);
+}
+
+/**
+ * Propose à l'utilisateur des informations complementaires provenant de wikipedia
+ */
+function showDB(url)
+{
+	$.getScript(url);
 }

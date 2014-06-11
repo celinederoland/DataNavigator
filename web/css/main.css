@@ -1,0 +1,183 @@
+iframe {height:300%;}
+
+#conteneurmenu
+{
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index:0;
+	background-image:url('/images/fond.png');
+	background-size:100% 100%;
+}
+
+#conteneurpage
+{
+	position:absolute;
+	width:55%;
+	max-height:80%;
+	top:20%;
+	left:20%;
+	padding:10px;
+	border-radius:5px;
+	z-index:1;
+	background-color:#f3f3f3;
+	opacity:0.8;
+	visibility:hidden;
+	overflow:scroll;
+}
+
+#conteneurtests
+{
+	position:absolute;
+	width:55%;
+	max-height:80%;
+	top:20%;
+	left:20%;
+	padding:10px;
+	border-radius:5px;
+	z-index:2;
+	background-color:#f3f3f3;
+	opacity:0.8;
+	visibility:hidden;
+	overflow:scroll;
+}
+
+#conteneurD3
+{
+	position:fixed;
+	visibility:hidden;
+	top:0;
+	left:0;
+	z-index:3;
+}
+
+nav
+{
+	background-color: #f3f3f3;
+	border: solid 1px lightgrey;
+	border-radius: 3px;
+	padding: 5px;
+	opacity:0.9;
+	display:block;
+	position:absolute;
+	z-index:10;
+}
+
+nav img
+{
+	border:solid 1px lightgrey;
+	padding: 3px;
+	border-radius: 3px;
+	margin:3px;
+	background-image:url('/images/fondbouton.png');
+	background-size: 100% 100%;
+	vertical-align:top;
+}
+
+nav img:hover
+{
+	border: solid 1px grey;
+}
+
+nav span
+{
+	padding: 3px;
+	display:inline-block;
+	vertical-align:top;
+}
+nav input
+{
+	width:60px;
+	margin:3px;
+	padding:3px;
+	border-radius:3px;
+	display:inline-block;
+}
+.selectRelation
+{
+	width:110px;
+	height:4em;
+}
+#mot
+{
+	width:150px;
+	font-size:1.5em;
+	height:40px;
+}
+
+nav a
+{
+	text-decoration:none;
+}
+
+#menusite
+{
+	left:0; top:0;
+}
+
+#menudonnees
+{
+	left:500; top:0;
+}
+
+#menuvue
+{
+	left:500; top:100;
+}
+
+#menutools
+{
+	left:500; top:200;
+}
+
+#recherche
+{
+	left:0; top:100;
+}
+
+#options
+{
+	left:0; top:200;
+}
+
+#menuadmin
+{
+	right:0; bottom:0;
+}
+
+#menuuser
+{
+	left:0; bottom:0;
+}
+
+#infos
+{
+	left:0; top:200;
+	width:345px;
+	min-width:345px;
+	height:300px;
+	min-height:300px;
+}
+
+nav ul:not(.tabs),nav li
+{
+	padding:0px;
+	margin:0px;
+	display:inline;
+}
+
+nav li
+{
+	liststyletype:none;
+}
+
+.activesource, .activevue
+{
+	border: solid 2px red;
+}
+.activesource:hover, .activevue:hover
+{
+	border: solid 3px red;
+}
