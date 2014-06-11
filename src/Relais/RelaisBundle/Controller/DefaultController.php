@@ -77,7 +77,8 @@ class DefaultController extends Controller
 	public function historiqueAction()
 	{
 		$request = $this -> getRequest();
-		$source = $request -> get('form')['source'];
+		$source = $request -> get('form');
+		$source = $source['source'];
 		if ($request -> getMethod() == 'POST')
 		{
 			//Récupération des relations possibles pour les insérer dans le formulaire
