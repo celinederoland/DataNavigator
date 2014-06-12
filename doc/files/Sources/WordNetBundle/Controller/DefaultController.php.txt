@@ -33,6 +33,8 @@ class DefaultController extends Controller
 	 * @param string $relations : liste des relations à prendre en compte
 	 * @param integer $limite : niveau de profondeur demandé
 	 * @return Réponse http
+	 *
+	 * @todo : les branches d'une relation données ne s'affichent pas toutes à cause des paramètres de profondeur
 	*/
 	public function jsonAction($mot,$relations,$limite)
 	{
