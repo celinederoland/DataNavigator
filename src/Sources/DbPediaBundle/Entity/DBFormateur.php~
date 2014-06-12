@@ -162,9 +162,6 @@ class DBFormateur
 			foreach ($tab as $keyTab => $valueTab)
 			{
 				$element = $tab[$keyTab];
-
-				// On verifie si l'element est bien un tableau 
-				// pour enlever les doublons
 				if(is_array($element) and !empty($element))
 				{
 					$jsoncommun['graphe'][$keyGraphe][$keyTab] = array_unique($element);
