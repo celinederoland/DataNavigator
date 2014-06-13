@@ -9,3 +9,7 @@ sources_db_pedia_bidon:
 sources_db_pedia_relations:
     pattern:  /relations
     defaults: { _controller: SourcesDbPediaBundle:Default:jsonrelations }
+
+sources_db_pedia_fenetre:
+    pattern:  /fenetre/{mot}
+    defaults: { _controller: SourcesDbPediaBundle:Default:fenetre, mot:Horse }

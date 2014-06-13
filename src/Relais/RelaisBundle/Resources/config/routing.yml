@@ -37,3 +37,7 @@ relais_relais_layoutShowDB:
 relais_relais_layoutShowWN:
     pattern:  /layoutShowWN
     defaults: { _controller: RelaisRelaisBundle:Default:layoutShowWN }
+
+relais_relais_layoutShowDebian:
+    pattern:  /layoutShowDebian
+    defaults: { _controller: RelaisRelaisBundle:Default:layoutShowDebian }

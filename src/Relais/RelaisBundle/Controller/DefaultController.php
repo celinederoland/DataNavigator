@@ -198,7 +198,7 @@ class DefaultController extends Controller
 	* Appelle le layoutShowWN (partie cliente de l'application)
 	* Le layoutinfos a pour rôle de proposer à l'utilisateur des informations complementaires sur WN
 	* 
-	* @return HttpResponse script javascript
+	* @return VueTwig script javascript
 	*/
 	public function layoutShowWNAction()
 	{
@@ -209,10 +209,21 @@ class DefaultController extends Controller
 	* Appelle le layoutShowDB (partie cliente de l'application)
 	* Le layoutinfos a pour rôle de proposer à l'utilisateur des informations complementaires sur DB
 	* 
-	* @return HttpResponse script javascript
+	* @return VueTwig script javascript
 	*/
 	public function layoutShowDBAction()
 	{
 		return $this -> render('RelaisRelaisBundle::layoutShowDB.js.twig');
+	}
+
+	/**
+	* Appelle le layoutShowDebian (partie cliente de l'application)
+	* Le layoutinfos a pour rôle de proposer à l'utilisateur des informations complementaires sur Debian
+	* 
+	* @return VueTwig script javascript
+	*/
+	public function layoutShowDebianAction()
+	{
+		return $this -> render('RelaisRelaisBundle::layoutShowDebian.js.twig');
 	}
 }

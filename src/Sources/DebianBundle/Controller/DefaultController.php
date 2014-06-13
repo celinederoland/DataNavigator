@@ -75,4 +75,18 @@ class DefaultController extends Controller
 		return new Response($text);
 	}
 
+	public function fenetreAction($mot)
+	{
+		$url = 'https://packages.debian.org/wheezy/'.$mot;
+		$curlSession = curl_init();
+
+		curl_setopt($curlSession, CURLOPT_URL, $url);
+		curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+		$result = curl_exec($curlSession);
+		preg_match('#<div id="pdesc" >(.*)</div>#sU', $result, $matchespar);
+		preg_match('#<h1>(.*)</h1>#sU', $result, $matchestitre);
+		return new Response('<p><a href="https://packages.debian.org/wheezy/'.$mot.'">source : https://packages.debian.org/wheezy/'.$mot.'</a></p>'.$matchestitre[0].$matchespar[1]);
+	}
 }

@@ -5,7 +5,7 @@
 	s = name.replace(/\./g,"").replace(" ","_").replace("-","_");
 	s = s.charAt(0).toUpperCase() + s.slice(1);
 	// On construit l'url avec le name selectionne par l'utilisateur
-	var url = Routing.generate('sources_db_pedia_fenetre', { mot: s}); 
+	var url = Routing.generate('sources_debian_fenetre', { mot: s}); 
 
-	$('#wikipediaSite').load(url);
+	$('#debianSite').load(url);
 })();

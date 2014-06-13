@@ -117,4 +117,25 @@ SELECT DISTINCT * WHERE
 		$text = json_encode($tab);
 		return new Response($text);
 	}
+
+	public function fenetreAction($mot) 
+	{
+		$mot = 'Horse';
+		//L'adresse du moteur sur lequel on doit réaliser cette requête
+		$searchUrl = "http://en.wikipedia.org/wiki/" . $mot;
+		//On utilise CURL pour effectuer la requête
+		$curl_session = curl_init();
+		curl_setopt($curl_session,CURLOPT_URL,$searchUrl);
+		curl_setopt($curl_session,CURLOPT_RETURNTRANSFER,true);
+		$response = curl_exec($curl_session);
+		curl_close($curl_session);
+
+		//preg_match('#<div id="mw-content-text" .*>(.*</div>.*)</div>#sU', $response, $matchespar);
+		//preg_match('#<h1 .*>(.*)</h1>#sU', $response, $matchestitre);
+
+		preg_match('#<body .*>(.*)</body>#sU', $response, $matches);
+
+		return new Response('<p><a href="http://en.wikipedia.org/wiki/'.$mot.'">source : http://en.wikipedia.org/wiki/'.$mot.'</a></p>'.$matches[1]);
+	}
+
 }
