@@ -1,18 +1,95 @@
+{% extends "VuesRepresentationsBundle::d3_formatter.js.twig" %}
+
+{% block vue %}
+
 /**
  * On traite le json pour insérer ce qu'on veut dans les conteneurs
  */
 (function ()
 {
-	console.log('vous êtes dans bubble');
+	console.log('vous êtes dans bubblevue');
 	console.log('On a récupéré data :');
 	console.log("{{ data }}");
 	var jsonobjet = JSON.parse("{{ data }}");
-	console.log('On le transforme en :');
-	console.log(jsonobjet);
-	console.log('Puis on insère ce qu\'on veut dans les conteneurs');
-	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
+	console.log("relations définies dans data :");
+	console.log(jsonobjet.relations);
+	var formateur = new D3_Formatter();
+	var jsontree = formateur.to_tree(jsonobjet);
+
+	/*console.log('On le transforme en :');
+	console.log(jsongraph);
+	console.log('Puis on insère ce qu\'on veut dans les conteneurs');*/
+	var jsonchaine = JSON.stringify(jsontree,false);
+	$('#conteneurD3').css('visibility','visible');
 	$('#conteneurD3').html('');
-	$('#conteneurpage').css('visibility','visible');
-	$('#conteneurpage').html('<h1>Bubble</h1>' + '<pre>' + jsonchaine + '</pre>');
+	//$('#conteneurpage').css('visibility','visible');
+	$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');
+
+	//On crée deux sets de couleurs, un pour les noeuds, un pour les relations
+	var ncolor = d3.scale.category10();
+	var rcolor = d3.scale.category20();
+
+	var view;
+
+	// On recupere la taille de la div pour mettre le svg
+	var width = $('#conteneurmenu').innerWidth(),
+	  height = $("#conteneurmenu").innerHeight();
+
+	var diameter = Math.min(width - 100,height - 100);
+
+	//Le packlayout de D3 permet d'agencer des ensembles de cercles dans des cercles
+	var pack = d3.layout.pack()
+			.padding(5)
+			.size([diameter, diameter])
+			.value(function(d) { return d.size; });
+
+	//On ajoute un objet svg centré, qui contiendra le dessin
+	var svg = d3.select("#conteneurD3").append("svg")
+			.attr("width", width)
+			.attr("height", height)
+		.append("g")
+			.attr("transform", "translate(" + width/2 + "," + height/2 + ")");
+
+	//Le layout de d3 fabrique 1 tableau pour les noeuds (les relations sont occultées dans cette vue)
+	var nodes = pack.nodes(jsontree);
+
+	//On ajoute les cercles représentant les noeuds de l'arbre
+	var circle = svg.selectAll("circle")
+			.data(nodes)
+		.enter().append("circle")
+			.attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--treeJson"; })
+			.style("fill", function(d) { return d.children ? rcolor(d.depth) : null; })
+			.on("click", function(d) { zoomTo(d); });
+
+	var text = svg.selectAll("text")
+			.data(nodes)
+			.append("text");
+			.attr("class", "text")
+			.text(function(d) { 
+				//alert(d.name);
+				return "coucou"; 
+			});
+
+	// On ajoute des etiquettes sur les noeuds
+	$('svg g circle').tipsy({ 
+		gravity: 'w', 
+		html: true, 
+		title: function() {
+			var d = this.__data__;
+			return "<div>"+ d.type + "</div><div class='floatingp'>" + d.name + "</div><p>" + d.description + "</p>";
+		}
+	});
+
+	//Zoom sur une position
+	function zoomTo(focus) {
+		var k = diameter / focus.r / 2; 
+		svg.selectAll("circle").attr("transform", function(d) { return "translate(" + (d.x - focus.x) * k + "," + (d.y - focus.y) * k + ")"; });
+		circle.attr("r", function(d) { return d.r * k; });
+	}
+
+	zoomTo(jsontree);
+
 	console.log('Fin : on a terminé d\'afficher la vue');
 })();
+
+{% endblock %}
