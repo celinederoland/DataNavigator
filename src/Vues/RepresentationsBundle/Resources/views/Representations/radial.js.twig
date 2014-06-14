@@ -63,7 +63,7 @@
 				html: true, 
 				title: function() { 
 					var d = this.__data__;
-					return jsontree.relations[d.source.id][d.target.id]; 
+					return 'sujet : ' + d.source.name + ' <br/> ' + '<strong>' + jsontree.relations[d.source.id][d.target.id] + '</strong><br/>' + ' objet : ' + d.target.name; 
 				}
 			});
 

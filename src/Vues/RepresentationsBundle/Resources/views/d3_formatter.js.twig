@@ -198,11 +198,6 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 D3_Formatter.sousarbre = function(parent_id,enfants,vu,noms,descriptions,types,typecouleurs)
 {
 	var s;
-	if (enfants[parent_id].length == 0)
-	{
-		var vide = [];
-		return vide;
-	}
 	vu[parent_id] = true;
 	var arbre = {};
 	arbre.name = noms[parent_id];
