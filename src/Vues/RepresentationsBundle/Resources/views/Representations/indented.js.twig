@@ -1,18 +1,107 @@
+{% extends "VuesRepresentationsBundle::d3_formatter.js.twig" %}
+
+{% block vue %}
+
 /**
  * On traite le json pour insérer ce qu'on veut dans les conteneurs
  */
 (function ()
 {
-	console.log('vous êtes dans indented');
+	console.log('vous êtes dans radialvue');
 	console.log('On a récupéré data :');
 	console.log("{{ data }}");
 	var jsonobjet = JSON.parse("{{ data }}");
-	console.log('On le transforme en :');
-	console.log(jsonobjet);
-	console.log('Puis on insère ce qu\'on veut dans les conteneurs');
-	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
+	console.log("relations définies dans data :");
+	console.log(jsonobjet.relations);
+	var formateur = new D3_Formatter();
+	var jsontree = formateur.to_tree(jsonobjet);
+	jsontree.x0 = 0;
+	jsontree.y0 = 0;
+
+	/*console.log('On le transforme en :');
+	console.log(jsongraph);
+	console.log('Puis on insère ce qu\'on veut dans les conteneurs');*/
+	var jsonchaine = JSON.stringify(jsontree,false);
+	$('#conteneurD3').css('visibility','visible');
 	$('#conteneurD3').html('');
-	$('#conteneurpage').css('visibility','visible');
-	$('#conteneurpage').html('<h1>Indented</h1>' + '<pre>' + jsonchaine + '</pre>');
+	//$('#conteneurpage').css('visibility','visible');
+	$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');
+
+	//On crée deux sets de couleurs, un pour les noeuds, un pour les relations
+	var ncolor = d3.scale.category10();
+	var rcolor = d3.scale.category20();
+
+	// On recupere la taille de la div pour mettre le svg
+	var width = $('#conteneurmenu').innerWidth(),
+	  height = $("#conteneurmenu").innerHeight(),
+		barHeight = 20,
+		barWidth = width * .8;
+
+	//On utilise le layout tree de d3 pour la forme du dessin
+	var tree = d3.layout.tree()
+		.size([0, 100]);
+
+	var diagonal = d3.svg.diagonal()
+		.projection(function(d) { return [d.y, d.x]; });
+
+	//On ajoute un objet svg centré, qui contiendra le dessin
+	var svg = d3.select("#conteneurD3").append("svg")
+			.attr("width", width)
+			.attr("height", height)
+		.append("g")
+			.attr("transform", "translate(" + width / 6 + "," + height / 6 + ")");
+
+	update(jsontree);
+
+	function update(sousarbre)
+	{
+		//Le layout de d3 fabrique 2 tableaux : un pour les noeuds, un autre pour les liens
+		var nodes = tree.nodes(sousarbre),
+		  links = tree.links(nodes);
+
+		nodes.forEach(function(n, i) {
+			n.x = i * barHeight;
+		});
+
+		// On recupere les noeuds de nodes
+		var node = svg.selectAll("g.node")
+		  .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+		// On cree les noeuds de la representation
+		var nodeEnter = node.enter().append("g")
+		  .attr("class", "node")
+		  .attr("transform", function(d) { return "translate(" + sousarbre.y0 + "," + sousarbre.x0 + ")"; })
+		  .style("opacity", 1);
+
+		// Les noeuds sont representes par des rectangles
+		nodeEnter.append("rect")
+		  .attr("y", -barHeight / 2)
+		  .attr("height", barHeight)
+		  .attr("width", barWidth)
+		  .style("fill", function(d) { return "red"; });
+
+		// A chaque noeud on affiche son nom
+		nodeEnter.append("text")
+			.attr("dy", 3.5)
+			.attr("dx", 5.5)
+			.attr("id", function(d){
+					// On met un id sans espace
+					var nameWithoutSpace = d.name.replace(' ', '');
+					return nameWithoutSpace; 
+				})
+			.text(function(d) { 
+				return d.name;
+			})
+			.attr("cursor","pointer");
+
+		// Nouvelle position du noeud si on clique dessus
+		node.transition()
+		  .duration(200)
+		  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+		  .style("opacity", 1);
+	}
+
 	console.log('Fin : on a terminé d\'afficher la vue');
 })();
+
+{% endblock %}
