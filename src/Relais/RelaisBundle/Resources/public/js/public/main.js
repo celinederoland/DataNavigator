@@ -41,7 +41,7 @@ function init() {
 	$('#menutools').css('left',ltools + 'px');
 
 	$('#infos').resizable({ ghost:true  });
-	$('#selectRelation').resizable({ ghost:true  });
+	$('#form_relations').resizable({ ghost:true  });
 
 	//$('#options').resizable({ ghost:true  });
 	/*$('#menusite').resizable({ ghost:true  });
