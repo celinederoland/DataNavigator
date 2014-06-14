@@ -121,6 +121,7 @@ D3_Formatter.prototype.to_graph = function(graph){
  */
 D3_Formatter.prototype.to_tree = function(jsongenerique)
 {
+	//d3_tree sera le json au format compris par les représentations d3 de type arbre
 	var d3_tree = {};
 
 	//Tableau vu pour le parcours en largeur
@@ -133,21 +134,24 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 	var descriptions = {};
 	//Tableau types pour enregistrer la description correspondant à l'id
 	var types = {};
-	//Tableau couleur pour enregistrer la description correspondant à l'id
+	//Tableau couleur pour enregistrer les couleurs des noeuds selon leur type
 	var typecouleurs = {};
 	var nbcouleur = 0;
-
+	//Tableau relcouleurs pour enregistrer les différentes relation et la couleur associée
 	var nbrel = 0;
 	var relcouleurs = {};
 	jsongenerique.relations.forEach(
 		function(relation) { relcouleurs[relation] = nbrel++; }
 	);
 
-	//On initialise vu à faux
+	//Initialisation : on enregistre les informations contenues dans chaque noeud dans des tableaux (vu, types, noms, descriptions, typecouleurs)
 	jsongenerique.noeuds.forEach(
 		function(node) { 
+			//On initialise vu à faux
 			vu[node.id] = false;
+			//On enregistre le type
 			types[node.id] = node.type;
+			//On enregistre la description
 			if (node.description) {
 				noms[node.id] = node.nom;
 				descriptions[node.id] = node.description;
@@ -163,10 +167,13 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 					descriptions[node.id] = node.nom;
 				}
 			}
+			//On enregistre la couleur
 			if (!typecouleurs[node.type]) { typecouleurs[node.type] = nbcouleur++; }
 		}
 	);
 
+	//On enregistre toutes les relations dans un tableau qui facilitera la construction de d3_tree
+	//On en profite pour répertorier les relations sous la forme relations[noeudsource][noeudcible] = nomdelarelation
 	var enfants = [];
 	var relations = {};
 	//Pour chaque noeud on va aller chercher ses enfants directs
@@ -187,18 +194,32 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 		}
 	);
 
-	//d3_tree.name = jsongenerique.noeuds[0].nom;
+	//On fabrique récursivement le json demandé par les vues arborescentes de d3
 	d3_tree = D3_Formatter.sousarbre(jsongenerique.noeuds[0].id,enfants,vu,noms,descriptions,types,typecouleurs);
+
+	//On enregistre également dans d3_tree les relations et leurs couleurs
 	d3_tree.relations = relations;
 	d3_tree.relcouleurs = relcouleurs;
 
+	//On a terminé la construction de d3_tree
 	return d3_tree;
 }
 
+/**
+ * Fabrique récursivement un json arborescent
+ * @param parent_id : id de la racine du sous arbre à construire
+ * @param enfants : liste des enfants de la racine
+ * @param vu : pour savoir quels noeuds ont déjà été traités
+ * @param noms,descriptions,types,typecouleurs : informations sur le noeud racine
+ * @return json : tree -> JSON generique bien forme
+ */
 D3_Formatter.sousarbre = function(parent_id,enfants,vu,noms,descriptions,types,typecouleurs)
 {
 	var s;
+	//On a parcouru le noeud racine (on ne le re-parcourera plus)
 	vu[parent_id] = true;
+
+	//On enregistre les informations pour le noeud racine
 	var arbre = {};
 	arbre.name = noms[parent_id];
 	arbre.id = parent_id;
@@ -207,6 +228,8 @@ D3_Formatter.sousarbre = function(parent_id,enfants,vu,noms,descriptions,types,t
 	arbre.size = 1000;
 	arbre.typecouleur = typecouleurs[types[parent_id]];
 	arbre.children = [];
+
+	//Pour chaque enfant de la racine répertorié dans le tableau "enfants", on va construire un sous arbre ayant cet enfant pour racine.
 	enfants[parent_id].forEach(
 		function(enfant_id) {
 			if (!vu[enfant_id]) {
@@ -217,6 +240,8 @@ D3_Formatter.sousarbre = function(parent_id,enfants,vu,noms,descriptions,types,t
 			}
 		}
 	);
+
+	//Lorsque tous les appels récursifs sont terminé, on a fini de construire le sous arbre.
 	return arbre;
 }
 
