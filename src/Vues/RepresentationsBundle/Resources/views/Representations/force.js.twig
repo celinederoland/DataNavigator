@@ -7,12 +7,18 @@
 	console.log('On a récupéré data :');
 	console.log("{{ data }}");
 	var jsonobjet = JSON.parse("{{ data }}");
+	var jsongraph = formateur.to_graph(jsonobjet);
 	console.log('On le transforme en :');
-	console.log(jsonobjet);
+	console.log(jsongraph);
 	console.log('Puis on insère ce qu\'on veut dans les conteneurs');
 	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
 	$('#conteneurD3').html('');
-	$('#conteneurpage').css('visibility','visible');
+	$('#conteneurD3').css('visibility','visible');
+	$('#conteneurpage').css('visibility','hidden');
 	$('#conteneurpage').html('<h1>Force</h1>' + '<pre>' + jsonchaine + '</pre>');
+
+
+
+
 	console.log('Fin : on a terminé d\'afficher la vue');
 })();
