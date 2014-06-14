@@ -11,6 +11,8 @@
 	console.log('On a récupéré data :');
 	console.log("{{ data }}");
 	var jsonobjet = JSON.parse("{{ data }}");
+	console.log("relations définies dans data :");
+	console.log(jsonobjet.relations);
 	var formateur = new D3_Formatter();
 	var jsontree = formateur.to_tree(jsonobjet);
 
@@ -22,6 +24,9 @@
 	$('#conteneurD3').html('');
 	//$('#conteneurpage').css('visibility','visible');
 	$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');
+
+	var ncolor = d3.scale.category10();
+	var rcolor = d3.scale.category20();
 
 		// On recupere la taille de la div pour mettre le svg
 		var width = $('#conteneurmenu').innerWidth(),
@@ -44,14 +49,23 @@
 
 			var nodes = tree.nodes(jsontree),
 				  links = tree.links(nodes);
-			console.log(nodes);
 			console.log(links);
 
 			var link = svg.selectAll(".link")
 				  .data(links)
 				.enter().append("path")
 				  .attr("class", "link")
-				  .attr("d", diagonal);
+				  .attr("d", diagonal)
+					.style("stroke", function(d) { return rcolor(jsontree.relcouleurs[jsontree.relations[d.source.id][d.target.id]]); });
+
+			$('.link').tipsy({ 
+				gravity: 'w', 
+				html: true, 
+				title: function() { 
+					var d = this.__data__;
+					return jsontree.relations[d.source.id][d.target.id]; 
+				}
+			});
 
 			var node = svg.selectAll(".node")
 				  .data(nodes)
@@ -60,7 +74,8 @@
 				  .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
 
 			node.append("circle")
-				  .attr("r", 4.5);
+				  .attr("r", 4.5)
+					.style("fill", function(d) { return ncolor(d.typecouleur); });;
 
 			node.append("text")
 				  .attr("dy", ".31em")

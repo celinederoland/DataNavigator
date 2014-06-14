@@ -1,3 +1,19 @@
+.node circle {
+  fill: #fff;
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 5px;
+}
+
 /* http://bl.ocks.org/mccannf/1629644 */
 .tipsy {
 	font-size: 10px;

@@ -133,6 +133,15 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 	var descriptions = {};
 	//Tableau types pour enregistrer la description correspondant à l'id
 	var types = {};
+	//Tableau couleur pour enregistrer la description correspondant à l'id
+	var typecouleurs = {};
+	var nbcouleur = 0;
+
+	var nbrel = 0;
+	var relcouleurs = {};
+	jsongenerique.relations.forEach(
+		function(relation) { relcouleurs[relation] = nbrel++; }
+	);
 
 	//On initialise vu à faux
 	jsongenerique.noeuds.forEach(
@@ -154,20 +163,23 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 					descriptions[node.id] = node.nom;
 				}
 			}
+			if (!typecouleurs[node.type]) { typecouleurs[node.type] = nbcouleur++; }
 		}
 	);
-	console.log(noms);
 
 	var enfants = [];
+	var relations = {};
 	//Pour chaque noeud on va aller chercher ses enfants directs
 	jsongenerique.graphe.forEach(
 		function(data) {
 			enfants[data.noeud] = [];
+			relations[data.noeud] = {};
 			jsongenerique.relations.forEach( //Ses enfants sont organisés par relation
 				function(relation) {
 					if (data[relation]) { data[relation].forEach(
 						function(enfant) {
 							enfants[data.noeud].push(enfant);
+							relations[data.noeud][enfant] = relation;
 						}
 					);}
 				}
@@ -176,14 +188,14 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 	);
 
 	//d3_tree.name = jsongenerique.noeuds[0].nom;
-	d3_tree = D3_Formatter.sousarbre(jsongenerique.noeuds[0].id,enfants,vu,noms,descriptions,types);
-
-	actual_tree = d3_tree;
+	d3_tree = D3_Formatter.sousarbre(jsongenerique.noeuds[0].id,enfants,vu,noms,descriptions,types,typecouleurs);
+	d3_tree.relations = relations;
+	d3_tree.relcouleurs = relcouleurs;
 
 	return d3_tree;
 }
 
-D3_Formatter.sousarbre = function(parent_id,enfants,vu,noms,descriptions,types)
+D3_Formatter.sousarbre = function(parent_id,enfants,vu,noms,descriptions,types,typecouleurs)
 {
 	var s;
 	if (enfants[parent_id].length == 0)
@@ -194,14 +206,16 @@ D3_Formatter.sousarbre = function(parent_id,enfants,vu,noms,descriptions,types)
 	vu[parent_id] = true;
 	var arbre = {};
 	arbre.name = noms[parent_id];
+	arbre.id = parent_id;
 	arbre.description = descriptions[parent_id];
 	arbre.type = types[parent_id];
 	arbre.size = 1000;
+	arbre.typecouleur = typecouleurs[types[parent_id]];
 	arbre.children = [];
 	enfants[parent_id].forEach(
 		function(enfant_id) {
 			if (!vu[enfant_id]) {
-				s = D3_Formatter.sousarbre(enfant_id,enfants,vu,noms,descriptions,types);
+				s = D3_Formatter.sousarbre(enfant_id,enfants,vu,noms,descriptions,types,typecouleurs);
 				if (s.name) {
 					arbre.children.push(s);
 				}
