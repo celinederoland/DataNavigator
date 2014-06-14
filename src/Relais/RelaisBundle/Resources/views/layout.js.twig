@@ -44,11 +44,11 @@
 			relations.push($(this).val());
 		});
 		var tabrelations = relations;
-		if (relations.length == 0) { relations = '"all"'; }
-		else { relations = '"' + relations.join('","') + '"'; }
+		if (relations.length == 0) { relations = 'all'; }
+		else { relations = relations.join(','); }
 
 		//Mot recherché
-		var mot = '"' + $('#form_mot').val() + '"';
+		var mot = $('#form_mot').val();
 
 		console.log("layout a récupéré les options suivantes : ");
 		console.log("mot recherché : " + mot);
@@ -62,7 +62,7 @@
 		//On alerte le visiteur si il n'a pas rempli correctement tous les champs
 		if (!source) { alert('vous devez sélectionner une source de données'); }
 		else if (!vue) { alert('vous devez sélectionner une représentation'); }
-		else if (mot == '""') { alert('vous devez entrer un mot'); }
+		else if (mot == '') { alert('vous devez entrer un mot'); }
 		//Si il a bien tout rempli on fait le travail
 		else 
 		{ 

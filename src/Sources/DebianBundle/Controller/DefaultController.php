@@ -39,7 +39,7 @@ class DefaultController extends Controller
 	public function jsonAction($mot,$relations,$limite)
 	{
 		$DebianFormateur = new DebianFormateur();
-		$jsonresult = $DebianFormateur -> fabriqueGraphe(substr($mot,1,-1),$limite);
+		$jsonresult = $DebianFormateur -> fabriqueGraphe($mot,$limite);
 
 		//On envoie la réponse
 		return new Response($jsonresult);

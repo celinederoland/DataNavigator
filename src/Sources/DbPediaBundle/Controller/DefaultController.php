@@ -46,7 +46,7 @@ class DefaultController extends Controller
 '
 SELECT DISTINCT * WHERE 
 {
- ?sujet rdfs:label "'.ucfirst(substr($mot,1,-1)).'"@en .
+ ?sujet rdfs:label "'.ucfirst($mot).'"@en .
  ?sujet ?property ?objet .
  ?objet ?property2 ?objet2 .
  ?objet2 ?property3 ?objet3 .

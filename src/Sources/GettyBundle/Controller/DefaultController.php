@@ -39,7 +39,7 @@ class DefaultController extends Controller
 	public function jsonAction($mot,$relations,$limite)
 	{
 		$GettyFormateur = new GettyFormateur();
-		$jsonresult = $GettyFormateur -> fabriqueGraphe(substr($mot,1,-1),$limite);
+		$jsonresult = $GettyFormateur -> fabriqueGraphe($mot,$limite);
 
 		//On envoie la réponse
 		return new Response($jsonresult);

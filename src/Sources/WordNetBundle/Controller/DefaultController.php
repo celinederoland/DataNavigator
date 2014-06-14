@@ -41,7 +41,7 @@ class DefaultController extends Controller
 		$manager = $this -> getDoctrine() -> getManager();
 		$mrep = $manager -> getRepository('SourcesWordNetBundle:Mot');
 
-		$text = json_encode($mrep -> fabriqueGraphe(substr($mot,1,-1),substr($relations,1,-1),$limite));
+		$text = json_encode($mrep -> fabriqueGraphe($mot,$relations,$limite));
 
 		//On retourne le json obtenu
 		return new Response($text);

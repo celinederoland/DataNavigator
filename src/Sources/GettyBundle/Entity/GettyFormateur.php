@@ -114,10 +114,14 @@ class GettyFormateur
 						'childOf' => array()
 					);
 				}
-				$resultat['graphe'][$id]['childOf'][] = $correspondance[$parentDirect];
+				$resultat['graphe'][$id]['childOf'][] = (string)$correspondance[$parentDirect];
 			}
 		}
 
+
+		//On transforme les id de type integer en type string
+		foreach($resultat['graphe'] as $cle => $valeur) { $resultat['graphe'][$cle]['noeud'] = (string)$valeur['noeud']; }
+		foreach($resultat['noeuds'] as $cle => $valeur) { $resultat['noeuds'][$cle]['id'] = (string)$valeur['id']; }
 		$resultat['graphe'] = array_values($resultat['graphe']);
 
 		//var_dump($resultat);

@@ -47,7 +47,7 @@ class DefaultController extends Controller
 			$allrelations[] = $relation -> getTitre();
 		}
 
-		$text = json_encode($mrep -> fabriqueGraphe(substr($mot,1,-1),substr($relations,1,-1),$allrelations));
+		$text = json_encode($mrep -> fabriqueGraphe($mot,$relations,$allrelations));
 
 		//On retourne le json obtenu
 		return new Response($text);
