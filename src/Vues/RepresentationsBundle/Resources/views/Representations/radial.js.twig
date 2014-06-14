@@ -30,7 +30,7 @@
 		var diameter = width;
 
 		var tree = d3.layout.tree()
-				.size([360, 300])
+				.size([360, 200])
 				.separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
 		var diagonal = d3.svg.diagonal.radial()
@@ -66,7 +66,21 @@
 				  .attr("dy", ".31em")
 				  .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
 				  .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-				  .text(function(d) { return d.name; });
+				  .text(function(d) { return d.name; })
+
+			// On ajoute des etiquettes sur les noeuds
+				$('svg g circle').tipsy({ 
+					gravity: 'w', 
+					html: true, 
+					title: function() {
+						var d = this.__data__;
+						if(d.type != null){
+							return "<div>"+ d.type + "</div><div class='floatingp'>"+d.description+"</div>";
+						}else{
+							return "<div class='floatingp'>"+d.description+"</div>";
+						}
+					}
+				});
 
 		d3.select(self.frameElement).style("height", diameter - 150 + "px");
 	console.log('Fin : on a terminé d\'afficher la vue');
