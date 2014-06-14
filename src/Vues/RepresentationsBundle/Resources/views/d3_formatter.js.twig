@@ -16,15 +16,25 @@ D3_Formatter.prototype.to_graph = function(graph){
 		function(node) { 
 			node.name = node.nom;
 			
-			// Nous n'avons plus besoin de nom
-			delete node.nom;
-			
 			if(typeColor[node.type] == null){
 				typeColor[node.type] = i;
 				i++;
 			}
 			node.group = typeColor[node.type];
 			
+			if (!node.description)
+			{
+				if (node.nom.length > 30) {
+					node.name = node.nom.substring(0,10) + '...';
+					node.description = node.nom;
+				}
+				else {
+					node.description = node.nom;
+				}
+			}
+
+			// Nous n'avons plus besoin de nom
+			delete node.nom;
 			// On construit un tableau de noeud afin d'avoir leur position
 			// pour pouvoir creer les links du graphe
 			nodeArray.push(node.id);
@@ -158,7 +168,7 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 			}
 			else
 			{
-				if (node.nom.length > 10) {
+				if (node.nom.length > 30) {
 					noms[node.id] = node.nom.substring(0,10) + '...';
 					descriptions[node.id] = node.nom;
 				}

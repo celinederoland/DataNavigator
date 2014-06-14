@@ -1,3 +1,7 @@
+{% extends "VuesRepresentationsBundle::d3_formatter.js.twig" %}
+
+{% block vue %}
+
 /**
  * On traite le json pour insérer ce qu'on veut dans les conteneurs
  */
@@ -7,6 +11,7 @@
 	console.log('On a récupéré data :');
 	console.log("{{ data }}");
 	var jsonobjet = JSON.parse("{{ data }}");
+	var formateur = new D3_Formatter();
 	var jsongraph = formateur.to_graph(jsonobjet);
 	console.log('On le transforme en :');
 	console.log(jsongraph);
@@ -18,7 +23,105 @@
 	$('#conteneurpage').html('<h1>Force</h1>' + '<pre>' + jsonchaine + '</pre>');
 
 
+	//On crée deux sets de couleurs, un pour les noeuds, un pour les relations
+	var ncolor = d3.scale.category10();
+	var rcolor = d3.scale.category20();
+
+	// On recupere la taille de la div pour mettre le svg
+	var width = $('#conteneurmenu').innerWidth(),
+	  height = $("#conteneurmenu").innerHeight();
+
+	var diameter = width;
+
+	//Le layout de D3 permet d'agencer sous forme de graphe
+	var force = d3.layout.force()
+		.charge(-800)
+		.linkDistance(40)
+		.size([width, height]);
+
+	//Le layout de d3 fabrique 2 tableaux : un pour les noeuds, un autre pour les liens
+	force
+		.nodes(jsongraph.nodes)
+		.links(jsongraph.links)
+		.start();
+
+	//On configure le svg qui contiendra toute la figure
+	var svg = d3.select("#conteneurD3").append("svg")
+		.attr("width", width)
+		.attr("height", height)
+		.attr("class", "svgContainer")
+		.append("g")
+		.attr("transform", function (d) { return "translate(" + 0 + "," + 0 + ")"; });
+
+	// Pour tous les éléments .link on crée un noeud <line>
+	// On cree les liens de la representation
+	var link = svg.selectAll(".link")
+		.data(jsongraph.links)
+		.enter()
+			.append("line")
+			.attr("class", "link")
+			.style("stroke", function(d) { return rcolor(d.name[0]); });
+	//On leur ajout un title de la bibliothèque tipsy
+	$('.link').tipsy({ 
+		gravity: 'w', 
+		html: true, 
+		title: function() { 
+			var d = this.__data__;
+			console.log(d);
+			//return "coucou";
+			return '<div class="floatingp">Relation</div><p>sujet : ' + d.source.name + ' </p> ' + '<div class="floatingp">' + d.name[0] + '</div><p>' + ' objet : ' + d.target.name + '</p>'; 
+		}
+	});
+
+	// Pour tous les elements .node on cree un noeud <g>
+	// On cree les noeuds de la representation
+	var node = svg.selectAll(".node")
+		.data(jsongraph.nodes)
+		.enter()
+			.append("g")
+			.attr("class", "node")
+			.attr("transform", function(d) { return "rotate(" + d.x + ")translate(" + d.y + ")"; })
+			.call(force.drag);
+	// A chaque node <g> on cree un noeud <circle>
+	// Les noeuds sont representes par des cercles
+	node.append("circle")
+		.attr("r", 5)
+		.style("stroke", "#fff")
+		.style("stroke-width", 1.5)
+		.style("fill", function(d) { return ncolor(d.group); });
+	// A chaque noeud on affiche son nom
+	node.append("text")
+		.attr("x", 12)
+		.attr("dy", ".35em")
+		.attr("class", "text")
+		.text(function(d) { 
+			return d.name; 
+		})
+		.attr("cursor","pointer");
+	// On ajoute des etiquettes sur les noeuds
+	$('svg g circle').tipsy({ 
+		gravity: 'w', 
+		html: true, 
+		title: function() {
+			var d = this.__data__;
+			return "<div>"+ d.type + "</div><div class='floatingp'>" + d.name + "</div><p>" + d.description + "</p>";
+		}
+	});
+
+	//Layout va régulièrement replacer les noeuds à leur position initiale
+	force.on("tick", function() {
+		link.attr("x1", function(d) { return d.source.x; })
+			.attr("y1", function(d) { return d.source.y; })
+			.attr("x2", function(d) { return d.target.x; })
+			.attr("y2", function(d) { return d.target.y; });
+			
+		node.attr("transform", function(d) { 
+			return "translate(" + d.x + "," + d.y + ")"; 
+		});
+	});
 
 
 	console.log('Fin : on a terminé d\'afficher la vue');
 })();
+
+{% endblock %}

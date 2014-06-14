@@ -29,80 +29,76 @@
 	var ncolor = d3.scale.category10();
 	var rcolor = d3.scale.category20();
 
-		// On recupere la taille de la div pour mettre le svg
-		var width = $('#conteneurmenu').innerWidth(),
-		  height = $("#conteneurmenu").innerHeight();
-	
-		var diameter = width;
+	// On recupere la taille de la div pour mettre le svg
+	var width = $('#conteneurmenu').innerWidth(),
+	  height = $("#conteneurmenu").innerHeight();
 
-		//On utilise le layout tree de d3 pour la forme du dessin
-		var tree = d3.layout.tree()
-				.size([360, 200])
-				.separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
+	var diameter = width;
 
-		var diagonal = d3.svg.diagonal.radial()
-				.projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+	//On utilise le layout tree de d3 pour la forme du dessin
+	var tree = d3.layout.tree()
+			.size([360, 200])
+			.separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
-		//On ajoute un objet svg centré, qui contiendra le dessin
-		var svg = d3.select("#conteneurD3").append("svg")
-				.attr("width", diameter)
-				.attr("height", diameter - 150)
-			.append("g")
-				.attr("transform", "translate(" + diameter / 2 + "," + height / 2 + ")");
+	var diagonal = d3.svg.diagonal.radial()
+			.projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
-		//Le layout de d3 fabrique 2 tableaux : un pour les noeuds, un autre pour les liens
-		var nodes = tree.nodes(jsontree),
-			  links = tree.links(nodes);
+	//On ajoute un objet svg centré, qui contiendra le dessin
+	var svg = d3.select("#conteneurD3").append("svg")
+			.attr("width", diameter)
+			.attr("height", diameter - 150)
+		.append("g")
+			.attr("transform", "translate(" + diameter / 2 + "," + height / 2 + ")");
 
-		//On inscrit les balises svg pour représenter les liens
-		var link = svg.selectAll(".link")
-			  .data(links)
-			.enter().append("path")
-			  .attr("class", "link")
-			  .attr("d", diagonal)
-				.style("stroke", function(d) { return rcolor(jsontree.relcouleurs[jsontree.relations[d.source.id][d.target.id]]); });
-		//On leur ajout un title de la bibliothèque tipsy
-		$('.link').tipsy({ 
+	//Le layout de d3 fabrique 2 tableaux : un pour les noeuds, un autre pour les liens
+	var nodes = tree.nodes(jsontree),
+		  links = tree.links(nodes);
+
+	//On inscrit les balises svg pour représenter les liens
+	var link = svg.selectAll(".link")
+		  .data(links)
+		.enter().append("path")
+		  .attr("class", "link")
+		  .attr("d", diagonal)
+			.style("stroke", function(d) { return rcolor(jsontree.relcouleurs[jsontree.relations[d.source.id][d.target.id]]); });
+	//On leur ajout un title de la bibliothèque tipsy
+	$('.link').tipsy({ 
+		gravity: 'w', 
+		html: true, 
+		title: function() { 
+			var d = this.__data__;
+			return '<div class="floatingp">Relation</div><p>sujet : ' + d.source.name + ' </p> ' + '<div class="floatingp">' + jsontree.relations[d.source.id][d.target.id] + '</div><p>' + ' objet : ' + d.target.name + '</p>'; 
+		}
+	});
+
+	//On ajoute les balises svg pour représenter les noeuds
+	var node = svg.selectAll(".node")
+		  .data(nodes)
+		.enter().append("g")
+		  .attr("class", "node")
+		  .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
+	//On représente le noeud par un cercle
+	node.append("circle")
+		  .attr("r", 4.5)
+			.style("fill", function(d) { return ncolor(d.typecouleur); });;
+	//On place du texte sur le noeud pour donner son nom
+	node.append("text")
+		  .attr("dy", ".31em")
+		  .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+		  .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+		  .text(function(d) { return d.name; })
+	// On ajoute des etiquettes sur les noeuds
+		$('svg g circle').tipsy({ 
 			gravity: 'w', 
 			html: true, 
-			title: function() { 
+			title: function() {
 				var d = this.__data__;
-				return 'sujet : ' + d.source.name + ' <br/> ' + '<strong>' + jsontree.relations[d.source.id][d.target.id] + '</strong><br/>' + ' objet : ' + d.target.name; 
+				return "<div>"+ d.type + "</div><div class='floatingp'>" + d.name + "</div><p>" + d.description + "</p>";
 			}
 		});
 
-		//On ajoute les balises svg pour représenter les noeuds
-		var node = svg.selectAll(".node")
-			  .data(nodes)
-			.enter().append("g")
-			  .attr("class", "node")
-			  .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
-		//On représente le noeud par un cercle
-		node.append("circle")
-			  .attr("r", 4.5)
-				.style("fill", function(d) { return ncolor(d.typecouleur); });;
-		//On place du texte sur le noeud pour donner son nom
-		node.append("text")
-			  .attr("dy", ".31em")
-			  .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-			  .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-			  .text(function(d) { return d.name; })
-		// On ajoute des etiquettes sur les noeuds
-			$('svg g circle').tipsy({ 
-				gravity: 'w', 
-				html: true, 
-				title: function() {
-					var d = this.__data__;
-					if(d.type != null){
-						return "<div>"+ d.type + "</div><div class='floatingp'>"+d.description+"</div>";
-					}else{
-						return "<div class='floatingp'>"+d.description+"</div>";
-					}
-				}
-			});
-
-		//On a terminé
-		d3.select(self.frameElement).style("height", diameter - 150 + "px");
+	//On a terminé
+	d3.select(self.frameElement).style("height", diameter - 150 + "px");
 
 	console.log('Fin : on a terminé d\'afficher la vue');
 })();
