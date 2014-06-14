@@ -194,6 +194,8 @@ D3_Formatter.prototype.to_tree = function(jsongenerique)
 		}
 	);
 
+	console.log(enfants);
+
 	//On fabrique récursivement le json demandé par les vues arborescentes de d3
 	d3_tree = D3_Formatter.sousarbre(jsongenerique.noeuds[0].id,enfants,vu,noms,descriptions,types,typecouleurs);
 

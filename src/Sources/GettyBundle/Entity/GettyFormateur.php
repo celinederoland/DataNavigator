@@ -27,6 +27,7 @@ class GettyFormateur
 	 * @param integer $limite : Maximum de parents à explorer
 	 * @return string chaine de caractère au format json générique
 	 * @todo prendre en compte d'autres relations que l'hypernymie
+	 * @todo : ça ne marche pas (ex : prendre shark limit 2. On a 6 noeuds d'id 0 à 5, et on a seulement 2 relations : 0 -> 1 et 3 -> 4)
 	*/
 	public function fabriqueGraphe($mot,$limite)
 	{
@@ -53,8 +54,9 @@ class GettyFormateur
 			//Sa description
 			if (isset($descriptionNoeud)) { $description[$nomNoeud] = $descriptionNoeud; }
 			//Ses parents
-			$parents = explode(',',$valeur['Parents']['value'],$limite + 1); //On pourra ajouter un attribut à explode pour limiter la profondeur
-			if (isset($parents[$limite])) { unset($parents[$limite]); }
+			/*$parents = explode(',',$valeur['Parents']['value'],$limite + 1); //On pourra ajouter un attribut à explode pour limiter la profondeur
+			if (isset($parents[$limite])) { unset($parents[$limite]); }*/
+			$parents = explode(',',$valeur['Parents']['value']);
 			foreach($parents as $cle => $val) 
 			{ 
 				$parents[$cle] = trim($val); 
