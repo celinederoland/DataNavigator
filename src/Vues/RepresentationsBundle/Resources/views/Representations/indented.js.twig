@@ -34,8 +34,8 @@
 	// On recupere la taille de la div pour mettre le svg
 	var width = $('#conteneurmenu').innerWidth(),
 	  height = $("#conteneurmenu").innerHeight(),
-		barHeight = 20,
-		barWidth = width * .8;
+		barHeight = 23,
+		barWidth = width / 4;
 
 	//On utilise le layout tree de d3 pour la forme du dessin
 	var tree = d3.layout.tree()
@@ -49,7 +49,7 @@
 			.attr("width", width)
 			.attr("height", height)
 		.append("g")
-			.attr("transform", "translate(" + width / 6 + "," + height / 6 + ")");
+			.attr("transform", "translate(" + width * 3 / 8 + "," + height / 4 + ")");
 
 	update(jsontree);
 
@@ -76,29 +76,119 @@
 		// Les noeuds sont representes par des rectangles
 		nodeEnter.append("rect")
 		  .attr("y", -barHeight / 2)
-		  .attr("height", barHeight)
+		  .attr("height", barHeight - 3)
 		  .attr("width", barWidth)
-		  .style("fill", function(d) { return "red"; });
+		  .style("fill", function(d) { return ncolor(d.typecouleur); })
+			.style("stroke", "black");
 
 		// A chaque noeud on affiche son nom
 		nodeEnter.append("text")
-			.attr("dy", 3.5)
-			.attr("dx", 5.5)
-			.attr("id", function(d){
-					// On met un id sans espace
-					var nameWithoutSpace = d.name.replace(' ', '');
-					return nameWithoutSpace; 
-				})
+			.attr("dy", 1.5)
+			.attr("dx", 15)
+			.attr("id", function(d){ return d.id; })
 			.text(function(d) { 
+				if(d.children != null){
+					return "- " + d.name;
+				}
 				return d.name;
 			})
-			.attr("cursor","pointer");
+			.attr("cursor","pointer")
+			.on("click", function(d) {
+				// On recupere ce qu'il y a dans la balise text
+				console.log(d.id);
+				var text = $('#' + d.id).html();
+				if (d.children) {
+					d._children = d.children;
+					d.children = null;
+			
+					// On cache les enfants on met un + pour montrer qu'on peut deployer
+					var result = text.replace("- ", "+ ");
+					$('#' + d.id).html(result);
+				} else {
+					d.children = d._children;
+					d._children = null;
+			
+					// On deploie les enfants on met un - pour montrer qu'on peut cacher
+					var result = text.replace("+ ", "- ");
+					$('#' + d.id).html(result);
+				}
+				update(jsontree);
+			});
+
+		// On ajoute des etiquettes sur les noeuds
+		$('svg g text').tipsy({ 
+			gravity: 'e', 
+			html: true, 
+			title: function() {
+				var d = this.__data__;
+				//return "coucou";
+				return "<div>"+ d.type + "</div><div class='floatingp'>" + d.name + "</div><p>" + d.description + "</p>";
+			}
+		});
 
 		// Nouvelle position du noeud si on clique dessus
 		node.transition()
 		  .duration(200)
 		  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
 		  .style("opacity", 1);
+
+		// On enleve les noeuds si le parent a ete clique
+		// On les place a la meme position que le parent
+		node.exit().transition()
+		  .duration(200)
+		  .attr("transform", function(d) { return "translate(" + sousarbre.y + "," + sousarbre.x + ")"; })
+		  .style("opacity", 1e-6)
+		  .remove();
+		
+		// On met a jour les liens
+		var link = svg.selectAll("path.link")
+		  .data(links, function(d) { return d.target.id; });
+
+		// On ajoute les liens
+		link.enter().insert("path", "g")
+			.attr("class", "link")
+			.attr("id", function(d) { return d.name; })
+			.style("stroke", function(d) {
+				return rcolor(jsontree.relcouleurs[jsontree.relations[d.source.id][d.target.id]]);
+			})
+			.attr("d", function(d) {
+				var o = {x: sousarbre.x0, y: sousarbre.y0};
+				return diagonal({source: o, target: o});
+			})
+			.transition()
+			.duration(200)
+			.attr("d", diagonal);
+
+		//On leur ajout un title de la bibliothèque tipsy
+		$('.link').tipsy({ 
+			gravity: 'w', 
+			html: true, 
+			title: function() { 
+				var d = this.__data__;
+				return '<div class="floatingp">Relation</div><p>sujet : ' + d.source.name + ' </p> ' + '<div class="floatingp">' + jsontree.relations[d.source.id][d.target.id] + '</div><p>' + ' objet : ' + d.target.name + '</p>'; 
+			}
+		});
+
+		// On met les liens à leur nouvelle position
+		link.transition()
+			.duration(200)
+			.attr("d", diagonal);
+
+		// On place les liens à ne pas afficher a la position du parent
+		link.exit().transition()
+			.duration(200)
+			.attr("d", function(d) {
+				var o = {x: sousarbre.x, y: sousarbre.y};
+				return diagonal({source: o, target: o});
+			})
+			.remove();
+
+		// Pour tous les noeuds on affecte la nouvelle position
+		nodes.forEach(function(d) {
+				d.x0 = d.x;
+				d.y0 = d.y;
+			});
+
 	}
 
 	console.log('Fin : on a terminé d\'afficher la vue');
