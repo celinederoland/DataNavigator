@@ -33,6 +33,7 @@
 		if ($('#force').attr('class') == 'activevue') { var vue = 'force'; }
 		if ($('#json').attr('class') == 'activevue') { var vue = 'json'; }
 		if ($('#jsongraph').attr('class') == 'activevue') { var vue = 'jsongraph'; }
+		if ($('#jsontree').attr('class') == 'activevue') { var vue = 'jsontree'; }
 
 		//Options
 		var limite = $('#form_limite').val();
@@ -133,6 +134,17 @@
 						$.ajax({
 							type:"POST",
 							url:"{{ path('vues_representations_jsongraph') }}",
+							dataType:"script",
+							data:{ 'data': JSON.stringify(data) },
+							cache:false,
+							success:function() { console.log('success'); }
+						});
+					}
+					else if (vue == 'jsontree') 
+					{ 
+						$.ajax({
+							type:"POST",
+							url:"{{ path('vues_representations_jsontree') }}",
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,

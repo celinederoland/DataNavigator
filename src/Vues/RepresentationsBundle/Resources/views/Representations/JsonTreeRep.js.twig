@@ -1,0 +1,27 @@
+{% extends "VuesRepresentationsBundle::d3_formatter.js.twig" %}
+
+{% block vue %}
+
+/**
+ * On traite le json pour insérer ce qu'on veut dans les conteneurs
+ */
+(function ()
+{
+	console.log('vous êtes dans jsongraphrep');
+	console.log('On a récupéré data :');
+	console.log("{{ data }}");
+	var jsonobjet = JSON.parse("{{ data }}");
+	var formateur = new D3_Formatter();
+	var jsongraph = formateur.to_tree(jsonobjet);
+
+	console.log('On le transforme en :');
+	console.log(jsongraph);
+	console.log('Puis on insère ce qu\'on veut dans les conteneurs');
+	var jsonchaine = JSON.stringify(jsongraph,false,'   ');
+	$('#conteneurD3').html('');
+	$('#conteneurpage').css('visibility','visible');
+	$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');
+	console.log('Fin : on a terminé d\'afficher la vue');
+})();
+
+{% endblock %}

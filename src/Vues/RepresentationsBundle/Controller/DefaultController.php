@@ -47,6 +47,18 @@ class DefaultController extends Controller
 	}
 
 /**
+	* Appelle la vue json formatée en arbre (partie cliente de l'application)
+	* 
+	* @param string $data json générique fourni par le relais
+	* @return HttpResponse script javascript
+	*/
+	public function jsonTreeAction() //testée par qunit
+	{
+		$data = $this -> getRequest() -> request -> get('data');
+		return $this -> render('VuesRepresentationsBundle:Representations:JsonTreeRep.js.twig', array('data' => $data));
+	}
+
+/**
 	* Appelle la vue bubble
 	* 
 	* @return HttpResponse script javascript

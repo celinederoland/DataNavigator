@@ -55,6 +55,16 @@
 
 		</li>
 
+		<li>
+
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/jsongraph.png' %}
+				<img id="jsontree" onClick='activerVue("#jsontree")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'jsontree' | trans}}"/>
+			{% endimage %}
+
+		</li>
+
 		{{ form_widget(formrecherche.vue) }}
 	</ul>
 </nav>

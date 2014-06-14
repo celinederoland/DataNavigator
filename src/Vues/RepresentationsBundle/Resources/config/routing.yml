@@ -6,6 +6,10 @@ vues_representations_jsongraph:
     pattern:  /jsonGraph
     defaults: { _controller: VuesRepresentationsBundle:Default:jsonGraph }
 
+vues_representations_jsontree:
+    pattern:  /jsonTree
+    defaults: { _controller: VuesRepresentationsBundle:Default:jsonTree }
+
 vues_representations_bubble:
     pattern:  /bubble
     defaults: { _controller: VuesRepresentationsBundle:Default:bubble }
