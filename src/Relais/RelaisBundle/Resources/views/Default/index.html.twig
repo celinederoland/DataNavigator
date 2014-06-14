@@ -26,7 +26,6 @@
 	{% endif %}
 
 	<form action="" method="submit" id="formrecherche" name="formrecherche">
-	{{ include('RelaisRelaisBundle:Menus:menusite.html.twig') }}
 	{{ include('RelaisRelaisBundle:Menus:menuvues.html.twig',{ formrecherche:formrecherche }) }}
 	{{ include('RelaisRelaisBundle:Menus:menudonnees.html.twig',{ formrecherche:formrecherche }) }}
 	{{ include('RelaisRelaisBundle:Menus:menutools.html.twig') }}
@@ -38,7 +37,6 @@
 	{% if is_granted('ROLE_ADMIN') %}
 		{{ include('RelaisRelaisBundle:Menus:menuadmin.html.twig') }}
 	{% endif %}
-	{{ include('RelaisRelaisBundle:Menus:menuuser.html.twig') }}
 </div>
 
 {% endblock %}

@@ -8,5 +8,14 @@
 					title="{{ 'rechercher' | trans}}"/>
 			{% endimage %}
 		</li>
+		{% if app.user %}
+			<li>
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logohistorique.png' %}
+					<img onClick="historique('{{ path('relais_relais_show_historique') }}')"
+						src="{{ asset_url }}" height="40px" width="40px"
+						title="{{ 'histo' | trans}}"/>
+				{% endimage %}
+			</li>
+		{% endif %}
 	</ul>
 </nav>

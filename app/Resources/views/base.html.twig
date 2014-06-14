@@ -20,7 +20,102 @@
 
 		{# Le menu supérieur est présent sur toutes les pages #}
 		<nav id="menusuperieur">
+			<ul>
+				<div id="gauche">
+				<li><a href="{{ path('jc_front_homepage') }}">
+					{% image 'images/menusite/logocarto.png' %}
+						<img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'home' | trans}}"/>{{ 'home' | trans}}
+					{% endimage %}
+				</a></li>
+				<li><a href="{{ path('jc_front_homepage') }}">
+					{% image 'images/menusite/logodoc.png' %}
+						<img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'doc' | trans}}"/>{{ 'doc' | trans}}
+					{% endimage %}
+				</a></li>
+				<li><a href="{{ path('jc_front_homepage') }}">
+					{% image 'images/menusite/logolivre.png' %}
+						<img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'livre' | trans}}"/>{{ 'livre' | trans}}
+					{% endimage %}
+				</a></li>
+				<li><a href="{{ path('jc_front_homepage') }}">
+					{% image 'images/menusite/logoinfo.png' %}
+						<img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'about' | trans}}"/>{{ 'about' | trans}}
+					{% endimage %}
+				</a></li>
 
+				</div>
+				<div id="droit">
+
+				{% if app.user %}
+					<li>
+						{{ 'welcom' | trans }} {{ app.user.username }}
+					</li>
+				{% endif %}
+				{% if app.user %}
+					<li>
+					{% image 'images/menusite/logout.png' %}
+						<a href="{{ path('fos_user_security_logout') }}"><img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'delog' | trans}}"/>{{ 'delog' | trans}}
+						</a>
+					{% endimage %}
+					</li>
+					<li>
+					{% image 'images/menusite/supprimer.png' %}
+						<a href="{{ path('jc_user_supprimer') }}"><img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'del' | trans}}"/>{{ 'del' | trans}}
+						</a>
+					{% endimage %}
+					</li>
+				{% else %}
+					<li>
+					{% image 'images/menusite/logocadenas.png' %}
+						<a href="{{ path('fos_user_security_login') }}"><img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'login' | trans}}"/>{{ 'login' | trans}}
+						</a>
+					{% endimage %}
+					</li>
+					<li>
+					{% image 'images/menusite/inscription.png' %}
+						<a href="{{ path('fos_user_registration_register') }}"><img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'register' | trans}}"/>{{ 'register' | trans}}
+						</a>
+					{% endimage %}
+					</li>
+				{% endif %}
+				<li>
+					{% if app.request.locale == 'fr' %}
+					<a href="{{ path('jc_front_homepage', {_locale:'en'} )}}">
+						{% image 'images/menusite/en.png' %}
+							<img 
+								src="{{ asset_url }}" height="20px" width="20px"
+								title="{{ 'trad' | trans}}"/>
+						{% endimage %}
+					</a>
+					{% else %}
+					<a href="{{ path('jc_front_homepage', {_locale:'fr'} )}}">
+						{% image 'images/menusite/fr.png' %}
+							<img 
+								src="{{ asset_url }}" height="20px" width="20px"
+								title="{{ 'trad' | trans}}"/>
+						{% endimage %}
+					</a>
+					{% endif %}
+				</li>
+
+				</div>
+			</ul>
 		</nav>
 
 		{# Le conteneur global contient tout ce qui est dessous #}
