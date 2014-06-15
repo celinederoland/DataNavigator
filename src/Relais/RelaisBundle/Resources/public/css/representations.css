@@ -23,6 +23,26 @@ strong
   stroke-width: 1px;
 }
 
+.row rect:not(.activecell) {
+	fill-opacity:0.4;
+	stroke:lightgrey;
+}
+
+.activecell {
+	fill-opacity:1;
+	stroke:black;
+}
+
+.row:not(.active) text, .column:not(.active) text {
+	opacity: 0.8;
+}
+
+.active text {
+	opacity:1;
+	font-weight:bolder;
+	background-color:red;
+}
+
 /* http://bl.ocks.org/mccannf/1629644 */
 .tipsy {
 	font-size: 10px;

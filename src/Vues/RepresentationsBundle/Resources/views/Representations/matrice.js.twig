@@ -47,8 +47,8 @@
 	// On recupere la taille de la div pour mettre le svg
 	var width = $('#conteneurmenu').innerWidth(),
 	  height = $("#conteneurmenu").innerHeight(),
-		barHeight = height / (1.5*n),
-		barWidth = width / (1.5*n);
+		barHeight = height / (1.8*n),
+		barWidth = width / (1.8*n);
 
 	//On ajoute un objet svg centré, qui contiendra le dessin
 	var svg = d3.select("#conteneurD3").append("svg")
@@ -95,8 +95,11 @@
 				.attr("x", function(d, i) { return d.x * barWidth; })
 				.attr("width", barWidth)
 				.attr("height", barHeight)
-				.style("stroke", function(d) { return d.rel.name ? "black" : "white"; })
-				.style("fill", function(d) { return d.rel.name ? rcolor(d.rel.name[0]) : "white"; });
+				//.style("stroke", function(d) { return d.rel.name ? "black" : "white"; })
+				.style("fill", function(d) { return d.rel.name ? rcolor(d.rel.name[0]) : "#feffe4"; })
+				//.style("fill-opacity", function(d) { return d.rel.name ? 0.8 : 0; })
+				.on("mouseover", mouseover);
+				//.on("mouseout", mouseout);
 	}
 	$('.mesrel').tipsy({ 
 		gravity: 'w', 
@@ -143,6 +146,17 @@
 			return "<div>"+ d.type + "</div><div class='floatingp'>" + d.name + "</div><p>" + d.description + "</p>";
 		}
 	});
+
+	//Highlighter lorsqu'on passe sur une ligne
+	function mouseover(p) {
+		d3.selectAll("rect").classed("activecell", function(d) { if (!d) { return false; } return (d.x == p.x || d.y == p.y); });
+		d3.selectAll(".row").classed("active", function(d, i) { return i == p.y; });
+		d3.selectAll(".column").classed("active", function(d, i) { return i == p.x; });
+	}
+
+	/*function mouseout() {
+		d3.selectAll("text").classed("active", false);
+	}*/
 
 	console.log('Fin : on a terminé d\'afficher la vue');
 })();
