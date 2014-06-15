@@ -59,7 +59,7 @@ class DefaultController extends Controller
 		{ 
 			$comment = new Commentaire($this -> get('security.context') -> getToken() -> getUser() -> getUsername()); 
 		}
-		else { $comment = new Commentaire($this -> get('')); }
+		else { $comment = new Commentaire(); }
 
 		$form = $this -> formulaire($comment) -> getForm();
 		if ($request->getMethod() == 'POST') 
