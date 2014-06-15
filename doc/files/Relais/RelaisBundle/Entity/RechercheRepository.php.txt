@@ -44,6 +44,7 @@ class RechercheRepository extends EntityRepository
 			$binome = explode('-',$valeur);
 			$tabprio[$binome[0]] = $binome[1];
 		}
+		$tabprio['id'] = 'desc';
 		$tabimpose = array('user' => $user, 'source' => array(), 'vue' => array(), 'mot' => array());
 		if ($impose != 'none')
 		{

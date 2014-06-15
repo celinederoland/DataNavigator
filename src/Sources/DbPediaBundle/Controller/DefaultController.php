@@ -118,6 +118,12 @@ SELECT DISTINCT * WHERE
 		return new Response($text);
 	}
 
+	/**
+	 * Renvoie un morceau de code html à insérer dans le cadre "infos"
+	 *
+	 * @param string $mot : Le mot sur lequel on a demandé de l'information
+	 * @return HttpResponse
+	*/
 	public function fenetreAction($mot) 
 	{
 		$mot = 'Horse';
@@ -130,8 +136,6 @@ SELECT DISTINCT * WHERE
 		$response = curl_exec($curl_session);
 		curl_close($curl_session);
 
-		//preg_match('#<div id="mw-content-text" .*>(.*</div>.*)</div>#sU', $response, $matchespar);
-		//preg_match('#<h1 .*>(.*)</h1>#sU', $response, $matchestitre);
 
 		preg_match('#<body .*>(.*)</body>#sU', $response, $matches);
 

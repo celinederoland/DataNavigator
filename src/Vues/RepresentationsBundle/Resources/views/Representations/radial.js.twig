@@ -15,10 +15,6 @@
 	console.log(jsonobjet.relations);
 	var formateur = new D3_Formatter();
 	var jsontree = formateur.to_tree(jsonobjet);
-
-	/*console.log('On le transforme en :');
-	console.log(jsongraph);
-	console.log('Puis on insère ce qu\'on veut dans les conteneurs');*/
 	var jsonchaine = JSON.stringify(jsontree,false);
 	$('#conteneurD3').css('visibility','visible');
 	$('#conteneurD3').html('');

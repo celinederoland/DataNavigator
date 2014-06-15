@@ -46,7 +46,7 @@ class DefaultController extends Controller
 '
 SELECT DISTINCT * WHERE 
 {
- ?sujet rdfs:label "'.ucfirst(substr($mot,1,-1)).'"@en .
+ ?sujet rdfs:label "'.ucfirst($mot).'"@en .
  ?sujet ?property ?objet .
  ?objet ?property2 ?objet2 .
  ?objet2 ?property3 ?objet3 .
@@ -117,5 +117,30 @@ SELECT DISTINCT * WHERE
 		$text = json_encode($tab);
 		return new Response($text);
 	}
+
+	/**
+	 * Renvoie un morceau de code html à insérer dans le cadre "infos"
+	 *
+	 * @param string $mot : Le mot sur lequel on a demandé de l'information
+	 * @return HttpResponse
+	*/
+	public function fenetreAction($mot) 
+	{
+		$mot = 'Horse';
+		//L'adresse du moteur sur lequel on doit réaliser cette requête
+		$searchUrl = "http://en.wikipedia.org/wiki/" . $mot;
+		//On utilise CURL pour effectuer la requête
+		$curl_session = curl_init();
+		curl_setopt($curl_session,CURLOPT_URL,$searchUrl);
+		curl_setopt($curl_session,CURLOPT_RETURNTRANSFER,true);
+		$response = curl_exec($curl_session);
+		curl_close($curl_session);
+
+
+		preg_match('#<body .*>(.*)</body>#sU', $response, $matches);
+
+		return new Response('<p><a href="http://en.wikipedia.org/wiki/'.$mot.'">source : http://en.wikipedia.org/wiki/'.$mot.'</a></p>'.$matches[1]);
+	}
+
 }
 

@@ -64,6 +64,8 @@ class Commentaire
 
 	/**
 	 * Constructeur : définit la date au moment présent
+	 *
+	 * @param string $auteur : nom de l'auteur du commentaire
 	 */
 	public function __construct($auteur = NULL)
 	{

@@ -75,6 +75,13 @@ class DefaultController extends Controller
 		return new Response($text);
 	}
 
+
+	/**
+	 * Renvoie un morceau de code html à insérer dans le cadre "infos"
+	 *
+	 * @param string $mot : Le mot sur lequel on a demandé de l'information
+	 * @return HttpResponse
+	*/
 	public function fenetreAction($mot)
 	{
 		$url = 'https://packages.debian.org/wheezy/'.$mot;

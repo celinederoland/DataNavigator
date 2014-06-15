@@ -46,9 +46,12 @@ class DefaultController extends Controller
 /**
 	* Appelle le layout (partie cliente de l'application)
 	* Le layout a pour rôle d'effectuer le relais entre les données entrées par l'utilisateur, la source de données, et la vue
+	* On regarde les options indiquées
+	* On appelle la page qui enregistre la recherche en bdd
+	* On récupère le json fabriqué par la partie serveur du relais (contrôleur) en lui donnant les options indiquées
+	* On appelle la vue (script js) en lui donnant le json fabriqué
 	* 
 	* @return HttpResponse script javascript
-	* @todo Gérer également l'enregistrement des options de l'utilisateur en bdd. Plus généralement : mettre en place un système de favoris et d'historique.
 	*/
 	public function layoutAction() //testée par qunit
 	{

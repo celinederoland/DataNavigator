@@ -74,18 +74,6 @@
 					if (focus !== d) zoomfonc(d), d3.event.stopPropagation();
 			})
 
-	//On ajoute un rectangle sous le texte pour montrer sur quel cercle il porte
-/*	var rect = svg.selectAll("rect")
-		.data(nodes)
-		.enter()
-		.append("rect")
-		//.attr("transform", function(d) { return "translate("+d.x+","+d.y+")"})
-		.attr("height", function(d) { return 2*Math.sqrt(d.r) + 5 + 'px'; } )
-		.attr("width", function(d) { return d.r * 2; })
-		.attr("stroke", "black")
-		.style("fill", "white")
-		.style("opacity", 0.1);*/
-
 	//On ajoute le texte représentant le noeud dans chaque cercle.
 	var text = svg.selectAll("text")
 			.data(nodes)
@@ -96,12 +84,7 @@
 				return ( d.type != "N" && d.type != "R" && d.type != "V" && d.type != "A" && d.name.length < 30) ? d.name : ''; 
 			});
 
-
-			
-	//On ajoute un title pour voir les définitions en entier lorsque les noeuds contiennent plus d'un mot
 	var node = svg.selectAll("circle,text");
-	/*node.append("title")
-		.text(function(d) { return d.description; });*/
 
 	zoomTo([jsontree.x, jsontree.y, jsontree.r * 2]);
 
