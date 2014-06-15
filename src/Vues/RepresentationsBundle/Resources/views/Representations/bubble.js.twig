@@ -35,41 +35,101 @@
 	var width = $('#conteneurmenu').innerWidth(),
 	  height = $("#conteneurmenu").innerHeight();
 
-	var diameter = Math.min(width - 100,height - 100);
+	var diameter = Math.min(width,height);
 
 	//Le packlayout de D3 permet d'agencer des ensembles de cercles dans des cercles
 	var pack = d3.layout.pack()
 			.padding(5)
 			.size([diameter, diameter])
-			.value(function(d) { return d.size; });
+			.value(function(d) { return d.size; })
 
-	//On ajoute un objet svg centré, qui contiendra le dessin
+	//On configure le svg qui contiendra toute la figure
 	var svg = d3.select("#conteneurD3").append("svg")
 			.attr("width", width)
 			.attr("height", height)
 		.append("g")
 			.attr("transform", "translate(" + width/2 + "," + height/2 + ")");
 
-	//Le layout de d3 fabrique 1 tableau pour les noeuds (les relations sont occultées dans cette vue)
+	//var svg = svg.append("g");
+
+	//focus indique sur quel noeud doit se centrer la vue (au départ c'est la racine)
+	var focus = jsontree;
+	console.log(jsontree);
+	//view contiendra un vecteur correspondant au zoom sur le focus (vecteur (x,y,r) où (x,y) = coordonnées du centre et r = taille de la zone visible)
+	var view;
+
+	//pack.nodes transforme le jsontree en un objet contenant les infos nécessaires au packlayout.
+	//ces infos sont calculées automatiquement par D3 à partir du json qu'on lui fournit.
 	var nodes = pack.nodes(jsontree);
+
+
 
 	//On ajoute les cercles représentant les noeuds de l'arbre
 	var circle = svg.selectAll("circle")
 			.data(nodes)
 		.enter().append("circle")
-			.attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--treeJson"; })
-			.style("fill", function(d) { return d.children ? rcolor(d.depth) : null; })
-			.on("click", function(d) { zoomTo(d); });
+			.attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--jsontree"; })
+			.style("fill", function(d) { return d.children ? ncolor(d.depth) : null; })
+			.on("click", function(d) {
+					if (focus !== d) zoomfonc(d), d3.event.stopPropagation();
+			})
 
+	//On ajoute un rectangle sous le texte pour montrer sur quel cercle il porte
+/*	var rect = svg.selectAll("rect")
+		.data(nodes)
+		.enter()
+		.append("rect")
+		//.attr("transform", function(d) { return "translate("+d.x+","+d.y+")"})
+		.attr("height", function(d) { return 2*Math.sqrt(d.r) + 5 + 'px'; } )
+		.attr("width", function(d) { return d.r * 2; })
+		.attr("stroke", "black")
+		.style("fill", "white")
+		.style("opacity", 0.1);*/
+
+	//On ajoute le texte représentant le noeud dans chaque cercle.
 	var text = svg.selectAll("text")
 			.data(nodes)
-			.append("text");
-			.attr("class", "text")
+		.enter()
+			.append("text")
+			.style("font-size", function(d) { return 2*Math.sqrt(d.r) + 'px'; } )
 			.text(function(d) { 
-				//alert(d.name);
-				return "coucou"; 
+				return ( d.type != "N" && d.type != "R" && d.type != "V" && d.type != "A" && d.name.length < 30) ? d.name : ''; 
 			});
 
+
+			
+	//On ajoute un title pour voir les définitions en entier lorsque les noeuds contiennent plus d'un mot
+	var node = svg.selectAll("circle,text");
+	/*node.append("title")
+		.text(function(d) { return d.description; });*/
+
+	zoomTo([jsontree.x, jsontree.y, jsontree.r * 2]);
+
+	//Lance le zoom sur un noeud
+	function zoomfonc(d) {
+		focus = d;
+
+		var transition = d3.transition()
+				.duration(500)
+				.tween("zoom", function(d) {
+					var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+					return function(t) { zoomTo(i(t)); };
+				});
+	}
+
+	//Zoom sur une position
+	function zoomTo(v) {
+		var k = diameter / v[2]; view = v;
+		circle.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
+		text.attr("transform", function(d) { return "translate(" + (d.x - v[0] - d.r / 1.5) * k + "," + (d.y - v[1]) * k + ")"; });
+		circle.attr("r", function(d) { return d.r * k; });
+		text.style("font-size", function(d) { return 2*Math.sqrt(d.r) * k + 'px'; });
+	}
+
+	//On adapte la taille de la figure à la taille du conteneur
+	d3.select(self.frameElement).style("height", diameter + "px");
+	
+	
 	// On ajoute des etiquettes sur les noeuds
 	$('svg g circle').tipsy({ 
 		gravity: 'w', 
@@ -80,14 +140,7 @@
 		}
 	});
 
-	//Zoom sur une position
-	function zoomTo(focus) {
-		var k = diameter / focus.r / 2; 
-		svg.selectAll("circle").attr("transform", function(d) { return "translate(" + (d.x - focus.x) * k + "," + (d.y - focus.y) * k + ")"; });
-		circle.attr("r", function(d) { return d.r * k; });
-	}
-
-	zoomTo(jsontree);
+	svg.attr("transform","translate(" + width/2 + "," + height/2 + ")scale("+ width / diameter / 2 +",1)");
 
 	console.log('Fin : on a terminé d\'afficher la vue');
 })();

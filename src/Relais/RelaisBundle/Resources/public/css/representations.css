@@ -13,10 +13,14 @@ strong
   font: 10px sans-serif;
 }
 
+.node--leaf {
+	fill: white;
+}
+
 .link {
   fill: none;
   stroke: #ccc;
-  stroke-width: 5px;
+  stroke-width: 1px;
 }
 
 /* http://bl.ocks.org/mccannf/1629644 */

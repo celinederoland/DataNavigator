@@ -37,7 +37,7 @@
 
 	//On utilise le layout tree de d3 pour la forme du dessin
 	var tree = d3.layout.tree()
-			.size([360, 200])
+			.size([360, 500])
 			.separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
 	var diagonal = d3.svg.diagonal.radial()
@@ -86,7 +86,11 @@
 		  .attr("dy", ".31em")
 		  .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
 		  .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-		  .text(function(d) { return d.name; })
+		  .text(function(d) { 
+				return ( d.type != "N" && d.type != "R" && d.type != "V" && d.type != "A" && d.name.length < 30) ? d.name : ''; 
+			})
+			.style("font-size","15px");
+	;
 	// On ajoute des etiquettes sur les noeuds
 		$('svg g circle').tipsy({ 
 			gravity: 'w', 
