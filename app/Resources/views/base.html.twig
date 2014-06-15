@@ -22,11 +22,18 @@
 		<nav id="menusuperieur">
 			<ul>
 				<div id="gauche">
-				<li><a href="{{ path('jc_front_homepage') }}">
+				<li {% if "front" in app.request.attributes.get('_route') %}class="pagecourante"{% endif %}><a href="{{ path('jc_front_homepage') }}">
 					{% image 'images/menusite/logocarto.png' %}
 						<img 
 							src="{{ asset_url }}" height="20px" width="20px"
 							title="{{ 'home' | trans}}"/>{{ 'home' | trans}}
+					{% endimage %}
+				</a></li>
+				<li {% if "relais" in app.request.attributes.get('_route') %}class="pagecourante"{% endif %}><a href="{{ path('relais_relais_homepage') }}">
+					{% image 'images/menusite/logorelais.png' %}
+						<img 
+							src="{{ asset_url }}" height="20px" width="20px"
+							title="{{ 'relais' | trans}}"/>{{ 'relais' | trans}}
 					{% endimage %}
 				</a></li>
 				<li><a href="{{ path('jc_front_homepage') }}">
@@ -56,7 +63,12 @@
 
 				{% if app.user %}
 					<li>
-						{{ 'welcom' | trans }} {{ app.user.username }}
+						{% image 'images/menusite/logobienvenu.png' %}
+							<a><img 
+								src="{{ asset_url }}" height="20px" width="20px"
+								title="{{ 'welcom' | trans}}"/>
+						{% endimage %}
+						{{ app.user.username }}</a>
 					</li>
 				{% endif %}
 				{% if app.user %}
@@ -65,14 +77,6 @@
 						<a href="{{ path('fos_user_security_logout') }}"><img 
 							src="{{ asset_url }}" height="20px" width="20px"
 							title="{{ 'delog' | trans}}"/>{{ 'delog' | trans}}
-						</a>
-					{% endimage %}
-					</li>
-					<li>
-					{% image 'images/menusite/supprimer.png' %}
-						<a href="{{ path('jc_user_supprimer') }}"><img 
-							src="{{ asset_url }}" height="20px" width="20px"
-							title="{{ 'del' | trans}}"/>{{ 'del' | trans}}
 						</a>
 					{% endimage %}
 					</li>
@@ -86,7 +90,7 @@
 					{% endimage %}
 					</li>
 					<li>
-					{% image 'images/menusite/inscription.png' %}
+					{% image 'images/menusite/logoinscription.png' %}
 						<a href="{{ path('fos_user_registration_register') }}"><img 
 							src="{{ asset_url }}" height="20px" width="20px"
 							title="{{ 'register' | trans}}"/>{{ 'register' | trans}}
@@ -98,7 +102,7 @@
 					{% if app.request.locale == 'fr' %}
 					<a href="{{ path('jc_front_homepage', {_locale:'en'} )}}">
 						{% image 'images/menusite/en.png' %}
-							<img 
+							<img style="margin-right:0px"
 								src="{{ asset_url }}" height="20px" width="20px"
 								title="{{ 'trad' | trans}}"/>
 						{% endimage %}
@@ -106,7 +110,7 @@
 					{% else %}
 					<a href="{{ path('jc_front_homepage', {_locale:'fr'} )}}">
 						{% image 'images/menusite/fr.png' %}
-							<img 
+							<img style="margin-right:0px"
 								src="{{ asset_url }}" height="20px" width="20px"
 								title="{{ 'trad' | trans}}"/>
 						{% endimage %}

@@ -18,6 +18,7 @@ function init() {
 	$('#recherche').draggable();
 	$('#infos').draggable();
 	$('#options').draggable();
+	$('#menuadmin').draggable();
 
 	$('#recherche').css('top','0px');
 	$('#options').css('top','0px');
@@ -25,6 +26,8 @@ function init() {
 	var hinfo = haut - $('#infos').outerHeight() - 50;
 
 	$('#infos').css('top',hinfo + 'px');
+	$('#menuadmin').css('top',haut - 2*hbox + 'px');
+
 
 	$('#recherche').css('left',(larg/2 - 200) + 'px');
 
@@ -35,10 +38,12 @@ function init() {
 	var lvue = larg - $('#menuvue').outerWidth() - 5;
 	var ldonnees = larg - $('#menudonnees').outerWidth() - 5;
 	var ltools = larg - $('#menutools').outerWidth() - 5;
+	var ladmin = larg - $('#menuadmin').outerWidth() - 5;
 
 	$('#menuvue').css('left',lvue + 'px');
 	$('#menudonnees').css('left',ldonnees + 'px');
 	$('#menutools').css('left',ltools + 'px');
+	$('#menuadmin').css('left',ladmin + 'px');
 
 	$('#infos').resizable({ ghost:true  });
 	$('#form_relations').resizable({ ghost:true  });

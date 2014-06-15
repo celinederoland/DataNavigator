@@ -49,6 +49,12 @@
 	liststyletype:none;
 }
 
+#menusuperieur .pagecourante
+{
+	border: solid 1px grey;
+	background-image:url('/images/fondboutonactif.png');
+}
+
 #menusuperieur #gauche
 {
 	float:left;
@@ -58,4 +64,9 @@
 {
 	width:100%;
 	text-align:right;
+}
+
+#menusuperieur img
+{
+	margin-right:10px;
 }
