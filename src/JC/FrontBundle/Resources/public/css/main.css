@@ -1,4 +1,64 @@
-h1
+.conteneuraccueil h1
 {
-	color:red;
+	color:#004184;
 }
+
+.conteneuraccueil h2, .conteneuraccueil h3
+{
+	text-align:center;
+	color:#004184;
+}
+
+.conteneuraccueil h2
+{
+	padding-top:10px;
+}
+
+.conteneuraccueil
+{
+	width:100%;
+	vertical-align:top;
+}
+
+.accueil
+{
+	display:block;
+	width:100%;
+	background-color: #fbfdff;
+	border-radius:10px;
+	vertical-align:top;
+}
+
+.accadre
+{
+	display:inline-block;
+	background-color:white;
+	border-radius:5px;
+	border:solid 1px lightgrey;
+	margin:2px;
+	padding:8px;
+	width:210px;
+	height:8em;
+	overflow:hidden;
+}
+
+.vue
+{
+	height:auto;
+}
+
+.source img
+{
+	width:50px;
+	height:50px;
+	float:left;
+}
+
+.vue img
+{
+	display:block;
+	margin:auto;
+	width:150px;
+	height:150px;
+}
+
