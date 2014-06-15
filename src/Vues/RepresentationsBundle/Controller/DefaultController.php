@@ -62,7 +62,6 @@ class DefaultController extends Controller
 	* Appelle la vue bubble
 	* 
 	* @return HttpResponse script javascript
-	* @todo Bubble A FAIRE
 	*/
 	public function bubbleAction() //testée par qunit
 	{
@@ -74,7 +73,6 @@ class DefaultController extends Controller
 	* Appelle la vue indented
 	* 
 	* @return HttpResponse script javascript
-	* @todo Indented A FAIRE
 	*/
 	public function indentedAction() //testée par qunit
 	{
@@ -86,7 +84,6 @@ class DefaultController extends Controller
 	* Appelle la vue force
 	* 
 	* @return HttpResponse script javascript
-	* @todo Force A FAIRE
 	*/
 	public function forceAction() //testée par qunit
 	{
@@ -98,12 +95,23 @@ class DefaultController extends Controller
 	* Appelle la vue radial
 	* 
 	* @return HttpResponse script javascript
-	* @todo Radial A FAIRE
 	*/
 	public function radialAction() //testée par qunit
 	{
 		$data = $this -> getRequest() -> request -> get('data');
 		return $this -> render('VuesRepresentationsBundle:Representations:radial.js.twig', array('data' => $data));
+	}
+
+/**
+	* Appelle la vue matrice
+	* 
+	* @return HttpResponse script javascript
+	* @todo Radial A FAIRE
+	*/
+	public function matriceAction() //testée par qunit
+	{
+		$data = $this -> getRequest() -> request -> get('data');
+		return $this -> render('VuesRepresentationsBundle:Representations:matrice.js.twig', array('data' => $data));
 	}
 
 }

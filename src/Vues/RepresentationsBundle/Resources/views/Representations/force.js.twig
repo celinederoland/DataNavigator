@@ -67,8 +67,6 @@
 		html: true, 
 		title: function() { 
 			var d = this.__data__;
-			console.log(d);
-			//return "coucou";
 			return '<div class="floatingp">Relation</div><p>sujet : ' + d.source.name + ' </p> ' + '<div class="floatingp">' + d.name[0] + '</div><p>' + ' objet : ' + d.target.name + '</p>'; 
 		}
 	});

@@ -18,6 +18,8 @@
 'force': 'Graph'
 'bubble': 'Arbre ensembliste'
 'jsongraph': 'Json formaté pour les visualisations de type graph'
+'jsontree': 'Json formaté pour les visualisations de type arbre'
+'matrice': 'Matrice'
 
 #Menu tools
 'zoom': 'Zoom Avant'

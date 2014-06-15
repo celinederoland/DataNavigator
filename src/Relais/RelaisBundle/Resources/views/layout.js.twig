@@ -34,6 +34,7 @@
 		if ($('#json').attr('class') == 'activevue') { var vue = 'json'; }
 		if ($('#jsongraph').attr('class') == 'activevue') { var vue = 'jsongraph'; }
 		if ($('#jsontree').attr('class') == 'activevue') { var vue = 'jsontree'; }
+		if ($('#matrice').attr('class') == 'activevue') { var vue = 'matrice'; }
 
 		//Options
 		var limite = $('#form_limite').val();
@@ -189,6 +190,17 @@
 						$.ajax({
 							type:"POST",
 							url:"{{ path('vues_representations_radial') }}",
+							dataType:"script",
+							data:{ 'data': JSON.stringify(data) },
+							cache:false,
+							success:function() { console.log('success'); }
+						});
+					}
+					else if (vue == 'matrice') 
+					{ 
+						$.ajax({
+							type:"POST",
+							url:"{{ path('vues_representations_matrice') }}",
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,

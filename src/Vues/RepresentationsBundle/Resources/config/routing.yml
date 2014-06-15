@@ -25,3 +25,7 @@ vues_representations_force:
 vues_representations_radial:
     pattern:  /radial
     defaults: { _controller: VuesRepresentationsBundle:Default:radial }
+
+vues_representations_matrice:
+    pattern:  /matrice
+    defaults: { _controller: VuesRepresentationsBundle:Default:matrice }

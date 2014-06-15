@@ -38,6 +38,15 @@
 		</li>
 		<li>
 
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logomatrice.png' %}
+				<img id="matrice" onClick='activerVue("#matrice")'
+					src="{{ asset_url }}" height="40px" width="40px"
+					title="{{ 'matrice' | trans}}"/>
+			{% endimage %}
+
+		</li>
+		<li>
+
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/jsongenerique.png' %}
 				<img id="json" onClick='activerVue("#json")'
 					src="{{ asset_url }}" height="40px" width="40px"

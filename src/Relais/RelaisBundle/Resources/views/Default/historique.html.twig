@@ -75,7 +75,7 @@
 					title="{{ 'Humour' | trans}}"/>
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logogetty.png' %}
-				<img id="choixhumour" onClick="filtrerSource('humour')"
+				<img id="choixgetty" onClick="filtrerSource('getty')"
 					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'Humour' | trans}}"/>
 			{% endimage %}
@@ -89,6 +89,8 @@
 				<option id="optionbubble" value="bubble">{{ 'bubble' | trans }}</option>
 				<option id="optionjson" value="json">{{ 'json' | trans }}</option>
 				<option id="optionjsongraph" value="jsongraph">{{ 'jsongraph' | trans }}</option>
+				<option id="optionjsongraph" value="jsontree">{{ 'jsontree' | trans }}</option>
+				<option id="optionjsongraph" value="matrice">{{ 'matrice' | trans }}</option>
 			</select>
 
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logoradial.png' %}
@@ -118,6 +120,16 @@
 			{% endimage %}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/jsongraph.png' %}
 				<img id="choixjsongraph" onClick='filtrerVue("jsongraph")'
+					src="{{ asset_url }}" height="20px" width="20px"
+					title="{{ 'jsongraph' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/jsontree.png' %}
+				<img id="choixjsongraph" onClick='filtrerVue("jsontree")'
+					src="{{ asset_url }}" height="20px" width="20px"
+					title="{{ 'jsongraph' | trans}}"/>
+			{% endimage %}
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logomatrice.png' %}
+				<img id="choixmatrice" onClick='filtrerVue("matrice")'
 					src="{{ asset_url }}" height="20px" width="20px"
 					title="{{ 'jsongraph' | trans}}"/>
 			{% endimage %}

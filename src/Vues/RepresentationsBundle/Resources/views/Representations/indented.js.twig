@@ -15,6 +15,11 @@
 	console.log(jsonobjet.relations);
 	var formateur = new D3_Formatter();
 	var jsontree = formateur.to_tree(jsonobjet);
+	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
+	$('#conteneurD3').html('');
+	$('#conteneurD3').css('visibility','visible');
+	$('#conteneurpage').css('visibility','hidden');
+	$('#conteneurpage').html('<h1>Indented</h1>' + '<pre>' + jsonchaine + '</pre>');
 	jsontree.x0 = 0;
 	jsontree.y0 = 0;
 

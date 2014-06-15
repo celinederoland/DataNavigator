@@ -1,0 +1,150 @@
+{% extends "VuesRepresentationsBundle::d3_formatter.js.twig" %}
+
+{% block vue %}
+
+/**
+ * On traite le json pour insérer ce qu'on veut dans les conteneurs
+ */
+(function ()
+{
+	console.log('vous êtes dans bubblevue');
+	console.log('On a récupéré data :');
+	console.log("{{ data }}");
+	var jsonobjet = JSON.parse("{{ data }}");
+	console.log("relations définies dans data :");
+	console.log(jsonobjet.relations);
+	var formateur = new D3_Formatter();
+	var jsongraph = formateur.to_graph(jsonobjet);
+	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
+	$('#conteneurD3').html('');
+	$('#conteneurD3').css('visibility','visible');
+	$('#conteneurpage').css('visibility','hidden');
+	$('#conteneurpage').html('<h1>Matrice</h1>' + '<pre>' + jsonchaine + '</pre>');
+
+	//On construit la matrice
+	var matrix = [],
+		nodes = jsongraph.nodes,
+		n = nodes.length;
+
+	// Compute index per node.
+	nodes.forEach(function(node, i) {
+		node.index = i;
+		matrix[i] = d3.range(n).map(function(j) { return { x: j, y: i, rel: {} }; } );
+	});
+
+	// Convert links to matrix; count character occurrences.
+	jsongraph.links.forEach(function(link) {
+		matrix[link.source][link.target].rel = link;
+		matrix[link.target][link.source].rel = link;
+	});
+
+	console.log(matrix);
+
+	//On crée deux sets de couleurs, un pour les noeuds, un pour les relations
+	var ncolor = d3.scale.category10();
+	var rcolor = d3.scale.category20();
+
+	// On recupere la taille de la div pour mettre le svg
+	var width = $('#conteneurmenu').innerWidth(),
+	  height = $("#conteneurmenu").innerHeight(),
+		barHeight = height / (1.5*n),
+		barWidth = width / (1.5*n);
+
+	//On ajoute un objet svg centré, qui contiendra le dessin
+	var svg = d3.select("#conteneurD3").append("svg")
+			.attr("width", width)
+			.attr("height", height)
+		.append("g")
+			.attr("transform", "translate(" + (width - n*barWidth) / 2 + "," + (height - n*barHeight) / 2 + ")");
+
+	//Image de fond
+	svg.append("rect")
+			.style("fill", "white")
+			.style("stroke","black")
+			.attr("width", n * barWidth)
+			.attr("height", n * barHeight);
+
+	//Lignes
+	var l = 0;
+
+	var row = svg.selectAll(".row")
+			.data(matrix)
+		.enter().append("g")
+			.attr("class", "row")
+			.attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; })
+			.each(row).each(inseretxtligne);
+
+	function inseretxtligne(row) {
+		var t = d3.select(this).selectAll("text")
+				.data(function(row) { return [ nodes[row[l++].x] ]; })
+			.enter().append("text")
+			.attr("x", -6)
+			.attr("y", barHeight/2)
+			.style("font-size", barHeight + 'px')
+			.style("fill", function(d) { return ncolor(d.group); })
+			.attr("text-anchor", "end")
+			.text(function(d, i) { return d.name; });
+	}
+
+	//Cellules = Relations
+	function row(row) {
+		var cell = d3.select(this).selectAll(".cell")
+				.data(row)
+			.enter().append("rect")
+				.attr("class","mesrel")
+				.attr("x", function(d, i) { return d.x * barWidth; })
+				.attr("width", barWidth)
+				.attr("height", barHeight)
+				.style("stroke", function(d) { return d.rel.name ? "black" : "white"; })
+				.style("fill", function(d) { return d.rel.name ? rcolor(d.rel.name[0]) : "white"; });
+	}
+	$('.mesrel').tipsy({ 
+		gravity: 'w', 
+		html: true, 
+		title: function() { 
+			var d = this.__data__;
+			//return "coucou";
+			if (d.rel.name) {
+				return '<div class="floatingp">Relation</div><p>sujet : ' + nodes[d.rel.source].name + ' </p> ' + '<div class="floatingp">' + d.rel.name[0] + '</div><p>' + ' objet : ' + nodes[d.rel.target].name + '</p>'; 
+			}
+			return '';
+		}
+	});
+
+	//Colonnes
+	var column = svg.selectAll(".column")
+			.data(matrix)
+		.enter().append("g")
+			.attr("class", "column")
+			.attr("transform", function(d, i) { return "rotate(-90)translate(0," + i * barWidth + ")"; })
+			.each(inseretxtcol);
+
+	column.append("line")
+			.attr("x1", -width);
+
+	function inseretxtcol(column) {
+		var t = d3.select(this).selectAll("text")
+				.data(function(column, i) { return [ nodes[column[i].y] ]; })
+			.enter().append("text")
+			.attr("x", 6)
+			.attr("y", barHeight/2)
+			.style("font-size", barHeight + 'px')
+			.style("fill", function(d) { return ncolor(d.group); })
+			.attr("text-anchor", "start")
+			.text(function(d, i) { return d.name; });
+	}
+
+	//Ajout des étiquettes sur les noeuds
+	$('svg g text').tipsy({ 
+		gravity: 'e', 
+		html: true, 
+		title: function() {
+			var d = this.__data__;
+			return "<div>"+ d.type + "</div><div class='floatingp'>" + d.name + "</div><p>" + d.description + "</p>";
+		}
+	});
+
+	console.log('Fin : on a terminé d\'afficher la vue');
+})();
+
+{% endblock %}
