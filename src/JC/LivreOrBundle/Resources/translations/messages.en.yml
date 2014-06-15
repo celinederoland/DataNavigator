@@ -1,1 +1,7 @@
 livre: 'Visitors book'
+'Livre': 'Visitors Book'
+'auteur': 'Author'
+'comment': "Your comment"
+'captcha': "Copy the captcha"
+'letword': "Leave a comment"
+'submit': "Submit"

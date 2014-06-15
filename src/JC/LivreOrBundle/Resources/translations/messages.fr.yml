@@ -1,1 +1,7 @@
 livre: 'Livre d’or'
+'Livre': "Livre d'or"
+'auteur': 'Auteur'
+'comment': "Votre commentaire"
+'captcha': "Recopiez la captcha"
+'letword': "Laissez nous un petit mot"
+'submit': "Envoyer"
