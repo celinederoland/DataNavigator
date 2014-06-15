@@ -1,0 +1,11 @@
+#Page d'accueil, message de bienvenue
+'titreprincipal': "Welcom on our datas'visualisation website"
+'ac1': "Our aim is to propose algorithms to search results in a database and show it thank's to an ergonomic and navigable graphic."
+'ac2': "All results below are available in"
+
+#Définition des sources
+'wndef': "Terminologic network, defining lexical and semantic relations between english words"
+'dbdef': "Database built form Wikepedia"
+'debiandef': "Debian packages dependencies"
+'gettydef': "Terminologic and ontologic multilingual network"
+'humourdef': "The life of this project (in french only)"

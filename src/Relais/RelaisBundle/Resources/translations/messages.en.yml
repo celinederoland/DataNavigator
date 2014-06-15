@@ -20,7 +20,11 @@
 'bubble': 'Bubble Tree'
 'jsongraph': 'Json for graph visualisations'
 'jsontree': 'Json for tree visualisations'
+'json': 'Our generic json file'
 'matrice': 'Matrix'
+
+#Menu source
+'humour': 'Fun'
 
 #Menu tools
 'zoom': 'Zoom'

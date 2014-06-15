@@ -9,9 +9,9 @@
 
 <div class="conteneuraccueil">
 
-	<h1>Bienvenue sur notre site de visualisation de données</h1>
-	<p>L'objectif de ce site est de proposer des algorithmes de recherche dans une base de données et d'en afficher le résultat sous une forme graphique ergonomique et naviguable.</p>
-	<p>Tous les résultats proposés ci-dessous sont disponibles dans l'onglet "Explorer des données".</p>
+	<h1>{{ 'titreprincipal' | trans }}</h1>
+	<p>{{ 'ac1' | trans }} </p>
+	<p>{{ 'ac2' | trans }} {{ 'relais' | trans }}.</p>
 
 	<div class="accueil">
 
@@ -23,8 +23,8 @@
 					src="{{ asset_url }}"
 					title="{{ 'WordNet' | trans}}"/>
 			{% endimage %}
-			<h3>Wordnet</h3>
-			<p>Réseau terminologique, associant par des liens sémantiques et lexicaux les mots de la langue anglaise
+			<h3>{{ 'WordNet' | trans}}</h3>
+			<p>{{ 'wndef' | trans }}
 			</p>
 
 		</div><div class="accadre source" >
@@ -34,8 +34,8 @@
 					src="{{ asset_url }}"
 					title="{{ 'DbPedia' | trans}}"/>
 			{% endimage %}
-			<h3>DbPedia</h3>
-			<p>Base de données construite à partir du contenu de l'encyclopédie libre Wikipedia
+			<h3>{{ 'DbPedia' | trans}}</h3>
+			<p>{{ 'dbdef' | trans}}
 			</p>
 
 		</div><div class="accadre source" >
@@ -44,8 +44,8 @@
 					src="{{ asset_url }}"
 					title="{{ 'Debian' | trans}}"/>
 			{% endimage %}
-			<h3>Debian</h3>
-			<p>Dépendance de paquets Debian
+			<h3>{{ 'Debian' | trans}}</h3>
+			<p>{{ 'debiandef' | trans}}
 			</p>
 
 		</div><div class="accadre source" >
@@ -55,8 +55,19 @@
 					src="{{ asset_url }}"
 					title="{{ 'Getty' | trans}}"/>
 			{% endimage %}
-			<h3>Getty</h3>
-			<p>Réseau terminologique et ontologique multilingue
+			<h3>{{ 'Getty' | trans}}</h3>
+			<p>{{ 'gettydef' | trans}} 
+			</p>
+
+		</div><div class="accadre source" >
+
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logohumour.png' %}
+				<img id="humour"
+					src="{{ asset_url }}"
+					title="{{ 'humour' | trans}}"/>
+			{% endimage %}
+			<h3>{{ 'humour' | trans}}</h3>
+			<p>{{ 'humourdef' | trans}}
 			</p>
 
 		</div>

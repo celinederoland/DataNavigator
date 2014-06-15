@@ -1,0 +1,11 @@
+#Page d'accueil, message de bienvenue
+'titreprincipal': "Bienvenue sur notre site de visualisation de données"
+'ac1': "L'objectif de ce site est de proposer des algorithmes de recherche dans une base de données et d'en afficher le résultat sous une forme graphique ergonomique et naviguable."
+'ac2': "Tous les résultats proposés ci-dessous sont disponibles dans l'onglet"
+
+#Définition des sources
+'wndef': "Réseau terminologique, associant par des liens sémantiques et lexicaux les mots de la langue anglaise"
+'dbdef': "Base de données construite à partir du contenu de l'encyclopédie libre Wikipedia"
+'debiandef': "Dépendance de paquets Debian"
+'gettydef': "Réseau terminologique et ontologique multilingue"
+'humourdef': "Vie et fonctionnement de ce projet"

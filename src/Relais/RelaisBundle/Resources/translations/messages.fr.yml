@@ -20,7 +20,11 @@
 'bubble': 'Arbre ensembliste'
 'jsongraph': 'Json formaté pour les visualisations de type graph'
 'jsontree': 'Json formaté pour les visualisations de type arbre'
+'json': 'Notre json générique'
 'matrice': 'Matrice'
+
+#Menu source
+'humour': 'Humour'
 
 #Menu tools
 'zoom': 'Zoom Avant'
