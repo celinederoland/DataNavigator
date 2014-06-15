@@ -1,5 +1,16 @@
 {% extends "::base.html.twig" %}
 
-{% block conteneurglobal %}
+{% block contenuglobal %}
+{% image '@JCFrontBundle/Resources/public/images/banniere.png' %}
+	<img
+		src="{{ asset_url }}" width="100%" height="150px"
+		title="{{ 'banniere' | trans}}"/>
+{% endimage %}
 <h1>Bienvenue sur la page d'accueil de l'application</h1>
+{% endblock %}
+
+{% block stylesheets %} {{ parent() }}
+	{% stylesheets filter='cssrewrite' '@JCFrontBundle/Resources/public/css/*' %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+	{% endstylesheets %}
 {% endblock %}
