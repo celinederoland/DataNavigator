@@ -9,3 +9,8 @@
 'debiandef': "Dépendance de paquets Debian"
 'gettydef': "Réseau terminologique et ontologique multilingue"
 'humourdef': "Vie et fonctionnement de ce projet"
+
+#Sous titres
+'datasources': "Sources de données"
+'visu': "Visualisations graphiques"
+'jsonvisu': "Visualisations textuelles (json)"

@@ -9,3 +9,8 @@
 'debiandef': "Debian packages dependencies"
 'gettydef': "Terminologic and ontologic multilingual network"
 'humourdef': "The life of this project (in french only)"
+
+#Sous titres
+'datasources': "Data sources"
+'visu': "Graphical displays"
+'jsonvisu': "Textual displays (json)"

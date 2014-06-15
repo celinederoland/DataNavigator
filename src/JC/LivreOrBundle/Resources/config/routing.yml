@@ -1,0 +1,7 @@
+jc_livre_or_homepage:
+    pattern:  /
+    defaults: { _controller: JCLivreOrBundle:Default:index }
+
+jc_livre_or_admin_supprimer:
+    pattern:  /admin/supprimer/{id}
+    defaults: { _controller: JCLivreOrBundle:Default:supprimer }

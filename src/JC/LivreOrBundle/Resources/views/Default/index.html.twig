@@ -1,1 +1,43 @@
-Hello {{ name }}!
+{% extends "JCLivreOrBundle:Layouts:layout.html.twig" %}
+{% block contenuglobal %}
+
+	<h1>{{"livre" | trans}} -- {{ 'letword'|trans }}</h1>
+<div class="livre">
+<table>
+{% for com in comments %}
+			<tr><td class="auteur">{{ com.auteur }}, le {{ com.date | date("d/m/Y")}}</td></tr>
+			<tr class="comment"><td>{{ com.contenu }}</td></tr>
+			{% if is_granted('ROLE_ADMIN') %}
+			<tr><td><a name="supprimer" href="{{ path('jc_livre_or_admin_supprimer',{'id':com.id}) }}">Supprimer</a></td></tr>
+			{% endif %}
+		<tr class="separation"><td> </td></tr>
+{% endfor %}
+</table>
+</div>
+
+<div class="form">
+	<form method="post" action="{{ path('jc_livre_or_homepage') }}">
+		<table>
+			<tr>
+				<td>{{ form_label(form.auteur, "auteur"|trans) }}</td>
+				<td>{{ form_errors(form.auteur) }}</td>
+				<td>{{ form_widget(form.auteur) }}</td>
+			</tr>
+			<tr>
+				<td>{{ form_label(form.contenu, "comment"|trans) }}</td>
+				<td>{{ form_errors(form.contenu) }}</td>
+				<td>{{ form_widget(form.contenu) }}</td>
+			</tr>
+			{% if form.captcha is defined %}
+			<tr>
+				<td>{{ form_label(form.captcha, "captcha"|trans) }}</td>
+				<td>{{ form_errors(form.captcha) }}</td>
+				<td>{{ form_widget(form.captcha) }}</td>
+			</tr>
+			{% endif %}
+		{{ form_rest(form) }}
+		</table>
+		<input type="submit" id="submit" value="{{ 'submit'|trans }}"/>
+	</form>
+</div>
+{% endblock %}

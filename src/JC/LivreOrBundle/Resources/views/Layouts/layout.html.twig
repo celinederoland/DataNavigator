@@ -1,0 +1,7 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}{{ parent() }}
+{% stylesheets '@JCLivreOrBundle/Resources/public/css/*' %}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+{% endstylesheets %}
+{% endblock %}

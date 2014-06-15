@@ -43,7 +43,7 @@
 							title="{{ 'doc' | trans}}"/>{{ 'doc' | trans}}
 					{% endimage %}
 				</a></li>
-				<li><a href="{{ path('jc_front_homepage') }}">
+				<li {% if "livre" in app.request.attributes.get('_route') %}class="pagecourante"{% endif %}><a href="{{ path('jc_livre_or_homepage') }}">
 					{% image 'images/menusite/logolivre.png' %}
 						<img 
 							src="{{ asset_url }}" height="20px" width="20px"

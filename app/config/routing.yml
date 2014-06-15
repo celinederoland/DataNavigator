@@ -24,7 +24,7 @@ jc_doc:
 #livre d'or
 jc_livre_or:
     resource: "@JCLivreOrBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
+    prefix:   /{_locale}/livreor/
     defaults: {_locale: en}
     requirements:
         _locale: en|fr
