@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	{% stylesheets filter='cssrewrite' '@RelaisRelaisBundle/Resources/public/css/*' %}
+	{% stylesheets filter='cssrewrite' '@RelaisRelaisBundle/Resources/public/css/*' '@VuesRepresentationsBundle/Resources/public/css/*'%}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
 	{% endstylesheets %}
 {% endblock %}
