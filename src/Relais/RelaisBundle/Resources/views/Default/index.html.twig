@@ -42,7 +42,7 @@
 {% endblock %}
 
 {% block js %} {{ parent() }}
-	{% javascripts '@RelaisRelaisBundle/Resources/public/js/public/*' %}
+	{% javascripts '@RelaisRelaisBundle/Resources/public/js/public/*' '@VuesRepresentationsBundle/Resources/views/d3_outils.js.twig' %}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>

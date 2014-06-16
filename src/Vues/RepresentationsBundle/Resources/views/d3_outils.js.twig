@@ -1,0 +1,34 @@
+function D3_Outils(){
+}
+
+D3_Outils.prototype.rotate = function() {
+	//console.log("rotation");
+	var d = d3.select("#dessin");
+	var dx = Number(d.attr('depx'));
+	var dy = Number(d.attr('depy'));
+	var ds = Number(d.attr('sc'));
+	var dr = Number(d.attr('rot'));
+	var drx = Number(d.attr('rotx'));
+	var dry = Number(d.attr('roty'));
+	dr += 20;
+	d.attr("rot", dr);
+	d.attr("transform", "translate(" + dx + "," + dy + ")rotate(" + dr + "," + drx + "," + dry + ")");
+}
+
+D3_Outils.prototype.bouger = function(dir) {
+	//console.log("rotation");
+	var d = d3.select("#dessin");
+	var dx = Number(d.attr('depx'));
+	var dy = Number(d.attr('depy'));
+	var ds = Number(d.attr('sc'));
+	var dr = Number(d.attr('rot'));
+	var drx = Number(d.attr('rotx'));
+	var dry = Number(d.attr('roty'));
+	dx += dir.x;
+	dy += dir.y;
+	d.attr("depx", dx);
+	d.attr("depy", dy);
+	d.attr("transform", "translate(" + dx + "," + dy + ")rotate(" + dr + "," + drx + "," + dry + ")");
+}
+
+

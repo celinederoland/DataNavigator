@@ -23,6 +23,9 @@
 	$('#conteneurpage').html('<h1>Force</h1>' + '<pre>' + jsonchaine + '</pre>');
 
 
+	var outils = new D3_Outils();
+
+
 	//On crée deux sets de couleurs, un pour les noeuds, un pour les relations
 	var ncolor = d3.scale.category10();
 	var rcolor = d3.scale.category20();
@@ -51,7 +54,14 @@
 		.attr("height", height)
 		.attr("class", "svgContainer")
 		.append("g")
-		.attr("transform", function (d) { return "translate(" + 0 + "," + 0 + ")"; });
+			.attr("id","dessin")
+			.attr("depx",0)
+			.attr("depy",0)
+			.attr("rot",0)
+			.attr("rotx",width/2)
+			.attr("roty",height/2)
+			.attr("sc",1)
+			.attr("transform", function (d) { return "translate(" + 0 + "," + 0 + ")"; });
 
 	// Pour tous les éléments .link on crée un noeud <line>
 	// On cree les liens de la representation

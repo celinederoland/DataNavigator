@@ -124,3 +124,16 @@ function historique(url)
 	$('#conteneurpage').css('visibility','visible');
 	$('#conteneurpage').load(url);
 }
+
+function activerRotation()
+{
+	var outils = new D3_Outils();
+	outils.rotate();
+}
+
+function activerDrag()
+{
+	var outils = new D3_Outils();
+	var dir = { x: 20, y:0 };
+	outils.bouger(dir);
+}

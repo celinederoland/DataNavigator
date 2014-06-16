@@ -44,7 +44,15 @@
 			.attr("width", diameter)
 			.attr("height", diameter - 150)
 		.append("g")
-			.attr("transform", "translate(" + diameter / 2 + "," + height / 2 + ")");
+			.attr("id","dessin")
+			.attr("depx",diameter / 2)
+			.attr("depy",height / 2)
+			.attr("rotx",0)
+			.attr("roty",0)
+			.attr("rot",0)
+			.attr("sc",1)
+			.attr("transform", "translate(" + diameter / 2 + "," + height / 2 + ")")
+	;
 
 	//Le layout de d3 fabrique 2 tableaux : un pour les noeuds, un autre pour les liens
 	var nodes = tree.nodes(jsontree),
