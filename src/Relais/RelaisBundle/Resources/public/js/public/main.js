@@ -123,6 +123,7 @@ function historique(url)
 {
 	$('#conteneurpage').html('');
 	$('#conteneurpage').css('visibility','visible');
+	$('#conteneurD3').css('visibility','hidden');
 	$('#conteneurpage').load(url);
 }
 
