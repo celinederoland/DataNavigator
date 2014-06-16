@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-	/*public function testJson()
+	public function testJson()
 	{
 		$client = static::createClient();
 		$crawler = $client->request('GET', '/en/getty/json/"analyse"/"all"/2');
@@ -21,9 +21,5 @@ class DefaultControllerTest extends WebTestCase
 		$reponse = str_replace('  ',' ',$reponse);
 
 		$this -> assertEquals($expected,$reponse,'génération json incorrecte');
-	}*/
-	public function testBidon()
-	{
-		$this -> assertTrue(true);
 	}
 }
