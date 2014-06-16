@@ -8,19 +8,14 @@
 (function ()
 {
 	console.log('vous êtes dans force');
-	console.log('On a récupéré data :');
-	console.log("{{ data }}");
+
 	var jsonobjet = JSON.parse("{{ data }}");
 	var formateur = new D3_Formatter();
 	var jsongraph = formateur.to_graph(jsonobjet);
-	console.log('On le transforme en :');
-	console.log(jsongraph);
-	console.log('Puis on insère ce qu\'on veut dans les conteneurs');
-	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
-	$('#conteneurD3').html('');
+
 	$('#conteneurD3').css('visibility','visible');
+	$('#conteneurD3').html('');
 	$('#conteneurpage').css('visibility','hidden');
-	$('#conteneurpage').html('<h1>Force</h1>' + '<pre>' + jsonchaine + '</pre>');
 
 
 	//On crée deux sets de couleurs, un pour les noeuds, un pour les relations

@@ -139,7 +139,7 @@
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,
-							success:function() { console.log('success'); }
+							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden'); }
 						});
 					}
 					else if (vue == 'jsontree') 
@@ -150,7 +150,7 @@
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,
-							success:function() { console.log('success'); }
+							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden'); }
 						});
 					}
 					else if (vue == 'bubble') 
@@ -161,7 +161,7 @@
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,
-							success:function() { console.log('success'); }
+							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
 						});
 					}
 					else if (vue == 'indented')
@@ -172,7 +172,7 @@
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,
-							success:function() { console.log('success'); }
+							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
 						});
 					}
 					else if (vue == 'force') 
@@ -183,7 +183,7 @@
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,
-							success:function() { console.log('success'); }
+							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
 						});
 					}
 					else if (vue == 'radial') 
@@ -194,7 +194,7 @@
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,
-							success:function() { console.log('success'); }
+							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
 						});
 					}
 					else if (vue == 'matrice') 
@@ -205,10 +205,10 @@
 							dataType:"script",
 							data:{ 'data': JSON.stringify(data) },
 							cache:false,
-							success:function() { console.log('success'); }
+							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
 						});
 					}
-					else { alert('vue ' + vue + ' non prise en charge'); }
+					else { alert('vue ' + vue + ' non prise en charge'); 	$('#loading').css('visibility','hidden');}
 				}
 			); 
 		}

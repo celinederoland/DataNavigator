@@ -156,3 +156,13 @@
 {
 	border: solid 3px red;
 }
+
+#loading
+{
+	z-index:2000;
+	position:absolute;
+	left:40%;
+	top:40%;
+	visibility:hidden;
+}
+

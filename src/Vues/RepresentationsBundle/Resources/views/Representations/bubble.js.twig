@@ -8,19 +8,14 @@
 (function ()
 {
 	console.log('vous êtes dans bubblevue');
-	console.log('On a récupéré data :');
-	console.log("{{ data }}");
+
 	var jsonobjet = JSON.parse("{{ data }}");
-	console.log("relations définies dans data :");
-	console.log(jsonobjet.relations);
 	var formateur = new D3_Formatter();
 	var jsontree = formateur.to_tree(jsonobjet);
 
-	var jsonchaine = JSON.stringify(jsontree,false);
 	$('#conteneurD3').css('visibility','visible');
 	$('#conteneurD3').html('');
-	//$('#conteneurpage').css('visibility','visible');
-	$('#conteneurpage').html('<pre>' + jsonchaine + '</pre>');
+	$('#conteneurpage').css('visibility','hidden');
 
 	//On crée deux sets de couleurs, un pour les noeuds, un pour les relations
 	var ncolor = d3.scale.category10();

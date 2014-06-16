@@ -32,6 +32,15 @@
 	{{ include('RelaisRelaisBundle:Menus:recherche.html.twig',{ formrecherche:formrecherche }) }}
 	{{ include('RelaisRelaisBundle:Menus:options.html.twig',{ formrecherche:formrecherche }) }}
 	{{ include('RelaisRelaisBundle:Menus:infos.html.twig') }}
+
+	<div id="loading">
+		{% image '@RelaisRelaisBundle/Resources/public/images/menusite/loading.gif' %}
+			<img
+				src="{{ asset_url }}" height="100px" width="100px"
+				title="{{ 'patientez' | trans}}"/>
+		{% endimage %}
+	</div>
+
 	</form>
 
 	{% if is_granted('ROLE_ADMIN') %}

@@ -112,6 +112,7 @@ function activerVue(id)
  */
 function rechercher(url)
 {
+	$('#loading').css('visibility','visible');
 	console.log('fonction rechercher dans main.js, appelle le script à l\'adresse ' + url);
 	$('#conteneurpage').html('');
 	$('#conteneurpage').css('visibility','hidden');

@@ -8,18 +8,14 @@
 (function ()
 {
 	console.log('vous êtes dans radialvue');
-	console.log('On a récupéré data :');
-	console.log("{{ data }}");
+
 	var jsonobjet = JSON.parse("{{ data }}");
-	console.log("relations définies dans data :");
-	console.log(jsonobjet.relations);
 	var formateur = new D3_Formatter();
 	var jsontree = formateur.to_tree(jsonobjet);
-	var jsonchaine = JSON.stringify(jsonobjet,false,'   ');
-	$('#conteneurD3').html('');
+
 	$('#conteneurD3').css('visibility','visible');
+	$('#conteneurD3').html('');
 	$('#conteneurpage').css('visibility','hidden');
-	$('#conteneurpage').html('<h1>Indented</h1>' + '<pre>' + jsonchaine + '</pre>');
 
 
 	jsontree.x0 = 0;
