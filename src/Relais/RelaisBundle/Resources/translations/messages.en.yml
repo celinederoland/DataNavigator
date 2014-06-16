@@ -29,6 +29,13 @@
 #Menu tools
 'zoom': 'Zoom'
 'unzoom': 'Zoom Back'
+'gauche': 'move to the left'
+'droite': 'move to the right'
+'haut': 'move up'
+'bas': 'move down'
+'rotation+': 'rotate to the right'
+'rotation-': 'rotate to the left'
+'patientez': 'please wait'
 
 #Menu user
 'delog': 'Disconnect'

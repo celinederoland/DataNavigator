@@ -29,6 +29,13 @@
 #Menu tools
 'zoom': 'Zoom Avant'
 'unzoom': 'Zoom Arrière'
+'gauche': 'déplacer vers la gauche'
+'droite': 'déplacer vers la droite'
+'haut': 'déplacer vers le haut'
+'bas': 'déplacer vers le bas'
+'rotation+': 'rotation à droite'
+'rotation-': 'rotation à gauche'
+'patientez': 'patientez'
 
 #Menu user
 'delog': 'Déconnexion'
