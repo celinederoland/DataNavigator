@@ -3,7 +3,7 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logozoom.png' %}
-					<img 
+					<img onClick='activerZoom(1)'
 						src="{{ asset_url }}" height="40px" width="40px"
 						title="{{ 'zoom' | trans}}"/>
 				{% endimage %}
@@ -21,7 +21,7 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodezoom.png' %}
-					<img 
+					<img onClick='activerZoom(-1)'
 						src="{{ asset_url }}" height="40px" width="40px"
 						title="{{ 'unzoom' | trans}}"/>
 				{% endimage %}
@@ -37,15 +37,16 @@
 				{% endimage %}
 
 		</li>
-		<li>
+		<li style="visibility:hidden">
 
-				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logorotation.png' %}
-					<img onClick='activerRotation()'
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/rien.png' %}
+					<img 
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Rotation' | trans}}"/>
+						title="{{ 'Drag & Drop' | trans}}"/>
 				{% endimage %}
 
 		</li>
+
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodroite.png' %}
@@ -56,12 +57,12 @@
 
 		</li>
 		<br/>
-		<li style="visibility:hidden">
+		<li>
 
-				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/rien.png' %}
-					<img 
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logorotationinv.png' %}
+					<img onClick='activerRotation(-1)'
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Drag & Drop' | trans}}"/>
+						title="{{ 'Rotation' | trans}}"/>
 				{% endimage %}
 
 		</li>
@@ -76,15 +77,16 @@
 
 		</li>
 
-		<li style="visibility:hidden">
+		<li>
 
-				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/rien.png' %}
-					<img 
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logorotation.png' %}
+					<img onClick='activerRotation(1)'
 						src="{{ asset_url }}" height="40px" width="40px"
-						title="{{ 'Drag & Drop' | trans}}"/>
+						title="{{ 'Rotation' | trans}}"/>
 				{% endimage %}
 
 		</li>
+
 	</ul>
 </nav>
 

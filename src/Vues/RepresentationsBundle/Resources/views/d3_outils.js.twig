@@ -1,7 +1,7 @@
 function D3_Outils(){
 }
 
-D3_Outils.prototype.rotate = function() {
+D3_Outils.prototype.rotate = function(dir) {
 	//console.log("rotation");
 	var d = d3.select("#dessin");
 	var dx = Number(d.attr('depx'));
@@ -10,9 +10,9 @@ D3_Outils.prototype.rotate = function() {
 	var dr = Number(d.attr('rot'));
 	var drx = Number(d.attr('rotx'));
 	var dry = Number(d.attr('roty'));
-	dr += 20;
+	dr += dir * 10;
 	d.attr("rot", dr);
-	d.attr("transform", "translate(" + dx + "," + dy + ")rotate(" + dr + "," + drx + "," + dry + ")");
+	d.attr("transform", "translate(" + dx + "," + dy + ")scale(" + ds + ")rotate(" + dr + "," + drx + "," + dry + ")");
 }
 
 D3_Outils.prototype.bouger = function(dir) {
@@ -28,7 +28,21 @@ D3_Outils.prototype.bouger = function(dir) {
 	dy += dir.y;
 	d.attr("depx", dx);
 	d.attr("depy", dy);
-	d.attr("transform", "translate(" + dx + "," + dy + ")rotate(" + dr + "," + drx + "," + dry + ")");
+	d.attr("transform", "translate(" + dx + "," + dy + ")scale(" + ds + ")rotate(" + dr + "," + drx + "," + dry + ")");
+}
+
+D3_Outils.prototype.zoom = function(dir) {
+	//console.log("rotation");
+	var d = d3.select("#dessin");
+	var dx = Number(d.attr('depx'));
+	var dy = Number(d.attr('depy'));
+	var ds = Number(d.attr('sc'));
+	var dr = Number(d.attr('rot'));
+	var drx = Number(d.attr('rotx'));
+	var dry = Number(d.attr('roty'));
+	ds += dir;
+	d.attr("sc", ds);
+	d.attr("transform", "translate(" + dx + "," + dy + ")scale(" + ds + ")rotate(" + dr + "," + drx + "," + dry + ")");
 }
 
 

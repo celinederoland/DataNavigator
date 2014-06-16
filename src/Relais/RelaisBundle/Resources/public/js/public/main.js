@@ -125,10 +125,10 @@ function historique(url)
 	$('#conteneurpage').load(url);
 }
 
-function activerRotation()
+function activerRotation(dir)
 {
 	var outils = new D3_Outils();
-	outils.rotate();
+	outils.rotate(dir);
 }
 
 function activerDrag(dx,dy)
@@ -136,4 +136,10 @@ function activerDrag(dx,dy)
 	var outils = new D3_Outils();
 	var dir = { x: dx * 20, y: dy * 20 };
 	outils.bouger(dir);
+}
+
+function activerZoom(dir)
+{
+	var outils = new D3_Outils();
+	outils.zoom(dir/10);
 }
