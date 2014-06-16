@@ -1,27 +1,37 @@
 <nav id='menutools'>
 	<ul>
 		<li>
-			<a href="">
+
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logozoom.png' %}
 					<img 
 						src="{{ asset_url }}" height="40px" width="40px"
 						title="{{ 'zoom' | trans}}"/>
 				{% endimage %}
-			</a>
+
 		</li>
 		<li>
-			<a href="">
+
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logohaut.png' %}
+					<img onClick='activerDrag(0,-1)'
+						src="{{ asset_url }}" height="40px" width="40px"
+						title="{{ 'Drag & Drop' | trans}}"/>
+				{% endimage %}
+
+		</li>
+		<li>
+
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodezoom.png' %}
 					<img 
 						src="{{ asset_url }}" height="40px" width="40px"
 						title="{{ 'unzoom' | trans}}"/>
 				{% endimage %}
-			</a>
+
 		</li>
+		<br/>
 		<li>
 
-				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodeplace.png' %}
-					<img onClick='activerDrag()'
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logogauche.png' %}
+					<img onClick='activerDrag(-1,0)'
 						src="{{ asset_url }}" height="40px" width="40px"
 						title="{{ 'Drag & Drop' | trans}}"/>
 				{% endimage %}
@@ -33,6 +43,45 @@
 					<img onClick='activerRotation()'
 						src="{{ asset_url }}" height="40px" width="40px"
 						title="{{ 'Rotation' | trans}}"/>
+				{% endimage %}
+
+		</li>
+		<li>
+
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodroite.png' %}
+					<img onClick='activerDrag(1,0)'
+						src="{{ asset_url }}" height="40px" width="40px"
+						title="{{ 'Drag & Drop' | trans}}"/>
+				{% endimage %}
+
+		</li>
+		<br/>
+		<li style="visibility:hidden">
+
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/rien.png' %}
+					<img 
+						src="{{ asset_url }}" height="40px" width="40px"
+						title="{{ 'Drag & Drop' | trans}}"/>
+				{% endimage %}
+
+		</li>
+
+		<li>
+
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logobas.png' %}
+					<img onClick='activerDrag(0,1)'
+						src="{{ asset_url }}" height="40px" width="40px"
+						title="{{ 'Drag & Drop' | trans}}"/>
+				{% endimage %}
+
+		</li>
+
+		<li style="visibility:hidden">
+
+				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/rien.png' %}
+					<img 
+						src="{{ asset_url }}" height="40px" width="40px"
+						title="{{ 'Drag & Drop' | trans}}"/>
 				{% endimage %}
 
 		</li>

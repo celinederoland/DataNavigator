@@ -131,9 +131,9 @@ function activerRotation()
 	outils.rotate();
 }
 
-function activerDrag()
+function activerDrag(dx,dy)
 {
 	var outils = new D3_Outils();
-	var dir = { x: 20, y:0 };
+	var dir = { x: dx * 20, y: dy * 20 };
 	outils.bouger(dir);
 }
