@@ -22,9 +22,6 @@
 	$('#conteneurpage').html('<h1>Indented</h1>' + '<pre>' + jsonchaine + '</pre>');
 
 
-	var outils = new D3_Outils();
-
-
 	jsontree.x0 = 0;
 	jsontree.y0 = 0;
 
@@ -109,10 +106,13 @@
 				}
 				return d.name;
 			})
-			.attr("cursor","pointer")
+			.attr("cursor","move")
+			.on("dblclick",function(d) {
+				outils = new D3_Outils();
+				outils.relancer(d.name);
+			})
 			.on("click", function(d) {
 				// On recupere ce qu'il y a dans la balise text
-				console.log(d.id);
 				var text = $('#' + d.id).html();
 				if (d.children) {
 					d._children = d.children;

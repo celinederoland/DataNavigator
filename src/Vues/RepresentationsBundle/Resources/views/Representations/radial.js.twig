@@ -93,8 +93,14 @@
 		  .text(function(d) { 
 				return ( d.type != "N" && d.type != "R" && d.type != "V" && d.type != "A" && d.name.length < 30) ? d.name : ''; 
 			})
-			.style("font-size","15px");
+			.style("font-size","15px")
+			.attr("cursor","move")
+			.on("dblclick",function(d) {
+				outils = new D3_Outils();
+				outils.relancer(d.name);
+			})
 	;
+
 	// On ajoute des etiquettes sur les noeuds
 		$('svg g circle').tipsy({ 
 			gravity: 'w', 

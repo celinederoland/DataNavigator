@@ -23,9 +23,6 @@
 	$('#conteneurpage').html('<h1>Force</h1>' + '<pre>' + jsonchaine + '</pre>');
 
 
-	var outils = new D3_Outils();
-
-
 	//On crée deux sets de couleurs, un pour les noeuds, un pour les relations
 	var ncolor = d3.scale.category10();
 	var rcolor = d3.scale.category20();
@@ -106,7 +103,11 @@
 		.text(function(d) { 
 			return ( d.type != "N" && d.type != "R" && d.type != "V" && d.type != "A" && d.name.length < 30) ? d.name : '';
 		})
-		.attr("cursor","pointer");
+		.attr("cursor","move")
+		.on("dblclick",function(d) {
+			outils = new D3_Outils();
+			outils.relancer(d.name);
+		});
 	// On ajoute des etiquettes sur les noeuds
 	$('svg g circle').tipsy({ 
 		gravity: 'w', 

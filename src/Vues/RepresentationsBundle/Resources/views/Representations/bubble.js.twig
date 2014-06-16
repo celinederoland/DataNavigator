@@ -16,11 +16,6 @@
 	var formateur = new D3_Formatter();
 	var jsontree = formateur.to_tree(jsonobjet);
 
-	var outils = new D3_Outils();
-
-	/*console.log('On le transforme en :');
-	console.log(jsongraph);
-	console.log('Puis on insère ce qu\'on veut dans les conteneurs');*/
 	var jsonchaine = JSON.stringify(jsontree,false);
 	$('#conteneurD3').css('visibility','visible');
 	$('#conteneurD3').html('');
@@ -91,6 +86,11 @@
 			.style("font-size", function(d) { return 2*Math.sqrt(d.r) + 'px'; } )
 			.text(function(d) { 
 				return ( d.type != "N" && d.type != "R" && d.type != "V" && d.type != "A" && d.name.length < 30) ? d.name : ''; 
+			})
+			.attr("cursor","move")
+			.on("dblclick",function(d) {
+				outils = new D3_Outils();
+				outils.relancer(d.name);
 			});
 
 	var node = svg.selectAll("circle,text");

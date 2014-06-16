@@ -45,4 +45,9 @@ D3_Outils.prototype.zoom = function(dir) {
 	d.attr("transform", "translate(" + dx + "," + dy + ")scale(" + ds + ")rotate(" + dr + "," + drx + "," + dry + ")");
 }
 
+D3_Outils.prototype.relancer = function(mot) {
+	$('#form_mot').val(mot);
+	$('#btrecherche').trigger('click');
+}
+
 
