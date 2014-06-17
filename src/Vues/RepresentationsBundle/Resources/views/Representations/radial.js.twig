@@ -61,7 +61,7 @@
 		  .attr("class", "link")
 		  .attr("d", diagonal)
 			.style("stroke", function(d) { return rcolor(jsontree.relcouleurs[jsontree.relations[d.source.id][d.target.id]]); });
-	//On leur ajout un title de la bibliothèque tipsy
+	//On leur ajoute un title de la bibliothèque tipsy
 	$('.link').tipsy({ 
 		gravity: 'w', 
 		html: true, 
