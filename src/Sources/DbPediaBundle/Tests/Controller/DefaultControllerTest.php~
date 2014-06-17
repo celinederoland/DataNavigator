@@ -25,7 +25,7 @@ class DefaultControllerTest extends WebTestCase
 		$this -> assertEquals($expected,$reponse,'génération json incorrecte');
 	}
 
-	public function testInformations()
+		public function testInformations()
 	{
 		$client = static::createClient();
 		$crawler = $client->request('GET', '/fr/dbpedia/fenetre');

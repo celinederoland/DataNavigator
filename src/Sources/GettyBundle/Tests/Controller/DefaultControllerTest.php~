@@ -24,4 +24,8 @@ class DefaultControllerTest extends WebTestCase
 
 		$this -> assertEquals($expected,$reponse,'génération json incorrecte');
 	}
+	public function testBidon()
+	{
+		$this -> assertTrue(true);
+	}
 }

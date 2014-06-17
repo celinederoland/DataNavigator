@@ -32,6 +32,6 @@ class DefaultControllerTest extends WebTestCase
 
 		$reponse = $client -> getResponse() -> getContent();
 
-		$this -> assertContains("gedit", $reponse);
+		$this -> assertContains("horse", $reponse);
 	}
 }
