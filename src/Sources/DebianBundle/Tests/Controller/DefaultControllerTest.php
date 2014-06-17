@@ -24,4 +24,14 @@ class DefaultControllerTest extends WebTestCase
 
 		$this -> assertEquals($expected,$reponse,'génération json incorrecte');
 	}
+
+	public function testInformations()
+	{
+		$client = static::createClient();
+		$crawler = $client->request('GET', '/fr/debian/fenetre');
+
+		$reponse = $client -> getResponse() -> getContent();
+
+		$this -> assertContains("gedit", $reponse);
+	}
 }

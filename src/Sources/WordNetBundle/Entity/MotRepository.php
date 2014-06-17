@@ -106,7 +106,7 @@ class MotRepository extends EntityRepository
 			}
 
 			//Pour chaque mot on calcule son taux de correspondance
-			$correspondances = array();
+			$correspondance = array();
 			foreach ($strmots as $m)
 			{
 				$correspondance[$m] = $this -> calculCorrespondance($m,$recherche);

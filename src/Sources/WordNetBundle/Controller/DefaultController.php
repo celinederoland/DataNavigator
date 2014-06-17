@@ -95,4 +95,29 @@ class DefaultController extends Controller
 		$text = json_encode($tab);
 		return new Response($text);
 	}
+
+	/**
+	 * Renvoie un morceau de code html à insérer dans le cadre "infos"
+	 *
+	 * @param string $mot : Le mot sur lequel on a demandé de l'information
+	 * @return HttpResponse
+	*/
+	public function fenetreAction($mot) 
+	{
+		$mot = 'Horse';
+		//L'adresse du moteur sur lequel on doit réaliser cette requête
+		$searchUrl = "http://wordnetweb.princeton.edu/perl/webwn?s=" . $mot;
+		//On utilise CURL pour effectuer la requête
+		$curl_session = curl_init();
+		curl_setopt($curl_session,CURLOPT_URL,$searchUrl);
+		curl_setopt($curl_session,CURLOPT_RETURNTRANSFER,true);
+		$response = curl_exec($curl_session);
+		curl_close($curl_session);
+
+		preg_match('#<body .*>(.*)</body>#sU', $response, $matches);
+		$result = preg_replace ('#<div class="header">(.*)</div>#sU', '', $matches[1]);
+		$result = preg_replace ('#<form (.*)>(.*)</form>#sU', '', $result);
+
+		return new Response('<p><a href="http://wordnetweb.princeton.edu/perl/webwn?s='.$mot.'">source : http://wordnetweb.princeton.edu/perl/webwn?s='.$mot.'</a><h1>'.$mot.'</h1></p>'.$result);
+	}
 }

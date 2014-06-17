@@ -4,7 +4,11 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "002bc4fb67a582102f9c8dcf1f2bec84",
+=======
+    "hash": "37496974471c0bc89e6c118644b7c76d",
+>>>>>>> DBpediaDoublons
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -119,7 +123,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -692,12 +696,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+<<<<<<< HEAD
                 "reference": "71ed2505443f375876a38e82ff0d1929d6078270"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/71ed2505443f375876a38e82ff0d1929d6078270",
                 "reference": "71ed2505443f375876a38e82ff0d1929d6078270",
+=======
+                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a93c355d70fd57a8171faece7969a13cb9387efb",
+                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb",
+>>>>>>> DBpediaDoublons
                 "shasum": ""
             },
             "require": {
@@ -752,6 +765,7 @@
             "keywords": [
                 "User management"
             ],
+<<<<<<< HEAD
             "time": "2014-06-13 14:56:35"
         },
         {
@@ -855,6 +869,9 @@
                 "visual"
             ],
             "time": "2014-05-14 09:55:23"
+=======
+            "time": "2014-06-08 14:16:45"
+>>>>>>> DBpediaDoublons
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1826,7 +1843,7 @@
             ],
             "authors": [
                 {
-                    "name": "William DURAND",
+                    "name": "William Durand",
                     "email": "william.durand1@gmail.com",
                     "homepage": "http://www.willdurand.fr"
                 }

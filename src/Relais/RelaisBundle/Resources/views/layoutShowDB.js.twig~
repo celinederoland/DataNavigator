@@ -1,0 +1,11 @@
+(function()
+{
+
+	var name = $('#form_mot').val();
+	s = name.replace(/\./g,"").replace(" ","_").replace("-","_");
+	s = s.charAt(0).toUpperCase() + s.slice(1);
+	// On construit l'url avec le name selectionne par l'utilisateur
+	var url = Routing.generate('sources_db_pedia_relations', { mot: s}); 
+
+	$('#wikipediaSite').load(url);
+})();

@@ -66,4 +66,14 @@ class DefaultControllerTest extends WebTestCase
 
 		$this -> assertEquals($expected,$reponse,'génération json incorrecte (relations)');
 	}
+
+	public function testInformations()
+	{
+		$client = static::createClient();
+		$crawler = $client->request('GET', '/fr/wordnet/fenetre');
+
+		$reponse = $client -> getResponse() -> getContent();
+
+		$this -> assertContains("horse", $reponse);
+	}
 }
