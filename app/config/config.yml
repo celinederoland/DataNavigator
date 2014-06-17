@@ -76,4 +76,4 @@ swiftmailer:
 
 # FOSJsRoutingBundle
 fos_js_routing:
-    routes_to_expose: [ vues_representations_json, vues_representations_bubble, vues_representations_indented, vues_representations_force, vues_representations_radial, sources_wordnet_bidon, sources_db_pedia_bidon, sources_debian_bidon, sources_humour_bidon, relais_relais_historique, relais_relais_show_historique_min, relais_relais_favori_change, sources_wordnet_json, sources_humour_json, sources_db_pedia_json, sources_debian_json, sources_getty_json, sources_db_pedia_fenetre, sources_debian_fenetre ]
+    routes_to_expose: [ vues_representations_json, vues_representations_bubble, vues_representations_indented, vues_representations_force, vues_representations_radial, sources_wordnet_bidon, sources_db_pedia_bidon, sources_debian_bidon, sources_humour_bidon, relais_relais_historique, relais_relais_show_historique_min, relais_relais_favori_change, sources_wordnet_json, sources_humour_json, sources_db_pedia_json, sources_debian_json, sources_getty_json, sources_wordnet_fenetre, sources_db_pedia_fenetre, sources_debian_fenetre ]
