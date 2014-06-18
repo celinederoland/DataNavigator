@@ -3,8 +3,8 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logozoom.png' %}
-					<img onClick='activerZoom(1)'
-						src="{{ asset_url }}" height="20px" width="20px"
+					<img onClick='activerZoom("{{ id }}",1)'
+						src="{{ asset_url }}" height="10px" width="10px"
 						title="{{ 'zoom' | trans}}"/>
 				{% endimage %}
 
@@ -12,8 +12,8 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logohaut.png' %}
-					<img onClick='activerDrag(0,-1)'
-						src="{{ asset_url }}" height="20px" width="20px"
+					<img onClick='activerDrag("{{ id }}",0,-1)'
+						src="{{ asset_url }}" height="10px" width="10px"
 						title="{{ 'haut' | trans}}"/>
 				{% endimage %}
 
@@ -21,8 +21,8 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodezoom.png' %}
-					<img onClick='activerZoom(-1)'
-						src="{{ asset_url }}" height="20px" width="20px"
+					<img onClick='activerZoom("{{ id }}",-1)'
+						src="{{ asset_url }}" height="10px" width="10px"
 						title="{{ 'unzoom' | trans}}"/>
 				{% endimage %}
 
@@ -31,8 +31,8 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logogauche.png' %}
-					<img onClick='activerDrag(-1,0)'
-						src="{{ asset_url }}" height="20px" width="20px"
+					<img onClick='activerDrag("{{ id }}",-1,0)'
+						src="{{ asset_url }}" height="10px" width="10px"
 						title="{{ 'gauche' | trans}}"/>
 				{% endimage %}
 
@@ -41,7 +41,7 @@
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/rien.png' %}
 					<img 
-						src="{{ asset_url }}" height="20px" width="20px"/>
+						src="{{ asset_url }}" height="10px" width="10px"/>
 				{% endimage %}
 
 		</li>
@@ -49,8 +49,8 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodroite.png' %}
-					<img onClick='activerDrag(1,0)'
-						src="{{ asset_url }}" height="20px" width="20px"
+					<img onClick='activerDrag("{{ id }}",1,0)'
+						src="{{ asset_url }}" height="10px" width="10px"
 						title="{{ 'droite' | trans}}"/>
 				{% endimage %}
 
@@ -59,8 +59,8 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logorotationinv.png' %}
-					<img onClick='activerRotation(-1)'
-						src="{{ asset_url }}" height="20px" width="20px"
+					<img onClick='activerRotation("{{ id }}",-1)'
+						src="{{ asset_url }}" height="10px" width="10px"
 						title="{{ 'rotation-' | trans}}"/>
 				{% endimage %}
 
@@ -69,8 +69,8 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logobas.png' %}
-					<img onClick='activerDrag(0,1)'
-						src="{{ asset_url }}" height="20px" width="20px"
+					<img onClick='activerDrag("{{ id }}",0,1)'
+						src="{{ asset_url }}" height="10px" width="10px"
 						title="{{ 'bas' | trans}}"/>
 				{% endimage %}
 
@@ -79,8 +79,8 @@
 		<li>
 
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logorotation.png' %}
-					<img onClick='activerRotation(1)'
-						src="{{ asset_url }}" height="20px" width="20px"
+					<img onClick='activerRotation("{{ id }}",1)'
+						src="{{ asset_url }}" height="10px" width="10px"
 						title="{{ 'rotation+' | trans}}"/>
 				{% endimage %}
 

@@ -140,21 +140,21 @@ function historique(url)
 	$('#conteneurpage').load(url);
 }
 
-function activerRotation(dir)
+/*function activerRotation(id,dir)
 {
 	var outils = new D3_Outils();
-	outils.rotate(dir);
+	outils.rotate(id,dir);
 }
 
-function activerDrag(dx,dy)
+function activerDrag(id,dx,dy)
 {
 	var outils = new D3_Outils();
 	var dir = { x: dx * 20, y: dy * 20 };
-	outils.bouger(dir);
+	outils.bouger(id,dir);
 }
 
-function activerZoom(dir)
+function activerZoom(id,dir)
 {
 	var outils = new D3_Outils();
-	outils.zoom(dir/10);
-}
+	outils.zoom(id,dir/10);
+}*/

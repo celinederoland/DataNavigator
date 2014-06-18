@@ -43,7 +43,7 @@
 	if ({{ nbsrc }} > {{ nbvue }})
 	{
 		var width = $('#conteneurmenu').innerWidth() / {{ nbsrc }} ,
-			height = $("#conteneurmenu").innerHeight() / {{ nbvue }};
+			height = $("#conteneurmenu").innerHeight() / {{ nbvue }} - 50;
 
 		var posw = {{ numsrc }}, posh = {{ numvue }};
 		var nums = posw, numv = posh;
@@ -51,7 +51,7 @@
 	else
 	{
 		var width = $('#conteneurmenu').innerWidth() / {{ nbvue }} ,
-			height = $("#conteneurmenu").innerHeight() / {{ nbsrc }};
+			height = $("#conteneurmenu").innerHeight() / {{ nbsrc }} - 50;
 
 		var posw = {{ numvue }}, posh = {{ numsrc }};
 		var nums = posh, numv = posw;
@@ -61,11 +61,12 @@
 		barWidth = width / (1.8*n);
 
 	//On ajoute un objet svg centré, qui contiendra le dessin
-	var svg = d3.select('#s' + nums + 'v' + numv).append("svg")
+	var conteneur = d3.select('#s' + nums + 'v' + numv).append("svg")
 		.attr("width", width)
-		.attr("height", height)
-		.append("g")
-			.attr("id","dessin")
+		.attr("height", height);
+
+	var svg = conteneur.append("g")
+			.attr("id",'s' + nums + 'v' + numv + 'dessin')
 			.attr("depx",(width - n*barWidth) / 2)
 			.attr("depy",(height - n*barHeight) / 2)
 			.attr("rot",0)
@@ -80,6 +81,248 @@
 			.style("stroke","black")
 			.attr("width", n * barWidth)
 			.attr("height", n * barHeight);
+
+	//On ajoute les outils
+	var outils = new D3_Outils();
+
+	//Palette
+	var palette = conteneur.append("g").attr("transform","scale(2,2)translate(-30,0)");
+	palette.append("rect")
+		.attr("y","6.2338481")
+		.attr("x","42.052032")
+		.attr("height","41.805031")
+		.attr("width","41.895943")
+		.style("fill","#eef7fe")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	//Bouton central
+	palette.append("rect")
+		.attr("y","22.167587")
+		.attr("x","58.076679")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	//zoomIn
+	var btZoomIn = palette.append("g")
+		.on("click",function() {  outils.zoom('#s' + nums + 'v' + numv,1/10); });
+
+	btZoomIn.append("rect")
+		.attr("y","9.2584982")
+		.attr("x","45.258499")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	var dessinZoomIn = btZoomIn.append("g").attr("transform","translate(51.069231,1.0376558)");
+
+	dessinZoomIn.append("path")
+		.attr("d","M 3,17 -0.54545454,13.545455")
+		.style("stroke","black");
+
+	dessinZoomIn.append("path")
+		.attr("d","m -2.875,2.59375 c 0,1.3807119 -1.1192881,2.5 -2.5,2.5 -1.3807119,0 -2.5,-1.1192881 -2.5,-2.5 0,-1.3807119 1.1192881,-2.5 2.5,-2.5 1.3807119,0 2.5,1.1192881 2.5,2.5 z")
+		.attr("transform","translate(2.9632325,9.336453)")
+		.attr("sodipodi:ry","2.5")
+		.attr("sodipodi:rx","2.5")
+		.attr("sodipodi:cy","2.59375")
+		.attr("sodipodi:cx","-5.375")
+		.attr("sodipodi:type","arc")
+		.style("fill","none")
+		.style("stroke","black");
+
+	dessinZoomIn.append("path")
+		.attr("d","m -2.3902631,10.848039 0,2")
+		.style("stroke","black");
+
+	dessinZoomIn.append("path")
+		.attr("d","m -3.3902631,11.848039 2,0")
+		.style("stroke","black");
+
+	//zoomOut
+
+	var btZoomOut = palette.append("g")
+		.on("click",function() {  outils.zoom('#s' + nums + 'v' + numv,-1/10); });
+
+	btZoomOut.append("rect")
+		.attr("y","9.2584982")
+		.attr("x","70.985771")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	var dessinZoomOut = btZoomOut.append("g").attr("transform","translate(51.069231,1.0376558)");
+
+	dessinZoomOut.append("path")
+		.attr("d","M 28.5,17 25.039413,13.545455")//M 3,17 -0.54545454,13.545455
+		.style("stroke","black");
+
+	dessinZoomOut.append("path")
+		.attr("d","m -2.875,2.59375 c 0,1.3807119 -1.1192881,2.5 -2.5,2.5 -1.3807119,0 -2.5,-1.1192881 -2.5,-2.5 0,-1.3807119 1.1192881,-2.5 2.5,-2.5 1.3807119,0 2.5,1.1192881 2.5,2.5 z")
+		.attr("transform","translate(28.5,9.336453)")
+		.attr("sodipodi:ry","2.5")
+		.attr("sodipodi:rx","2.5")
+		.attr("sodipodi:cy","2.59375")
+		.attr("sodipodi:cx","-5.375")
+		.attr("sodipodi:type","arc")
+		.style("fill","none")
+		.style("stroke","black");
+
+	dessinZoomOut.append("path")
+		.attr("d","m 22,11.848039 2,0")
+		.style("stroke","black");
+
+	//deplacement haut
+	var btHaut = palette.append("g")
+		.on("click",function() {  outils.bouger('#s' + nums + 'v' + numv,{x:0,y:-5}); });
+
+	btHaut.append("rect")
+		.attr("y","9.2584982")
+		.attr("x","58.076679")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	btHaut.append("path")
+		.attr("d","m 62.01196,12.942506 0,5.136734 2.004719,0 0,-5.136734 2.00472,0.733819 -3.00708,-3.669096 -3.007079,3.669096 z")
+		.style("fill","lightgrey")
+		.style("stroke","black")
+		.style("stroke-width","0.3");
+
+	//deplacement bas
+	var btBas = palette.append("g")
+		.on("click",function() {  outils.bouger('#s' + nums + 'v' + numv,{x:0,y:5}); });
+
+	btBas.append("rect")
+		.attr("y","34.894859")
+		.attr("x","58.076679")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	btBas.append("path")
+		.attr("d","m 62.01196,40.915352 0,-5.136734 2.004719,0 0,5.136734 2.00472,-0.733819 -3.00708,3.669096 -3.007079,-3.669096 z")
+		.style("fill","lightgrey")
+		.style("stroke","black")
+		.style("stroke-width","0.3");
+
+	//deplacement gauche
+	var btGauche = palette.append("g")
+		.on("click",function() {  outils.bouger('#s' + nums + 'v' + numv,{x:-5,y:0}); });
+
+	btGauche.append("rect")
+		.attr("y","22.258497")
+		.attr("x","45.258499")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	btGauche.append("path")
+		.attr("d","m 49.14358,26.083883 5.136734,0 0,2.004719 -5.136734,0 0.733819,2.00472 -3.669096,-3.00708 3.669096,-3.007079 z")
+		.style("fill","lightgrey")
+		.style("stroke","black")
+		.style("stroke-width","0.3");
+
+	//deplacement droite
+	var btDroite = palette.append("g")
+		.on("click",function() {  outils.bouger('#s' + nums + 'v' + numv,{x:5,y:0}); });
+
+	btDroite.append("rect")
+		.attr("y","22.258497")
+		.attr("x","70.985771")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	btDroite.append("path")
+		.attr("d","m 76.929446,26.112402 -5.136734,0 0,2.004719 5.136734,0 -0.733819,2.00472 3.669096,-3.00708 -3.669096,-3.007079 z")
+		.style("fill","lightgrey")
+		.style("stroke","black")
+		.style("stroke-width","0.3");
+
+	//rotation gauche
+	var btRotG = palette.append("g")
+		.on("click",function() {  outils.rotate('#s' + nums + 'v' + numv,-1); });
+
+	btRotG.append("rect")
+		.attr("y","34.985771")
+		.attr("x","45.258499")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	var dessinRotG = btRotG.append("g").attr("transform","matrix(0.71803091,-0.55567242,0.53210325,0.74983562,15.863061,26.496492)");
+
+	dessinRotG.append("path")
+		.attr("d","m -8.875,24.59375 c 0,1.932997 -1.567003,3.5 -3.5,3.5 -1.932997,0 -3.5,-1.567003 -3.5,-3.5 0,-1.932997 1.567003,-3.5 3.5,-3.5 0.483054,0 0.960879,0.09999 1.4034,0.293683")
+		.attr("sodipodi:open","true")
+		.attr("sodipodi:end","5.1249659")
+		.attr("sodipodi:start","0")
+		.attr("sodipodi:ry","3.5")
+		.attr("sodipodi:rx","3.5")
+		.attr("sodipodi:cy","24.59375")
+		.attr("sodipodi:cx","-12.375")
+		.attr("sodipodi:type","arc")
+		.attr("transform","matrix(-1,0,0,1,10.125,9.90625)")
+		.style("fill","none")
+		.style("stroke","black");
+
+	dessinRotG.append("path")
+		.attr("d","m 21.849947,29.342391 -1.976221,2.134896 2.479798,1.2693")
+		.style("fill","none")
+		.style("stroke","black");
+
+	//rotation droite
+
+	var btRotD = palette.append("g")
+		.on("click",function() {  outils.rotate('#s' + nums + 'v' + numv,-1); });
+
+	btRotD.append("rect")
+		.attr("y","34.985771")
+		.attr("x","70.985771")
+		.attr("height","10.028458")
+		.attr("width","9.7557306")
+		.style("fill","white")
+		.style("stroke","lightgrey")
+		.style("stroke-width","0.5");
+
+	var dessinRotD = btRotD.append("g").attr("transform","matrix(-0.71803091,-0.55567242,-0.53210325,0.74983562,110.37495,26.460729)");
+
+	dessinRotD.append("path")
+		.attr("d","m -8.875,24.59375 c 0,1.932997 -1.567003,3.5 -3.5,3.5 -1.932997,0 -3.5,-1.567003 -3.5,-3.5 0,-1.932997 1.567003,-3.5 3.5,-3.5 0.483054,0 0.960879,0.09999 1.4034,0.293683")
+		.attr("sodipodi:open","true")
+		.attr("sodipodi:end","5.1249659")
+		.attr("sodipodi:start","0")
+		.attr("sodipodi:ry","3.5")
+		.attr("sodipodi:rx","3.5")
+		.attr("sodipodi:cy","24.59375")
+		.attr("sodipodi:cx","-12.375")
+		.attr("sodipodi:type","arc")
+		.attr("transform","matrix(-1,0,0,1,10.125,9.90625)")
+		.style("fill","none")
+		.style("stroke","black");
+
+	dessinRotD.append("path")
+		.attr("d","m 21.849947,29.342391 -1.976221,2.134896 2.479798,1.2693")
+		.style("fill","none")
+		.style("stroke","black");
 
 	//Lignes
 	var l = 0;
