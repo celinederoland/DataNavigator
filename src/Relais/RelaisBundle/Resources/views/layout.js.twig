@@ -69,17 +69,37 @@
 		console.log("limite : " + limite);
 		console.log("relations :" + relations);
 
-		source.forEach( function(s,ns) {
-			vue.forEach( function(v,nv) {
-				$('#conteneurD3').html($('#conteneurD3').html() + '<div id="s'+ns+'v'+nv+'"></div>');
-				$('#s' + ns+'v'+nv).css("position","absolute");
-				$('#s' + ns+'v'+nv).css("left",ns * width / nbsrc);
-				$('#s' + ns+'v'+nv).css("top",nv * height / nbvue);
-				$('#s' + ns+'v'+nv).css("width",width / nbsrc + 'px');
-				$('#s' + ns+'v'+nv).css("height",height / nbvue + 'px');
-				$('#s' + ns+'v'+nv).css("overflow","hidden");
+		if (nbsrc > nbvue)
+		{
+			source.forEach( function(s,ns) {
+				vue.forEach( function(v,nv) {
+					$('#conteneurD3').html($('#conteneurD3').html() + '<div id="s'+ns+'v'+nv+'"></div>');
+					$('#s' + ns+'v'+nv).css("position","absolute");
+					$('#s' + ns+'v'+nv).css("left",ns * width / nbsrc);
+					$('#s' + ns+'v'+nv).css("top",nv * height / nbvue);
+					$('#s' + ns+'v'+nv).css("width",width / nbsrc + 'px');
+					$('#s' + ns+'v'+nv).css("height",height / nbvue + 'px');
+					$('#s' + ns+'v'+nv).css("overflow","hidden");
+					$('#s' + ns+'v'+nv).css("border","solid 1px lightgrey");
+				});
 			});
-		});
+		}
+		else
+		{
+			source.forEach( function(s,ns) {
+				vue.forEach( function(v,nv) {
+					$('#conteneurD3').html($('#conteneurD3').html() + '<div id="s'+ns+'v'+nv+'"></div>');
+					$('#s' + ns+'v'+nv).css("position","absolute");
+					$('#s' + ns+'v'+nv).css("left",nv * width / nbvue);
+					$('#s' + ns+'v'+nv).css("top",ns * height / nbsrc);
+					$('#s' + ns+'v'+nv).css("width",width / nbvue + 'px');
+					$('#s' + ns+'v'+nv).css("height",height / nbsrc + 'px');
+					$('#s' + ns+'v'+nv).css("overflow","hidden");
+					$('#s' + ns+'v'+nv).css("border","solid 1px lightgrey");
+				});
+			});
+		}
+
 
 	//Utilisation d'ajax pour placer le résultat dans le conteneurD3
 
