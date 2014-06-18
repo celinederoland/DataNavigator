@@ -246,7 +246,7 @@ function changefavorite(id)
 
 function lancer(url,mot,source,vue,limite,listerel)
 {
-	$('#form_mot').val(mot.substr(1,mot.length - 2));
+	$('#form_mot').val(mot);
 	$('#' + source).click();
 	$('#' + vue).click();
 	$('#form_limite').val(limite);

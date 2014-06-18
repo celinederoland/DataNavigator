@@ -85,10 +85,17 @@ function chargerPage(url)
  */
 function activerSource(id,url)
 {
-	$('.activesource').removeClass('activesource');
-	$(id).addClass('activesource');
-	$('#form_source').val(id.substring(1));
-	$.getScript(url);
+	if ($(id).hasClass('activesource'))
+	{
+		$(id).removeClass('activesource');
+	}
+	else
+	{
+		$(id).addClass('activesource');
+		$('#form_source').val(id.substring(1));
+		$.getScript(url);
+	}
+
 }
 
 /**
@@ -96,9 +103,15 @@ function activerSource(id,url)
  */
 function activerVue(id)
 {
-	$('.activevue').removeClass('activevue');
-	$(id).addClass('activevue');
-	$('#form_vue').val(id.substring(1));
+	if ($(id).hasClass('activevue'))
+	{
+		$(id).removeClass('activevue');
+	}
+	else
+	{
+		$(id).addClass('activevue');
+		$('#form_vue').val(id.substring(1));
+	}
 }
 
 /**

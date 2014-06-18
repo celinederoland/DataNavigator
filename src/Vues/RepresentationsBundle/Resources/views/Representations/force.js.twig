@@ -14,7 +14,6 @@
 	var jsongraph = formateur.to_graph(jsonobjet);
 
 	$('#conteneurD3').css('visibility','visible');
-	$('#conteneurD3').html('');
 	$('#conteneurpage').css('visibility','hidden');
 
 
@@ -23,10 +22,12 @@
 	var rcolor = d3.scale.category20();
 
 	// On recupere la taille de la div pour mettre le svg
-	var width = $('#conteneurmenu').innerWidth(),
-	  height = $("#conteneurmenu").innerHeight();
+	var width = $('#conteneurmenu').innerWidth() / {{ nbsrc }} ,
+	  height = $("#conteneurmenu").innerHeight() / {{ nbvue }};
 
-	var diameter = width;
+	var posw = {{ numsrc }}, posh = {{ numvue }};
+
+	var diameter = Math.min(width,height);
 
 	//Le layout de D3 permet d'agencer sous forme de graphe
 	var force = d3.layout.force()
@@ -41,10 +42,9 @@
 		.start();
 
 	//On configure le svg qui contiendra toute la figure
-	var svg = d3.select("#conteneurD3").append("svg")
+	var svg = d3.select('#s' + posw + 'v' + posh).append("svg")
 		.attr("width", width)
 		.attr("height", height)
-		.attr("class", "svgContainer")
 		.append("g")
 			.attr("id","dessin")
 			.attr("depx",0)
