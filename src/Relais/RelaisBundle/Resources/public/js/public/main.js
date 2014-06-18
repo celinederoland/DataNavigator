@@ -85,10 +85,17 @@ function chargerPage(url)
  */
 function activerSource(id,url)
 {
-	$('.activesource').removeClass('activesource');
-	$(id).addClass('activesource');
-	$('#form_source').val(id.substring(1));
-	$.getScript(url);
+	if ($(id).hasClass('activesource'))
+	{
+		$(id).removeClass('activesource');
+	}
+	else
+	{
+		$(id).addClass('activesource');
+		$('#form_source').val(id.substring(1));
+		$.getScript(url);
+	}
+
 }
 
 /**
@@ -96,9 +103,15 @@ function activerSource(id,url)
  */
 function activerVue(id)
 {
-	$('.activevue').removeClass('activevue');
-	$(id).addClass('activevue');
-	$('#form_vue').val(id.substring(1));
+	if ($(id).hasClass('activevue'))
+	{
+		$(id).removeClass('activevue');
+	}
+	else
+	{
+		$(id).addClass('activevue');
+		$('#form_vue').val(id.substring(1));
+	}
 }
 
 /**
@@ -127,21 +140,21 @@ function historique(url)
 	$('#conteneurpage').load(url);
 }
 
-function activerRotation(dir)
+/*function activerRotation(id,dir)
 {
 	var outils = new D3_Outils();
-	outils.rotate(dir);
+	outils.rotate(id,dir);
 }
 
-function activerDrag(dx,dy)
+function activerDrag(id,dx,dy)
 {
 	var outils = new D3_Outils();
 	var dir = { x: dx * 20, y: dy * 20 };
-	outils.bouger(dir);
+	outils.bouger(id,dir);
 }
 
-function activerZoom(dir)
+function activerZoom(id,dir)
 {
 	var outils = new D3_Outils();
-	outils.zoom(dir/10);
-}
+	outils.zoom(id,dir/10);
+}*/

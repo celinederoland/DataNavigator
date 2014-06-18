@@ -22,6 +22,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
 
+	public function recupPost()
+	{
+		return array(
+			'data' => $this -> getRequest() -> request -> get('data'),
+			'nbsrc' => $this -> getRequest() -> request -> get('nbsrc'),
+			'nbvue' => $this -> getRequest() -> request -> get('nbvue'),
+			'numsrc' => $this -> getRequest() -> request -> get('numsrc'),
+			'numvue' => $this -> getRequest() -> request -> get('numvue')
+		);
+	}
 /**
 	* Appelle la vue json (partie cliente de l'application)
 	* 
@@ -30,7 +40,7 @@ class DefaultController extends Controller
 	public function jsonAction() //testée par qunit
 	{
 		$data = $this -> getRequest() -> request -> get('data');
-		return $this -> render('VuesRepresentationsBundle:Representations:JsonRep.js.twig', array('data' => $data));
+		return $this -> render('VuesRepresentationsBundle:Representations:JsonRep.js.twig', $this -> recupPost());
 	}
 
 /**
@@ -43,8 +53,7 @@ class DefaultController extends Controller
 	*/
 	public function jsonGraphAction() //testée par qunit
 	{
-		$data = $this -> getRequest() -> request -> get('data');
-		return $this -> render('VuesRepresentationsBundle:Representations:JsonGraphRep.js.twig', array('data' => $data));
+		return $this -> render('VuesRepresentationsBundle:Representations:JsonGraphRep.js.twig', $this -> recupPost());
 	}
 
 /**
@@ -60,7 +69,7 @@ class DefaultController extends Controller
 	public function jsonTreeAction() //testée par qunit
 	{
 		$data = $this -> getRequest() -> request -> get('data');
-		return $this -> render('VuesRepresentationsBundle:Representations:JsonTreeRep.js.twig', array('data' => $data));
+		return $this -> render('VuesRepresentationsBundle:Representations:JsonTreeRep.js.twig', $this -> recupPost());
 	}
 
 /**
@@ -76,7 +85,7 @@ class DefaultController extends Controller
 	public function bubbleAction() //testée par qunit
 	{
 		$data = $this -> getRequest() -> request -> get('data');
-		return $this -> render('VuesRepresentationsBundle:Representations:bubble.js.twig', array('data' => $data));
+		return $this -> render('VuesRepresentationsBundle:Representations:bubble.js.twig', $this -> recupPost());
 	}
 
 /**
@@ -92,7 +101,7 @@ class DefaultController extends Controller
 	public function indentedAction() //testée par qunit
 	{
 		$data = $this -> getRequest() -> request -> get('data');
-		return $this -> render('VuesRepresentationsBundle:Representations:indented.js.twig', array('data' => $data));
+		return $this -> render('VuesRepresentationsBundle:Representations:indented.js.twig', $this -> recupPost());
 	}
 
 /**
@@ -107,7 +116,7 @@ class DefaultController extends Controller
 	public function forceAction() //testée par qunit
 	{
 		$data = $this -> getRequest() -> request -> get('data');
-		return $this -> render('VuesRepresentationsBundle:Representations:force.js.twig', array('data' => $data));
+		return $this -> render('VuesRepresentationsBundle:Representations:force.js.twig', $this -> recupPost());
 	}
 
 /**
@@ -121,7 +130,7 @@ class DefaultController extends Controller
 	public function radialAction() //testée par qunit
 	{
 		$data = $this -> getRequest() -> request -> get('data');
-		return $this -> render('VuesRepresentationsBundle:Representations:radial.js.twig', array('data' => $data));
+		return $this -> render('VuesRepresentationsBundle:Representations:radial.js.twig', $this -> recupPost());
 	}
 
 /**
@@ -138,7 +147,7 @@ class DefaultController extends Controller
 	public function matriceAction() //testée par qunit
 	{
 		$data = $this -> getRequest() -> request -> get('data');
-		return $this -> render('VuesRepresentationsBundle:Representations:matrice.js.twig', array('data' => $data));
+		return $this -> render('VuesRepresentationsBundle:Representations:matrice.js.twig', $this -> recupPost());
 	}
 
 }

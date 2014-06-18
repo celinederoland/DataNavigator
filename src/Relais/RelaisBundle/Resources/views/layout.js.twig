@@ -7,7 +7,10 @@
 (function()
 {
 	console.log('lancement de layout.js');
-	
+	$('#conteneurD3').html('');
+	var width = $('#conteneurmenu').innerWidth(), height = $("#conteneurmenu").innerHeight();
+	console.log('largeur : ' + width + ' hauteur : ' + height);
+
 	//Recherche pour les informations complementaires
 	showWN('{{ path('relais_relais_layoutShowWN') }}');
 	showDB('{{ path('relais_relais_layoutShowDB') }}');
@@ -18,24 +21,31 @@
 		/*********************
 			REPERE AJOUTER SOURCE
 		**********************/
-		if ($('#wordnet').attr('class') == 'activesource') { var source = 'wordnet'; }
-		if ($('#dbpedia').attr('class') == 'activesource') { var source = 'dbpedia'; }
-		if ($('#debian').attr('class') == 'activesource') { var source = 'debian'; }
-		if ($('#humour').attr('class') == 'activesource') { var source = 'humour'; }
-		if ($('#getty').attr('class') == 'activesource') { var source = 'getty'; }
+		var source = [];
+		if ($('#wordnet').attr('class') == 'activesource') { source.push('wordnet'); }
+		if ($('#dbpedia').attr('class') == 'activesource') { source.push('dbpedia'); }
+		if ($('#debian').attr('class') == 'activesource') { source.push('debian'); }
+		if ($('#humour').attr('class') == 'activesource') { source.push('humour'); }
+		if ($('#getty').attr('class') == 'activesource') { source.push('getty'); }
 
 		//Vue
 		/*********************
 			REPERE AJOUTER VUE
 		**********************/
-		if ($('#radial').attr('class') == 'activevue') { var vue = 'radial'; }
-		if ($('#indented').attr('class') == 'activevue') { var vue = 'indented'; }
-		if ($('#bubble').attr('class') == 'activevue') { var vue = 'bubble'; }
-		if ($('#force').attr('class') == 'activevue') { var vue = 'force'; }
-		if ($('#json').attr('class') == 'activevue') { var vue = 'json'; }
-		if ($('#jsongraph').attr('class') == 'activevue') { var vue = 'jsongraph'; }
-		if ($('#jsontree').attr('class') == 'activevue') { var vue = 'jsontree'; }
-		if ($('#matrice').attr('class') == 'activevue') { var vue = 'matrice'; }
+		var vue = [];
+		if ($('#radial').attr('class') == 'activevue') { vue.push('radial'); }
+		if ($('#indented').attr('class') == 'activevue') { vue.push('indented'); }
+		if ($('#bubble').attr('class') == 'activevue') { vue.push('bubble'); }
+		if ($('#force').attr('class') == 'activevue') { vue.push('force'); }
+		if ($('#json').attr('class') == 'activevue') { vue.push('json'); }
+		if ($('#jsongraph').attr('class') == 'activevue') { vue.push('jsongraph'); }
+		if ($('#jsontree').attr('class') == 'activevue') { vue.push('jsontree'); }
+		if ($('#matrice').attr('class') == 'activevue') { vue.push('matrice'); }
+
+		//Trouver un agencement :
+		var nbsrc = source.length;
+		var nbvue = vue.length;
+		console.log("nbsrc : " + nbsrc + " nbvue : " + nbvue);
 
 		//Options
 		var limite = $('#form_limite').val();
@@ -59,158 +69,197 @@
 		console.log("limite : " + limite);
 		console.log("relations :" + relations);
 
+		if (nbsrc > nbvue)
+		{
+			source.forEach( function(s,ns) {
+				vue.forEach( function(v,nv) {
+					$('#conteneurD3').html($('#conteneurD3').html() + '<div id="s'+ns+'v'+nv+'"></div>');
+					$('#s' + ns+'v'+nv).css("position","absolute");
+					$('#s' + ns+'v'+nv).css("left",ns * width / nbsrc);
+					$('#s' + ns+'v'+nv).css("top",nv * height / nbvue);
+					$('#s' + ns+'v'+nv).css("width",width / nbsrc + 'px');
+					$('#s' + ns+'v'+nv).css("height",height / nbvue + 'px');
+					$('#s' + ns+'v'+nv).css("overflow","hidden");
+					$('#s' + ns+'v'+nv).css("border","solid 1px lightgrey");
+				});
+			});
+		}
+		else
+		{
+			source.forEach( function(s,ns) {
+				vue.forEach( function(v,nv) {
+					$('#conteneurD3').html($('#conteneurD3').html() + '<div id="s'+ns+'v'+nv+'"></div>');
+					$('#s' + ns+'v'+nv).css("position","absolute");
+					$('#s' + ns+'v'+nv).css("left",nv * width / nbvue);
+					$('#s' + ns+'v'+nv).css("top",ns * height / nbsrc);
+					$('#s' + ns+'v'+nv).css("width",width / nbvue + 'px');
+					$('#s' + ns+'v'+nv).css("height",height / nbsrc + 'px');
+					$('#s' + ns+'v'+nv).css("overflow","hidden");
+					$('#s' + ns+'v'+nv).css("border","solid 1px lightgrey");
+				});
+			});
+		}
+
+
 	//Utilisation d'ajax pour placer le résultat dans le conteneurD3
 
 		//On alerte le visiteur si il n'a pas rempli correctement tous les champs
-		if (!source) { alert('vous devez sélectionner une source de données'); }
-		else if (!vue) { alert('vous devez sélectionner une représentation'); }
+		if (source.length == 0) { alert('vous devez sélectionner une source de données'); }
+		else if (vue.length == 0) { alert('vous devez sélectionner une représentation'); }
 		else if (mot == '') { alert('vous devez entrer un mot'); }
 		//Si il a bien tout rempli on fait le travail
 		else 
 		{ 
-			console.log('layout va récupérer le json pour la source ' + source);
-			//On récupère le json (layout l210)
-			/*********************
-				REPERE AJOUTER SOURCE
-			**********************/
-			if (source == 'wordnet') { 
-				urlsrc = Routing.generate('sources_wordnet_json', { mot: mot, relations: relations, limite: limite });
-			} 
-			else if (source == 'dbpedia') { 
-				urlsrc = Routing.generate('sources_db_pedia_json', { mot: mot, relations: relations, limite: limite });
-			} 
-			else if (source == 'debian') { 
-				urlsrc = Routing.generate('sources_debian_json', { mot: mot, relations: relations, limite: limite });
-			} 
-			else if (source == 'humour') { 
-				urlsrc = Routing.generate('sources_humour_json', { mot: mot, relations: relations, limite: limite });
-			} 
-			else if (source == 'getty') { 
-				urlsrc = Routing.generate('sources_getty_json', { mot: mot, relations: relations, limite: limite });
-			} 
-			else { alert("Source " + source + " non prise en charge"); }
-			console.log(urlsrc);
+			source.forEach( function(src, numsrc) {
+				console.log('layout va récupérer le json pour la source ' + src);
+				//On récupère le json (layout l210)
+				/*********************
+					REPERE AJOUTER SOURCE
+				**********************/
+				if (src == 'wordnet') { 
+					urlsrc = Routing.generate('sources_wordnet_json', { mot: mot, relations: relations, limite: limite });
+				} 
+				else if (src == 'dbpedia') { 
+					urlsrc = Routing.generate('sources_db_pedia_json', { mot: mot, relations: relations, limite: limite });
+				} 
+				else if (src == 'debian') { 
+					urlsrc = Routing.generate('sources_debian_json', { mot: mot, relations: relations, limite: limite });
+				} 
+				else if (src == 'humour') { 
+					urlsrc = Routing.generate('sources_humour_json', { mot: mot, relations: relations, limite: limite });
+				} 
+				else if (src == 'getty') { 
+					urlsrc = Routing.generate('sources_getty_json', { mot: mot, relations: relations, limite: limite });
+				} 
+				else { alert("Source " + src + " non prise en charge"); }
+				console.log(urlsrc);
 
-			//On enregistre la recherche dans l'historique
-			console.log('enregistrement historique');
-			urlhistorique = '{{ path("relais_relais_historique") }}';
-			console.log(urlhistorique);
-			$.post(
-				urlhistorique,
-				{
-					"form[mot]":mot,
-					"form[source]":source,
-					"form[vue]":vue,
-					"form[limite]":limite,
-					"form[relations][]":tabrelations,
-				},
-				function(data) { console.log(data); }
-			);
+				vue.forEach(function(v) {
+					//On enregistre la recherche dans l'historique
+					console.log('enregistrement historique');
+					urlhistorique = '{{ path("relais_relais_historique") }}';
+					console.log(urlhistorique);
+					$.post(
+						urlhistorique,
+						{
+							"form[mot]":mot,
+							"form[source]":src,
+							"form[vue]":v,
+							"form[limite]":limite,
+							"form[relations][]":tabrelations,
+						},
+						function(data) { console.log(data); }
+					);
+				});
 
-			//On récupère le json et on l'envoie à la source
-			$.getJSON(
-				urlsrc,
-				//Quand on l'a récupéré : (layout l237)
-				function(data)
-				{
-					console.log('layout a récupéré le json suivant :');
-					console.log(data);
-					console.log('layout appelle maintenant la vue à la route vues_representations_nomdemavue en lui donnant le json');
-					//Il faut lancer le script adapté à la vue demandée
-					/*********************
-						REPERE AJOUTER VUE
-					**********************/
-					if (vue == 'json') 
-					{ 
-						$.ajax({
-							type:"POST",
-							url:"{{ path('vues_representations_json') }}",
-							dataType:"script",
-							data:{ 'data': JSON.stringify(data) },
-							cache:false,
-							success:function() { console.log('success'); }
+
+				//On récupère le json et on l'envoie à la source
+				$.getJSON(
+					urlsrc,
+					//Quand on l'a récupéré : (layout l237)
+					function(data)
+					{
+						console.log('layout a récupéré le json suivant :');
+						console.log(data);
+						console.log('layout appelle maintenant la vue à la route vues_representations_nomdemavue en lui donnant le json');
+						vue.forEach(function(v,numvue) {
+							//Il faut lancer le script adapté à la vue demandée
+							/*********************
+								REPERE AJOUTER VUE
+							**********************/
+							if (v == 'json') 
+							{ 
+								$.ajax({
+									type:"POST",
+									url:"{{ path('vues_representations_json') }}",
+									dataType:"script",
+									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
+									cache:false,
+									success:function() { console.log('success'); }
+								});
+							}
+							else if (v == 'jsongraph') 
+							{ 
+								$.ajax({
+									type:"POST",
+									url:"{{ path('vues_representations_jsongraph') }}",
+									dataType:"script",
+									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
+									cache:false,
+									success:function() { console.log('success'); 	$('#loading').css('visibility','hidden'); }
+								});
+							}
+							else if (v == 'jsontree') 
+							{ 
+								$.ajax({
+									type:"POST",
+									url:"{{ path('vues_representations_jsontree') }}",
+									dataType:"script",
+									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
+									cache:false,
+									success:function() { console.log('success'); 	$('#loading').css('visibility','hidden'); }
+								});
+							}
+							else if (v == 'bubble') 
+							{ 
+								$.ajax({
+									type:"POST",
+									url:"{{ path('vues_representations_bubble') }}",
+									dataType:"script",
+									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
+									cache:false,
+									success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
+								});
+							}
+							else if (v == 'indented')
+							{ 
+								$.ajax({
+									type:"POST",
+									url:"{{ path('vues_representations_indented') }}",
+									dataType:"script",
+									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
+									cache:false,
+									success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
+								});
+							}
+							else if (v == 'force') 
+							{ 
+								$.ajax({
+									type:"POST",
+									url:"{{ path('vues_representations_force') }}",
+									dataType:"script",
+									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
+									cache:false,
+									success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
+								});
+							}
+							else if (v == 'radial') 
+							{ 
+								$.ajax({
+									type:"POST",
+									url:"{{ path('vues_representations_radial') }}",
+									dataType:"script",
+									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
+									cache:false,
+									success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
+								});
+							}
+							else if (v == 'matrice') 
+							{ 
+								$.ajax({
+									type:"POST",
+									url:"{{ path('vues_representations_matrice') }}",
+									dataType:"script",
+									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
+									cache:false,
+									success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
+								});
+							}
+							else { alert('vue ' + v + ' non prise en charge'); 	$('#loading').css('visibility','hidden');}
 						});
 					}
-					else if (vue == 'jsongraph') 
-					{ 
-						$.ajax({
-							type:"POST",
-							url:"{{ path('vues_representations_jsongraph') }}",
-							dataType:"script",
-							data:{ 'data': JSON.stringify(data) },
-							cache:false,
-							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden'); }
-						});
-					}
-					else if (vue == 'jsontree') 
-					{ 
-						$.ajax({
-							type:"POST",
-							url:"{{ path('vues_representations_jsontree') }}",
-							dataType:"script",
-							data:{ 'data': JSON.stringify(data) },
-							cache:false,
-							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden'); }
-						});
-					}
-					else if (vue == 'bubble') 
-					{ 
-						$.ajax({
-							type:"POST",
-							url:"{{ path('vues_representations_bubble') }}",
-							dataType:"script",
-							data:{ 'data': JSON.stringify(data) },
-							cache:false,
-							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
-						});
-					}
-					else if (vue == 'indented')
-					{ 
-						$.ajax({
-							type:"POST",
-							url:"{{ path('vues_representations_indented') }}",
-							dataType:"script",
-							data:{ 'data': JSON.stringify(data) },
-							cache:false,
-							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
-						});
-					}
-					else if (vue == 'force') 
-					{ 
-						$.ajax({
-							type:"POST",
-							url:"{{ path('vues_representations_force') }}",
-							dataType:"script",
-							data:{ 'data': JSON.stringify(data) },
-							cache:false,
-							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
-						});
-					}
-					else if (vue == 'radial') 
-					{ 
-						$.ajax({
-							type:"POST",
-							url:"{{ path('vues_representations_radial') }}",
-							dataType:"script",
-							data:{ 'data': JSON.stringify(data) },
-							cache:false,
-							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
-						});
-					}
-					else if (vue == 'matrice') 
-					{ 
-						$.ajax({
-							type:"POST",
-							url:"{{ path('vues_representations_matrice') }}",
-							dataType:"script",
-							data:{ 'data': JSON.stringify(data) },
-							cache:false,
-							success:function() { console.log('success'); 	$('#loading').css('visibility','hidden');}
-						});
-					}
-					else { alert('vue ' + vue + ' non prise en charge'); 	$('#loading').css('visibility','hidden');}
-				}
-			); 
+				); 
+			});
 		}
 })();
 
