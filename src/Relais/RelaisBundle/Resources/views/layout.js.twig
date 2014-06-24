@@ -8,7 +8,7 @@
 {
 	console.log('lancement de layout.js');
 	$('#conteneurD3').html('');
-	var width = $('#conteneurmenu').innerWidth(), height = $("#conteneurmenu").innerHeight();
+	var width = $('#conteneurD3').innerWidth(), height = $("#conteneurD3").innerHeight();
 	console.log('largeur : ' + width + ' hauteur : ' + height);
 
 	//Recherche pour les informations complementaires
@@ -175,7 +175,7 @@
 									dataType:"script",
 									data:{ 'data': JSON.stringify(data), 'nbsrc': nbsrc, 'nbvue': nbvue, 'numsrc': numsrc, 'numvue': numvue },
 									cache:false,
-									success:function() { console.log('success'); }
+									success:function() { console.log('success'); $('#loading').css('visibility','hidden');}
 								});
 							}
 							else if (v == 'jsongraph') 

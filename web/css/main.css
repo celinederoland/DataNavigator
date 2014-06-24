@@ -3,8 +3,6 @@
 nav
 {
 	background-color: #edf6fe;
-/*	border-bottom: solid 1px lightgrey;
-	border-radius: 3px;*/
 	opacity:0.9;
 	display:block;
 	z-index:15;
@@ -17,7 +15,7 @@ nav li
 	border-radius: 3px;
 	background-color: #f0f0f0;
 	
-	border-right: 1px solid rgba(9, 9, 9, 0.125);
+	border: 1px solid rgba(9, 9, 9, 0.125);
 	
 	position:relative;
 	

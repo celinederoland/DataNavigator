@@ -42,16 +42,16 @@
 	// On recupere la taille de la div pour mettre le svg
 	if ({{ nbsrc }} > {{ nbvue }})
 	{
-		var width = $('#conteneurmenu').innerWidth() / {{ nbsrc }} ,
-			height = $("#conteneurmenu").innerHeight() / {{ nbvue }} - 50;
+		var width = $('#conteneurD3').innerWidth() / {{ nbsrc }} ,
+			height = $("#conteneurD3").innerHeight() / {{ nbvue }};
 
 		var posw = {{ numsrc }}, posh = {{ numvue }};
 		var nums = posw, numv = posh;
 	}
 	else
 	{
-		var width = $('#conteneurmenu').innerWidth() / {{ nbvue }} ,
-			height = $("#conteneurmenu").innerHeight() / {{ nbsrc }} - 50;
+		var width = $('#conteneurD3').innerWidth() / {{ nbvue }} ,
+			height = $("#conteneurD3").innerHeight() / {{ nbsrc }};
 
 		var posw = {{ numvue }}, posh = {{ numsrc }};
 		var nums = posh, numv = posw;

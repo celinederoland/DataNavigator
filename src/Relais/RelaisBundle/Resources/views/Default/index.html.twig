@@ -9,40 +9,37 @@
 
 {% block contenuglobal %}
 
-<div id="conteneurmenu">
-
-	{% if is_granted('ROLE_ADMIN') %}
+	{# if is_granted('ROLE_ADMIN') 
 		<div id="conteneurtests">
 			{% block tests %}{{ include('RelaisRelaisBundle:Default:test.html.twig') }}{% endblock %}
 		</div>
-	{% endif %}
+	 endif #}
+
+		<div id="conteneurD3">
+			{% block d3 %}{% endblock %}
+		</div>
 
 	<form action="" method="submit" id="formrecherche" name="formrecherche">
-	{{ include('RelaisRelaisBundle:Menus:menudonnees.html.twig',{ formrecherche:formrecherche }) }}
-	{{ include('RelaisRelaisBundle:Menus:menuvues.html.twig',{ formrecherche:formrecherche }) }}
+		{{ include('RelaisRelaisBundle:Menus:menudonnees.html.twig',{ formrecherche:formrecherche }) }}
+		{{ include('RelaisRelaisBundle:Menus:menuvues.html.twig',{ formrecherche:formrecherche }) }}
 
-	{{ include('RelaisRelaisBundle:Menus:recherche.html.twig',{ formrecherche:formrecherche }) }}
-	{{ include('RelaisRelaisBundle:Menus:options.html.twig',{ formrecherche:formrecherche }) }}
-	{{ include('RelaisRelaisBundle:Menus:infos.html.twig') }}
+		{{ include('RelaisRelaisBundle:Menus:recherche.html.twig',{ formrecherche:formrecherche }) }}
+		{{ include('RelaisRelaisBundle:Menus:options.html.twig',{ formrecherche:formrecherche }) }}
+		{{ include('RelaisRelaisBundle:Menus:infos.html.twig') }}
 
-	<div id="conteneurD3" style="background-color:yellow; min-height:20px; min-width:20px;">
-		{% block d3 %}{% endblock %}
-	</div>
-
-	<div id="loading">
-		{% image '@RelaisRelaisBundle/Resources/public/images/menusite/loading.gif' %}
-			<img
-				src="{{ asset_url }}" height="100px" width="100px"
-				title="{{ 'patientez' | trans}}"/>
-		{% endimage %}
-	</div>
+		<div id="loading">
+			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/loading.gif' %}
+				<img
+					src="{{ asset_url }}" height="100px" width="100px"
+					title="{{ 'patientez' | trans}}"/>
+			{% endimage %}
+		</div>
 
 	</form>
 
-	{% if is_granted('ROLE_ADMIN') %}
+	{# if is_granted('ROLE_ADMIN') 
 		{{ include('RelaisRelaisBundle:Menus:menuadmin.html.twig') }}
-	{% endif %}
-</div>
+	 endif #}
 
 {% endblock %}
 
