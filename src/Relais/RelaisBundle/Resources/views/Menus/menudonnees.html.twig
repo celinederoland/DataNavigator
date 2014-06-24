@@ -1,39 +1,40 @@
 <nav id='menudonnees'>
-		<li>
+	<ul>
+		<li><a>
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logowordnet.png' %}
 				<img id="wordnet" onClick="activerSource('#wordnet','{{ path('relais_relais_layoutRelations') }}')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="30px" width="30px"
 					title="{{ 'WordNet' | trans}}"/>
 			{% endimage %}
-		</li>
-		<li>
+		</a></li>
+		<li><a>
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodbpedia.png' %}
 				<img id="dbpedia" onClick="activerSource('#dbpedia','{{ path('relais_relais_layoutRelations') }}')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="30px" width="30px"
 					title="{{ 'DbPedia' | trans}}"/>
 			{% endimage %}
-		</li>
-		<li>
+		</a></li><br/>
+		<li><a>
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logodebian.png' %}
 				<img id="debian" onClick="activerSource('#debian','{{ path('relais_relais_layoutRelations') }}')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="30px" width="30px"
 					title="{{ 'Debian' | trans}}"/>
 			{% endimage %}
-		</li>
-		<li>
+		</a></li><br/>
+		<li><a>
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logohumour.png' %}
 				<img id="humour" onClick="activerSource('#humour','{{ path('relais_relais_layoutRelations') }}')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="30px" width="30px"
 					title="{{ 'Humour' | trans}}"/>
 			{% endimage %}
-		</li>
-		<li>
+		</a></li><br/>
+		<li><a>
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logogetty.png' %}
 				<img id="getty" onClick="activerSource('#getty','{{ path('relais_relais_layoutRelations') }}')"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="30px" width="30px"
 					title="{{ 'Humour' | trans}}"/>
 			{% endimage %}
-		</li>
+		</a></li><br/>
 		{{ form_widget(formrecherche.source) }}
 	</ul>
 </nav>

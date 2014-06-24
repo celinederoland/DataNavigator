@@ -1,15 +1,17 @@
-#menusuperieur
+
+
+nav
 {
 	background-color: #edf6fe;
-	border-bottom: solid 1px lightgrey;
-	border-radius: 3px;
+/*	border-bottom: solid 1px lightgrey;
+	border-radius: 3px;*/
 	opacity:0.9;
 	display:block;
 	z-index:15;
 	font-size:0px;
 }
 
-#menusuperieur li
+nav li
 {
 	padding: 3px 5px 0px 5px;
 	border-radius: 3px;
@@ -24,13 +26,13 @@
 	font-size:18px;
 }
 
-#menusuperieur li:hover, #menusuperieur .pagecourante
+nav li:hover, nav .pagecourante
 {
 	border: solid 1px grey;
 }
 
 
-#menusuperieur a
+nav a
 {
 	display: inline-block;
 	padding: 5px 10px 5px;
@@ -42,26 +44,25 @@
 	vertical-align:top;
 }
 
-#menusuperieur ul:not(.tabs)
+nav ul:not(.tabs)
 {
 	padding:0px;
 	width:100%;
-	text-align:justify;
 	list-style: none;
 }
 
-#menusuperieur #gauche
+nav #gauche
 {
 	float:left;
 }
 
-#menusuperieur #droit
+nav #droit
 {
 	width:100%;
 	text-align:right;
 }
 
-#menusuperieur img
+nav img
 {
 	margin-right:10px;
 }

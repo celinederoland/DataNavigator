@@ -4,7 +4,7 @@
 			{{ form_widget(formrecherche.mot) }}
 			{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logorecherche.png' %}
 				<img id="btrecherche" onClick="rechercher('{{ path('relais_relais_layout') }}');"
-					src="{{ asset_url }}" height="40px" width="40px"
+					src="{{ asset_url }}" height="30px" width="30px"
 					title="{{ 'rechercher' | trans}}"/>
 			{% endimage %}
 		</li>
@@ -12,7 +12,7 @@
 			<li>
 				{% image '@RelaisRelaisBundle/Resources/public/images/menusite/logohistorique.png' %}
 					<img onClick="historique('{{ path('relais_relais_show_historique') }}')"
-						src="{{ asset_url }}" height="40px" width="40px"
+						src="{{ asset_url }}" height="30px" width="30px"
 						title="{{ 'histo' | trans}}"/>
 				{% endimage %}
 			</li>

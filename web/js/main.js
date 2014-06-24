@@ -8,7 +8,7 @@ $( init );
  * Initialisation des positionnements des menus dans la page
  */
 function init() {
-	var larg = $('#conteneurmenu').innerWidth();
+	/*var larg = $('#conteneurmenu').innerWidth();
 	var hbox = $('#menusite').outerHeight() + 5;
 
 	$('#menusite').draggable();
