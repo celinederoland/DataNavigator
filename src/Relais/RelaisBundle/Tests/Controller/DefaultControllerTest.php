@@ -16,7 +16,7 @@ class DefaultControllerTest extends BddTestCase
 		$this->assertTrue($crawler->filter('html:contains("Relations")')->count() > 0,'accueil du site en panne');
 	}
 
-	public function testMenuAdmin()
+/*	public function testMenuAdmin()
 	{
 		$client = static::createClient();
 
@@ -31,7 +31,7 @@ class DefaultControllerTest extends BddTestCase
 
 		$this -> assertTrue($crawler -> filter('nav#menuadmin') -> count() > 0,'menu admin inaccessible');
 
-	}
+	}*/
 
 	public function testHistorique()
 	{

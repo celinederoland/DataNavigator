@@ -134,10 +134,9 @@ function rechercher(url)
 
 function historique(url)
 {
-	$('#conteneurpage').html('');
-	$('#conteneurpage').css('visibility','visible');
-	$('#conteneurD3').css('visibility','hidden');
-	$('#conteneurpage').load(url);
+	$('#conteneurD3').html('');
+	$('#conteneurD3').css('visibility','visible');
+	$('#conteneurD3').load(url);
 }
 
 /*function activerRotation(id,dir)
